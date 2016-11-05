@@ -19,6 +19,13 @@ class HomeViewController: UIViewController {
     var upSwipe = UISwipeGestureRecognizer()
     var cloudGen = CloudGenerator()
     
+    var firstTouch: CGPoint!
+    var leftGateCurrentXPosition: CGFloat!
+    var rightGateCurrentXPosition: CGFloat!
+    var leftGateMaxX: CGFloat!
+    
+    var swipeUpOccured: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +41,7 @@ class HomeViewController: UIViewController {
         upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.upSwipeDetected))
         upSwipe.direction = .up
         self.view.addGestureRecognizer(upSwipe)
+        swipeUpOccured = false
 
         //Setting up clouds
         cloudGen.generate(view: self.view)
@@ -48,7 +56,7 @@ class HomeViewController: UIViewController {
         
         self.view.addSubview(backgroundImageView)
         
-/*        //Setting up leftGate ImageView
+        //Setting up leftGate ImageView
         let gateInitialImageHeight: CGFloat = gateToScreenInitialRatio*self.view.frame.width/gateAspectRatio
         let gateFinalImageHeight: CGFloat = gateToScreenFinalRatio*self.view.frame.width/gateAspectRatio
         
@@ -78,7 +86,7 @@ class HomeViewController: UIViewController {
         }) { (true) in
             //code
         }
-*/
+
         
         //Setting up boy's image view
         let boyInitialImageHeight: CGFloat = boyToScreenInitialRatio*self.view.frame.width/boyAspectRatio
@@ -132,19 +140,87 @@ class HomeViewController: UIViewController {
     }
     
     func upSwipeDetected() {
+        swipeUpOccured = true
         slideToEnterLabel.layer.removeAllAnimations()
         self.view.removeGestureRecognizer(upSwipe)
         
         //Popping Animation for Aaveg Logo
         UIView.animate(withDuration: 1.9, delay: 0.0, usingSpringWithDamping: 10.0, initialSpringVelocity: 10.0, options: .curveEaseIn, animations: {
-            self.aavegLogoImageView.center.y = 125
+            self.aavegLogoImageView.center.y = 0.13 * self.view.frame.height
             self.aavegLogoImageView.alpha = 1
         }) { (true) in
             //Completion code
         }
         
+        UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseOut, animations: { 
+            self.leftGateImageView.frame.origin.x -= self.view.frame.width/2
+            self.rightGateImageView.frame.origin.x += self.view.frame.width/2
+            }) { (true) in
+                //Completion code
+        }
+        
     
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if swipeUpOccured == true {
+            return
+        }
+        
+        if let touch = touches.first {
+            self.firstTouch = touch.location(in: self.view)
+        }
+        
+        self.leftGateCurrentXPosition = self.leftGateImageView.frame.origin.x
+        self.rightGateCurrentXPosition = self.rightGateImageView.frame.origin.x
+        self.leftGateMaxX = self.leftGateImageView.frame.maxX
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if swipeUpOccured == true {
+            return
+        }
+        
+        var difference: CGFloat = 0
+        
+        if let touch = touches.first {
+            let currentTouch = touch.location(in: self.view)
+            difference = self.firstTouch.y - currentTouch.y
+        }
+        
+        if (self.leftGateMaxX - difference > self.view.frame.width/2) {
+            return
+        }
+        
+        if (self.leftGateMaxX - difference < self.view.frame.width/3) {
+            swipeUpOccured = true
+            self.upSwipeDetected()
+            return
+        }
+        
+        self.leftGateImageView.frame.origin.x = self.leftGateCurrentXPosition - difference
+        self.rightGateImageView.frame.origin.x = self.rightGateCurrentXPosition + difference
+        
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let gateFinalImageHeight: CGFloat = gateToScreenFinalRatio*self.view.frame.width/gateAspectRatio
+        
+        if swipeUpOccured == false {
+            UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseOut, animations: {
+                self.leftGateImageView.frame = CGRect(x: gateFinalOffset*self.view.frame.width/2, y: self.view.frame.height-(gateFinalImageHeight*1.1), width: gateToScreenFinalRatio*self.view.frame.width, height: gateFinalImageHeight)
+                
+                self.rightGateImageView.frame = CGRect(x: self.view.frame.width/2+(gateFinalOffset*self.view.frame.width/2), y: self.view.frame.height-(gateFinalImageHeight*1.1), width: gateToScreenFinalRatio*self.view.frame.width, height: gateFinalImageHeight)
+            }) { (true) in
+                //Completion Code
+            }
+        }
+        
+    }
+    
 
 
     /*
