@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         //Initializing UpSwipe
         upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.upSwipeDetected))
         upSwipe.direction = .up
-        self.view.addGestureRecognizer(upSwipe)
+       // self.view.addGestureRecognizer(upSwipe)
         swipeUpOccured = false
 
         //Setting up clouds
@@ -76,7 +76,7 @@ class HomeViewController: UIViewController {
         self.view.addSubview(rightGateImageView)
         
         //Popping Animation for Gate
-        UIView.animate(withDuration: 1.9, delay: 0.0, usingSpringWithDamping: 20.0, initialSpringVelocity: 10.0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 1.7, delay: 0.0, usingSpringWithDamping: 20.0, initialSpringVelocity: 10.0, options: .curveEaseInOut, animations: {
             self.leftGateImageView.alpha = 1.0
             self.leftGateImageView.frame = CGRect(x: gateFinalOffset*self.view.frame.width/2, y: self.view.frame.height-(gateFinalImageHeight*1.1), width: gateToScreenFinalRatio*self.view.frame.width, height: gateFinalImageHeight)
             
@@ -100,7 +100,7 @@ class HomeViewController: UIViewController {
         self.view.addSubview(boyImageView)
         
         //Popping Animation for Boy
-        UIView.animate(withDuration: 1.9, delay: 0.0, usingSpringWithDamping: 20.0, initialSpringVelocity: 10.0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 1.7, delay: 0.0, usingSpringWithDamping: 20.0, initialSpringVelocity: 10.0, options: .curveEaseInOut, animations: {
             self.boyImageView.alpha = 1.0
             self.boyImageView.frame = CGRect(x: boyFinalOffset*self.view.frame.width, y: self.view.frame.height-boyFinalImageHeight, width: boyToScreenFinalRatio*self.view.frame.width, height: boyFinalImageHeight)
             
@@ -152,7 +152,7 @@ class HomeViewController: UIViewController {
             //Completion code
         }
         
-        UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseOut, animations: { 
+        UIView.animate(withDuration: 1.2, delay: 0.0, options: .curveEaseOut, animations: {
             self.leftGateImageView.frame.origin.x -= self.view.frame.width/2
             self.rightGateImageView.frame.origin.x += self.view.frame.width/2
             }) { (true) in
@@ -194,7 +194,7 @@ class HomeViewController: UIViewController {
             return
         }
         
-        if (self.leftGateMaxX - difference < self.view.frame.width/3) {
+        if (self.leftGateMaxX - difference < (0.28*self.view.frame.width)) {
             swipeUpOccured = true
             self.upSwipeDetected()
             return
@@ -210,7 +210,7 @@ class HomeViewController: UIViewController {
         let gateFinalImageHeight: CGFloat = gateToScreenFinalRatio*self.view.frame.width/gateAspectRatio
         
         if swipeUpOccured == false {
-            UIView.animate(withDuration: 2.0, delay: 0.0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 1.2, delay: 0.0, options: .curveEaseOut, animations: {
                 self.leftGateImageView.frame = CGRect(x: gateFinalOffset*self.view.frame.width/2, y: self.view.frame.height-(gateFinalImageHeight*1.1), width: gateToScreenFinalRatio*self.view.frame.width, height: gateFinalImageHeight)
                 
                 self.rightGateImageView.frame = CGRect(x: self.view.frame.width/2+(gateFinalOffset*self.view.frame.width/2), y: self.view.frame.height-(gateFinalImageHeight*1.1), width: gateToScreenFinalRatio*self.view.frame.width, height: gateFinalImageHeight)
