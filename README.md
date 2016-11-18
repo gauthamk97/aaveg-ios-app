@@ -5,4 +5,4 @@ Splash Screen Cloud Animation
 Splash Screen Popping Up of boy and gate
 
 To Do :-
-Complete functionality of Slide Up to Enter
+Update Initial View Controllers and Slide Out Menu location
