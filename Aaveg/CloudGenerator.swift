@@ -50,5 +50,13 @@ class CloudGenerator {
                 }, completion: nil)
         }
     }
+    
+    func slowlyfadeAway() {
+        UIView.animate(withDuration: 1.9, delay: 0, options: .curveEaseOut, animations: {
+            for i in 0...8 {
+                self.allClouds[i].alpha = 0
+            }
+            }, completion: nil)
+    }
 
 }

@@ -29,18 +29,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Removing gesture recognizer in case user just clicked Home
+        self.view.removeGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
         //Sky BGColor
         self.view.backgroundColor = UIColor(red: 0, green: 0.75, blue: 1, alpha: 1)
-        
-        //Setting up pan gesture recognizer for reveal view
-        if self.revealViewController() != nil {
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
         
         //Initializing UpSwipe
         upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.upSwipeDetected))
         upSwipe.direction = .up
-       // self.view.addGestureRecognizer(upSwipe)
+        //self.view.addGestureRecognizer(upSwipe)
         swipeUpOccured = false
 
         //Setting up clouds
@@ -149,14 +147,20 @@ class HomeViewController: UIViewController {
             self.aavegLogoImageView.center.y = 0.13 * self.view.frame.height
             self.aavegLogoImageView.alpha = 1
         }) { (true) in
-            //Completion code
+            //Setting up pan gesture recognizer for reveal view
+            if self.revealViewController() != nil {
+                self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            }
         }
+        
+        self.cloudGen.slowlyfadeAway()
         
         UIView.animate(withDuration: 1.2, delay: 0.0, options: .curveEaseOut, animations: {
             self.leftGateImageView.frame.origin.x -= self.view.frame.width/2
             self.rightGateImageView.frame.origin.x += self.view.frame.width/2
             }) { (true) in
-                //Completion code
+                self.leftGateImageView.removeFromSuperview()
+                self.rightGateImageView.removeFromSuperview()
         }
         
     
@@ -194,7 +198,7 @@ class HomeViewController: UIViewController {
             return
         }
         
-        if (self.leftGateMaxX - difference < (0.28*self.view.frame.width)) {
+        if (self.leftGateMaxX - difference < 0) {
             swipeUpOccured = true
             self.upSwipeDetected()
             return
@@ -206,6 +210,23 @@ class HomeViewController: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if swipeUpOccured == true {
+            return
+        }
+        
+        var difference: CGFloat = 0
+        
+        if let touch = touches.first {
+            let currentTouch = touch.location(in: self.view)
+            difference = self.firstTouch.y - currentTouch.y
+        }
+        
+        if (self.leftGateMaxX - difference < (0.3*self.view.frame.width)) {
+            swipeUpOccured = true
+            self.upSwipeDetected()
+            return
+        }
         
         let gateFinalImageHeight: CGFloat = gateToScreenFinalRatio*self.view.frame.width/gateAspectRatio
         

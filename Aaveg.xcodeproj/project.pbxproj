@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC344B121DF70A7900808F18 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC344B0D1DF70A2E00808F18 /* Charts.framework */; };
+		AC344B131DF70A7900808F18 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC344B0D1DF70A2E00808F18 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ACB5F53C1DF6C76F00029C8A /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB5F53B1DF6C76F00029C8A /* PageViewController.swift */; };
+		ACB5F53E1DF6C78C00029C8A /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB5F53D1DF6C78C00029C8A /* ScoreboardViewController.swift */; };
 		ACFBA1BA1DCA134000E99255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBA1B91DCA134000E99255 /* AppDelegate.swift */; };
 		ACFBA1BF1DCA134000E99255 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACFBA1BD1DCA134000E99255 /* Main.storyboard */; };
 		ACFBA1C21DCA134000E99255 /* Aaveg.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACFBA1C01DCA134000E99255 /* Aaveg.xcdatamodeld */; };
@@ -19,7 +23,55 @@
 		ACFBA1DC1DCB2DB500E99255 /* CloudGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBA1DB1DCB2DB500E99255 /* CloudGenerator.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AC344B0C1DF70A2E00808F18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC344B061DF70A2D00808F18 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F241D8110E600722320;
+			remoteInfo = Charts;
+		};
+		AC344B0E1DF70A2E00808F18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC344B061DF70A2D00808F18 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06B120D51D811E6200D14B02;
+			remoteInfo = ChartsRealm;
+		};
+		AC344B101DF70A2E00808F18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC344B061DF70A2D00808F18 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F2E1D8110E600722320;
+			remoteInfo = ChartsTests;
+		};
+		AC344B141DF70A7900808F18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC344B061DF70A2D00808F18 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06165F231D8110E600722320;
+			remoteInfo = Charts;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AC344B161DF70A7900808F18 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AC344B131DF70A7900808F18 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		AC344B061DF70A2D00808F18 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
+		ACB5F53B1DF6C76F00029C8A /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		ACB5F53D1DF6C78C00029C8A /* ScoreboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
 		ACFBA1B61DCA134000E99255 /* Aaveg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aaveg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACFBA1B91DCA134000E99255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACFBA1BE1DCA134000E99255 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -41,17 +93,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC344B121DF70A7900808F18 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC344B071DF70A2D00808F18 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC344B0D1DF70A2E00808F18 /* Charts.framework */,
+				AC344B0F1DF70A2E00808F18 /* ChartsRealm.framework */,
+				AC344B111DF70A2E00808F18 /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACB5F53F1DF6CC6D00029C8A /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				ACFBA1D51DCA183A00E99255 /* HomeViewController.swift */,
+				ACFBA1D91DCB2A5800E99255 /* Cloud.swift */,
+				ACFBA1DB1DCB2DB500E99255 /* CloudGenerator.swift */,
+			);
+			name = "Home Screen";
+			sourceTree = "<group>";
+		};
+		ACB5F5401DF6CC7E00029C8A /* Scoreboard Screen */ = {
+			isa = PBXGroup;
+			children = (
+				ACB5F53B1DF6C76F00029C8A /* PageViewController.swift */,
+				ACB5F53D1DF6C78C00029C8A /* ScoreboardViewController.swift */,
+			);
+			name = "Scoreboard Screen";
+			sourceTree = "<group>";
+		};
 		ACFBA1AD1DCA134000E99255 = {
 			isa = PBXGroup;
 			children = (
 				ACFBA1B81DCA134000E99255 /* Aaveg */,
 				ACFBA1B71DCA134000E99255 /* Products */,
+				AC344B061DF70A2D00808F18 /* Charts.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,14 +152,13 @@
 				ACFBA1D21DCA148400E99255 /* SWRevealViewController */,
 				ACFBA1B91DCA134000E99255 /* AppDelegate.swift */,
 				ACFBA1BD1DCA134000E99255 /* Main.storyboard */,
-				ACFBA1D51DCA183A00E99255 /* HomeViewController.swift */,
+				ACB5F53F1DF6CC6D00029C8A /* Home Screen */,
+				ACB5F5401DF6CC7E00029C8A /* Scoreboard Screen */,
 				ACFBA1D71DCA22A200E99255 /* globalVariables.swift */,
 				ACFBA1C31DCA134000E99255 /* Assets.xcassets */,
 				ACFBA1C51DCA134000E99255 /* LaunchScreen.storyboard */,
 				ACFBA1C81DCA134000E99255 /* Info.plist */,
 				ACFBA1C01DCA134000E99255 /* Aaveg.xcdatamodeld */,
-				ACFBA1D91DCB2A5800E99255 /* Cloud.swift */,
-				ACFBA1DB1DCB2DB500E99255 /* CloudGenerator.swift */,
 			);
 			path = Aaveg;
 			sourceTree = "<group>";
@@ -101,10 +183,12 @@
 				ACFBA1B21DCA134000E99255 /* Sources */,
 				ACFBA1B31DCA134000E99255 /* Frameworks */,
 				ACFBA1B41DCA134000E99255 /* Resources */,
+				AC344B161DF70A7900808F18 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AC344B151DF70A7900808F18 /* PBXTargetDependency */,
 			);
 			name = Aaveg;
 			productName = Aaveg;
@@ -140,12 +224,42 @@
 			mainGroup = ACFBA1AD1DCA134000E99255;
 			productRefGroup = ACFBA1B71DCA134000E99255 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AC344B071DF70A2D00808F18 /* Products */;
+					ProjectRef = AC344B061DF70A2D00808F18 /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				ACFBA1B51DCA134000E99255 /* Aaveg */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AC344B0D1DF70A2E00808F18 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = AC344B0C1DF70A2E00808F18 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AC344B0F1DF70A2E00808F18 /* ChartsRealm.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ChartsRealm.framework;
+			remoteRef = AC344B0E1DF70A2E00808F18 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AC344B111DF70A2E00808F18 /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = AC344B101DF70A2E00808F18 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		ACFBA1B41DCA134000E99255 /* Resources */ = {
@@ -166,16 +280,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACFBA1C21DCA134000E99255 /* Aaveg.xcdatamodeld in Sources */,
+				ACB5F53E1DF6C78C00029C8A /* ScoreboardViewController.swift in Sources */,
 				ACFBA1DA1DCB2A5800E99255 /* Cloud.swift in Sources */,
 				ACFBA1BA1DCA134000E99255 /* AppDelegate.swift in Sources */,
 				ACFBA1D81DCA22A200E99255 /* globalVariables.swift in Sources */,
 				ACFBA1D11DCA147500E99255 /* SWRevealViewController.m in Sources */,
 				ACFBA1DC1DCB2DB500E99255 /* CloudGenerator.swift in Sources */,
 				ACFBA1D61DCA183A00E99255 /* HomeViewController.swift in Sources */,
+				ACB5F53C1DF6C76F00029C8A /* PageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AC344B151DF70A7900808F18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = AC344B141DF70A7900808F18 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		ACFBA1BD1DCA134000E99255 /* Main.storyboard */ = {
@@ -291,6 +415,7 @@
 		ACFBA1CC1DCA134000E99255 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = VPM5RWXN8D;
@@ -308,6 +433,7 @@
 		ACFBA1CD1DCA134000E99255 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = VPM5RWXN8D;
