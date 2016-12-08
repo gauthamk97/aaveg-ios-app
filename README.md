@@ -2,6 +2,12 @@
 
 To Do :-
 
-Splash Screen : Gate
+Splash Screen :-
+Gate Dimensions Check
 
-Scoreboard : NavBar and redesign of pageViewController
+Scoreboard :- 
+Adding hostel names to graph
+Incorporating with API Calls
+
+Blog :-
+Start Work (Conceptualize)
