@@ -26,8 +26,10 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         eventsTable.delegate = self
         eventsTable.dataSource = self
         
+        //Setting table height according to number of events
         tableheightConstraint.constant = rowHeight*CGFloat(numberOfRows)
         
+        //Setting chart details
         let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
         let hostelPoints: [Double] = [10,5,13,25,2]
         setChart(xEntries: hostelNames, yEntries: hostelPoints)
@@ -101,8 +103,8 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         scoreboardGraphView.xAxis.axisLineColor = UIColor.black //sets x axis to white color
         
         scoreboardGraphView.rightAxis.drawGridLinesEnabled = false //Removes horizontal lines
-        scoreboardGraphView.rightAxis.drawAxisLineEnabled = false
-        scoreboardGraphView.rightAxis.drawLabelsEnabled = false
+        scoreboardGraphView.rightAxis.drawAxisLineEnabled = false //Removes right axis
+        scoreboardGraphView.rightAxis.drawLabelsEnabled = false //Removes right axis' labels
         
         scoreboardGraphView.chartDescription?.text = ""
         scoreboardGraphView.legend.enabled = false

@@ -26,8 +26,10 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
         eventsTable.delegate = self
         eventsTable.dataSource = self
         
+        //Setting table height according to number of events
         tableheightConstraint.constant = rowHeight*CGFloat(numberOfRows)
         
+        //Setting chart details
         let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
         let hostelPoints: [Double] = [10,5,13,25,2]
         setChart(xEntries: hostelNames, yEntries: hostelPoints)
