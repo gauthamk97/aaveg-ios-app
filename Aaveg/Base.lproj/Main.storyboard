@@ -238,7 +238,7 @@
         <!--Sports Cup View Controller-->
         <scene sceneID="zUm-aF-Sdj">
             <objects>
-                <viewController storyboardIdentifier="GreenViewController" id="8gp-nG-dFC" customClass="SportsCupViewController" customModule="Aaveg" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RedViewController" id="8gp-nG-dFC" customClass="SportsCupViewController" customModule="Aaveg" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L8A-tH-BUg"/>
                         <viewControllerLayoutGuide type="bottom" id="mfQ-gW-GdU"/>
@@ -391,7 +391,7 @@
         <!--Culturals Cup View Controller-->
         <scene sceneID="JW8-wC-oIe">
             <objects>
-                <viewController storyboardIdentifier="RedViewController" id="pZa-Uw-58L" customClass="CulturalsCupViewController" customModule="Aaveg" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GreenViewController" id="pZa-Uw-58L" customClass="CulturalsCupViewController" customModule="Aaveg" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zEy-oj-zxZ"/>
                         <viewControllerLayoutGuide type="bottom" id="Wl6-gn-mvh"/>

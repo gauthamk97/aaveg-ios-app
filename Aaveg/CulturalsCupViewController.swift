@@ -30,10 +30,19 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         tableheightConstraint.constant = rowHeight*CGFloat(numberOfRows)
         
         //Setting chart details
+        setChart()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
         let hostelPoints: [Double] = [10,5,13,25,2]
-        setChart(xEntries: hostelNames, yEntries: hostelPoints)
-        
+        setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
+        let hostelPoints: [Double] = [0,0,0,0,0]
+        setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,17 +90,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    func setChart(xEntries: [String], yEntries: [Double]) {
-        
-        var dataEntries: [BarChartDataEntry] = []
-        for i in 0..<xEntries.count {
-            let dataEntry = BarChartDataEntry(x: Double(i), y: yEntries[i])
-            dataEntries.append(dataEntry)
-        }
-        
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Points")
-        chartDataSet.colors = [diamondColor, coralColor, jadeColor, agateColor, opalColor]
-        let chartData = BarChartData(dataSets: [chartDataSet])
+    func setChart() {
         
         scoreboardGraphView.leftAxis.drawGridLinesEnabled = false //Removes horizontal lines
         scoreboardGraphView.leftAxis.labelTextColor = UIColor.gray //Sets labels on left axis to white color
@@ -109,7 +108,24 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         scoreboardGraphView.chartDescription?.text = ""
         scoreboardGraphView.legend.enabled = false
         
+        scoreboardGraphView.animate(yAxisDuration: 1.1, easingOption: .easeInBack)
+        
+    }
+    
+    func setChartValues(xEntries: [String], yEntries: [Double]) {
+        
+        var dataEntries: [BarChartDataEntry] = []
+        for i in 0..<xEntries.count {
+            let dataEntry = BarChartDataEntry(x: Double(i), y: yEntries[i])
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Points")
+        chartDataSet.colors = [diamondColor, coralColor, jadeColor, agateColor, opalColor]
+        let chartData = BarChartData(dataSets: [chartDataSet])
+        
         scoreboardGraphView.data = chartData
+        scoreboardGraphView.animate(yAxisDuration: 1, easingOption: .easeInBack)
         
     }
 }
