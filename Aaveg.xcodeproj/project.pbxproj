@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		AC344B121DF70A7900808F18 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC344B0D1DF70A2E00808F18 /* Charts.framework */; };
 		AC344B131DF70A7900808F18 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC344B0D1DF70A2E00808F18 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ACB5F53C1DF6C76F00029C8A /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB5F53B1DF6C76F00029C8A /* PageViewController.swift */; };
-		ACB5F53E1DF6C78C00029C8A /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB5F53D1DF6C78C00029C8A /* ScoreboardViewController.swift */; };
+		ACF2C2DD1DF9B52200C7F97A /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2DC1DF9B52200C7F97A /* TutorialViewController.swift */; };
+		ACF2C2DF1DF9B53500C7F97A /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2DE1DF9B53500C7F97A /* TutorialPageViewController.swift */; };
+		ACF2C2E11DF9B80E00C7F97A /* CulturalsCupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2E01DF9B80E00C7F97A /* CulturalsCupViewController.swift */; };
+		ACF2C2E31DF9B95500C7F97A /* SportsCupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2E21DF9B95500C7F97A /* SportsCupViewController.swift */; };
+		ACF2C2E51DF9B9A900C7F97A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2E41DF9B9A900C7F97A /* TableViewCell.swift */; };
+		ACF2C2E71DF9C10900C7F97A /* SpectrumCupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2E61DF9C10900C7F97A /* SpectrumCupViewController.swift */; };
 		ACFBA1BA1DCA134000E99255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBA1B91DCA134000E99255 /* AppDelegate.swift */; };
 		ACFBA1BF1DCA134000E99255 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACFBA1BD1DCA134000E99255 /* Main.storyboard */; };
 		ACFBA1C21DCA134000E99255 /* Aaveg.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACFBA1C01DCA134000E99255 /* Aaveg.xcdatamodeld */; };
@@ -70,8 +74,12 @@
 
 /* Begin PBXFileReference section */
 		AC344B061DF70A2D00808F18 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
-		ACB5F53B1DF6C76F00029C8A /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		ACB5F53D1DF6C78C00029C8A /* ScoreboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
+		ACF2C2DC1DF9B52200C7F97A /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		ACF2C2DE1DF9B53500C7F97A /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
+		ACF2C2E01DF9B80E00C7F97A /* CulturalsCupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CulturalsCupViewController.swift; sourceTree = "<group>"; };
+		ACF2C2E21DF9B95500C7F97A /* SportsCupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportsCupViewController.swift; sourceTree = "<group>"; };
+		ACF2C2E41DF9B9A900C7F97A /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		ACF2C2E61DF9C10900C7F97A /* SpectrumCupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrumCupViewController.swift; sourceTree = "<group>"; };
 		ACFBA1B61DCA134000E99255 /* Aaveg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aaveg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACFBA1B91DCA134000E99255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACFBA1BE1DCA134000E99255 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,8 +131,12 @@
 		ACB5F5401DF6CC7E00029C8A /* Scoreboard Screen */ = {
 			isa = PBXGroup;
 			children = (
-				ACB5F53B1DF6C76F00029C8A /* PageViewController.swift */,
-				ACB5F53D1DF6C78C00029C8A /* ScoreboardViewController.swift */,
+				ACF2C2DC1DF9B52200C7F97A /* TutorialViewController.swift */,
+				ACF2C2DE1DF9B53500C7F97A /* TutorialPageViewController.swift */,
+				ACF2C2E01DF9B80E00C7F97A /* CulturalsCupViewController.swift */,
+				ACF2C2E21DF9B95500C7F97A /* SportsCupViewController.swift */,
+				ACF2C2E61DF9C10900C7F97A /* SpectrumCupViewController.swift */,
+				ACF2C2E41DF9B9A900C7F97A /* TableViewCell.swift */,
 			);
 			name = "Scoreboard Screen";
 			sourceTree = "<group>";
@@ -279,15 +291,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACF2C2E31DF9B95500C7F97A /* SportsCupViewController.swift in Sources */,
 				ACFBA1C21DCA134000E99255 /* Aaveg.xcdatamodeld in Sources */,
-				ACB5F53E1DF6C78C00029C8A /* ScoreboardViewController.swift in Sources */,
+				ACF2C2DD1DF9B52200C7F97A /* TutorialViewController.swift in Sources */,
 				ACFBA1DA1DCB2A5800E99255 /* Cloud.swift in Sources */,
 				ACFBA1BA1DCA134000E99255 /* AppDelegate.swift in Sources */,
+				ACF2C2E11DF9B80E00C7F97A /* CulturalsCupViewController.swift in Sources */,
 				ACFBA1D81DCA22A200E99255 /* globalVariables.swift in Sources */,
+				ACF2C2DF1DF9B53500C7F97A /* TutorialPageViewController.swift in Sources */,
 				ACFBA1D11DCA147500E99255 /* SWRevealViewController.m in Sources */,
+				ACF2C2E71DF9C10900C7F97A /* SpectrumCupViewController.swift in Sources */,
+				ACF2C2E51DF9B9A900C7F97A /* TableViewCell.swift in Sources */,
 				ACFBA1DC1DCB2DB500E99255 /* CloudGenerator.swift in Sources */,
 				ACFBA1D61DCA183A00E99255 /* HomeViewController.swift in Sources */,
-				ACB5F53C1DF6C76F00029C8A /* PageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
