@@ -21,6 +21,8 @@ class TutorialViewController: UIViewController {
         super.viewDidLoad()
         
         pageControl.addTarget(self, action: #selector(TutorialViewController.didChangePageControlValue), for: .valueChanged)
+        
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
