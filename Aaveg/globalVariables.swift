@@ -26,7 +26,7 @@ let gateToScreenFinalRatio: CGFloat = 0.5
 let gateInitialOffset: CGFloat = (0.5 - gateToScreenInitialRatio)/2
 let gateFinalOffset: CGFloat = (0.5 - gateToScreenFinalRatio)/2
 
-let gateAspectRatio: CGFloat = 1557/2768
+let gateAspectRatio: CGFloat = 542/634
 
 let cloudAspectRatio: CGFloat = 6378/3839
 
