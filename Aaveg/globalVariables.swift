@@ -39,3 +39,52 @@ let coralColor = UIColor(colorLiteralRed: 0.1882353, green: 0.490196, blue: 0.68
 let jadeColor = UIColor(colorLiteralRed: 0.60392, green: 0.58039, blue: 0.41176, alpha: 1.0)
 let agateColor = UIColor(colorLiteralRed: 0.2902, green: 0.615686, blue: 0.627451, alpha: 1.0)
 let opalColor = UIColor(colorLiteralRed: 0.52157, green: 0.4470588, blue: 0.78039, alpha: 1.0)
+
+//Events data
+let emptyDictionary: [[String:Any]] = [[:]]
+var culturalEvents: [[String:Any]] = [[:]]
+
+func obtainScoreboardData() {
+    
+    let urlToHit = URL(string: "https://aaveg.net/scoreboard/getall")
+    var request = URLRequest(url: urlToHit!)
+    request.httpMethod = "POST"
+    request.httpBody = nil //Parameters to send, if needed (must be encoded)
+    
+    let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+        
+        let httpStatus = response as? HTTPURLResponse
+        
+        if (error != nil) {
+            if (httpStatus?.statusCode == nil) {
+                print("NO INTERNET")
+            }
+            else {
+                print("Error occured : \(error)")
+            }
+            return;
+        }
+            
+        else if httpStatus?.statusCode != 200 {
+            print("Error : HTTPStatusCode is \(httpStatus?.statusCode)")
+            return
+        }
+            
+        else {
+            let responseString = String(data: data!, encoding: .utf8)
+            let jsonData = responseString?.data(using: .utf8)
+            if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
+                let message = json["message"] as! [String: Any]
+                let culturals = message["Culturals"] as! [[String: Any]]
+                for item in culturals {
+                    culturalEvents.append(item)
+                }
+            }
+            
+        }
+        
+    })
+    
+    task.resume()
+    
+}
