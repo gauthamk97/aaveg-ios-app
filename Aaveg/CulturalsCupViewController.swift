@@ -16,28 +16,31 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var scoreboardGraphView: BarChartView!
     @IBOutlet weak var eventsTable: UITableView!
     
-    var numberOfRows: Int = 15
+    var numberOfRows: Int = 1
     let rowHeight: CGFloat = 1110/25
-    var Culttotals: [Double] = [0,0,0,0,0]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("VC1 - ViewdidLoad")
+        print("Cult Cup View Loaded")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.dataObtained), name: NSNotification.Name(rawValue: "1stcupdataobtained"), object: nil)
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
         
         //Obtaining data
-        obtainScoreboardData()
-        culturalEvents.removeAll(keepingCapacity: false)
-        while (culturalEvents.isEmpty) {
-            continue
-        }
-        print("Main - \(culturalEvents)")
+        obtainScoreboardData(index: 1)
         
         //Setting table height according to number of events
-        numberOfRows = culturalEvents.count+2 //1 is added for header row. 1 is added for total
+        if CultCupDataPresent == true {
+            numberOfRows = culturalEvents.count+2 //1 is added for header row. 1 is added for total
+        }
+        else {
+            numberOfRows = 1
+        }
+        
         tableheightConstraint.constant = rowHeight*CGFloat(numberOfRows)
+        eventsTable.bounces = false
         
         //Setting chart details
         setChart()
@@ -46,13 +49,16 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
-        let hostelPoints: [Double] = [25,3,10,2,5]
-        setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
+        let hostelPoints: [Double] = [2,3,0,2,5] //Presence of low score compared to others will cause backlash
+
+        if CultCupDataPresent {
+            setChartValues(xEntries: hostelNames, yEntries: cultCupTotals)
+        }
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
+        
         let hostelPoints: [Double] = [0,0,0,0,0]
         setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
     }
@@ -63,7 +69,9 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return culturalEvents.count+2
+        
+        tableheightConstraint.constant = rowHeight*CGFloat(numberOfRows)
+        return numberOfRows
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,6 +80,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventscell") as! TableViewCell
+        cell.selectionStyle = .none
         
         if indexPath.row == 0 {
             cell.colHeader.text = "Event Name"
@@ -93,39 +102,39 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         else if indexPath.row == culturalEvents.count+1 {
             cell.colHeader.text = "Total"
             
-            if (Culttotals[0].truncatingRemainder(dividingBy: 1) == 0) {
-                cell.col1.text = "\(Int(Culttotals[0]))"
+            if (cultCupTotals[0].truncatingRemainder(dividingBy: 1) == 0) {
+                cell.col1.text = "\(Int(cultCupTotals[0]))"
             }
             else {
-                cell.col1.text = "\(Culttotals[0])"
+                cell.col1.text = "\(cultCupTotals[0])"
             }
             
-            if (Culttotals[1].truncatingRemainder(dividingBy: 1) == 0) {
-                cell.col2.text = "\(Int(Culttotals[1]))"
+            if (cultCupTotals[1].truncatingRemainder(dividingBy: 1) == 0) {
+                cell.col2.text = "\(Int(cultCupTotals[1]))"
             }
             else {
-                cell.col2.text = "\(Culttotals[1])"
+                cell.col2.text = "\(cultCupTotals[1])"
             }
             
-            if (Culttotals[2].truncatingRemainder(dividingBy: 1) == 0) {
-                cell.col3.text = "\(Int(Culttotals[2]))"
+            if (cultCupTotals[2].truncatingRemainder(dividingBy: 1) == 0) {
+                cell.col3.text = "\(Int(cultCupTotals[2]))"
             }
             else {
-                cell.col3.text = "\(Culttotals[2])"
+                cell.col3.text = "\(cultCupTotals[2])"
             }
             
-            if (Culttotals[3].truncatingRemainder(dividingBy: 1) == 0) {
-                cell.col4.text = "\(Int(Culttotals[3]))"
+            if (cultCupTotals[3].truncatingRemainder(dividingBy: 1) == 0) {
+                cell.col4.text = "\(Int(cultCupTotals[3]))"
             }
             else {
-                cell.col4.text = "\(Culttotals[3])"
+                cell.col4.text = "\(cultCupTotals[3])"
             }
             
-            if (Culttotals[4].truncatingRemainder(dividingBy: 1) == 0) {
-                cell.col5.text = "\(Int(Culttotals[4]))"
+            if (cultCupTotals[4].truncatingRemainder(dividingBy: 1) == 0) {
+                cell.col5.text = "\(Int(cultCupTotals[4]))"
             }
             else {
-                cell.col5.text = "\(Culttotals[4])"
+                cell.col5.text = "\(cultCupTotals[4])"
             }
             
             cell.colHeader.font = UIFont.boldSystemFont(ofSize: 13)
@@ -135,10 +144,6 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
             cell.col4.font = UIFont.boldSystemFont(ofSize: 13)
             cell.col5.font = UIFont.boldSystemFont(ofSize: 13)
             
-            print("Setting totals")
-            
-//            let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
-//            setChartValues(xEntries: hostelNames, yEntries: Culttotals)
         }
             
         else {
@@ -146,7 +151,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
             
             let dscoreFloat = Float.init((culturalEvents[indexPath.row-1]["diamond_score"] as? String)!)!
             cell.col1.text = "\(dscoreFloat)"
-            Culttotals[0] += Double(dscoreFloat)
+            
             if (dscoreFloat.truncatingRemainder(dividingBy: 1) == 0) {
                 let dscoreInt = Int(Float.init((culturalEvents[indexPath.row-1]["diamond_score"] as? String)!)!)
                 cell.col1.text = "\(dscoreInt)"
@@ -154,7 +159,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
             
             let cscoreFloat = Float.init((culturalEvents[indexPath.row-1]["coral_score"] as? String)!)!
             cell.col2.text = "\(cscoreFloat)"
-            Culttotals[1] += Double(cscoreFloat)
+            
             if (cscoreFloat.truncatingRemainder(dividingBy: 1) == 0) {
                 let cscoreInt = Int(Float.init((culturalEvents[indexPath.row-1]["coral_score"] as? String)!)!)
                 cell.col2.text = "\(cscoreInt)"
@@ -162,7 +167,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
             
             let jscoreFloat = Float.init((culturalEvents[indexPath.row-1]["jade_score"] as? String)!)!
             cell.col3.text = "\(jscoreFloat)"
-            Culttotals[2] += Double(jscoreFloat)
+            
             if (jscoreFloat.truncatingRemainder(dividingBy: 1) == 0) {
                 let jscoreInt = Int(Float.init((culturalEvents[indexPath.row-1]["jade_score"] as? String)!)!)
                 cell.col3.text = "\(jscoreInt)"
@@ -170,7 +175,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
             
             let ascoreFloat = Float.init((culturalEvents[indexPath.row-1]["agate_score"] as? String)!)!
             cell.col4.text = "\(ascoreFloat)"
-            Culttotals[3] += Double(ascoreFloat)
+            
             if (ascoreFloat.truncatingRemainder(dividingBy: 1) == 0) {
                 let ascoreInt = Int(Float.init((culturalEvents[indexPath.row-1]["agate_score"] as? String)!)!)
                 cell.col4.text = "\(ascoreInt)"
@@ -178,7 +183,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
             
             let oscoreFloat = Float.init((culturalEvents[indexPath.row-1]["opal_score"] as? String)!)!
             cell.col5.text = "\(oscoreFloat)"
-            Culttotals[4] += Double(oscoreFloat)
+            
             if (oscoreFloat.truncatingRemainder(dividingBy: 1) == 0) {
                 let oscoreInt = Int(Float.init((culturalEvents[indexPath.row-1]["opal_score"] as? String)!)!)
                 cell.col5.text = "\(oscoreInt)"
@@ -207,6 +212,21 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         scoreboardGraphView.chartDescription?.text = ""
         scoreboardGraphView.legend.enabled = false
         
+        scoreboardGraphView.noDataText = "Obtaining Data"
+        scoreboardGraphView.noDataTextColor = UIColor.white
+        
+        scoreboardGraphView.leftAxis.axisMinimum = 0  //Prevents gap at bottom for lower scores
+
+        let xAxis=XAxis()
+        let chartFormmater=ChartFormatter()
+        
+        for i in 0...4{
+            chartFormmater.stringForValue(Double(i), axis: xAxis)
+        }
+        
+        xAxis.valueFormatter=chartFormmater
+        scoreboardGraphView.xAxis.valueFormatter=xAxis.valueFormatter
+        
 //        scoreboardGraphView.animate(yAxisDuration: 1, easingOption: .easeInBack)
         
     }
@@ -224,10 +244,35 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         let chartData = BarChartData(dataSets: [chartDataSet])
         
         scoreboardGraphView.data = chartData
-//        scoreboardGraphView.animate(yAxisDuration: 1, easingOption: .easeInBack)
-        
+        scoreboardGraphView.animate(yAxisDuration: 1, easingOption: .easeInBack)
+        scoreboardGraphView.notifyDataSetChanged()
     }
     
-    
+    func dataObtained() {
+        
+        for i in 0...4 {
+            cultCupTotals[i] = 0
+        }
+        
+        for item in culturalEvents {
+            cultCupTotals[0] += Double.init((item["diamond_score"] as? String)!)!
+            cultCupTotals[1] += Double.init((item["coral_score"] as? String)!)!
+            cultCupTotals[2] += Double.init((item["jade_score"] as? String)!)!
+            cultCupTotals[3] += Double.init((item["agate_score"] as? String)!)!
+            cultCupTotals[4] += Double.init((item["opal_score"] as? String)!)!
+        }
+        
+        setChartValues(xEntries: hostelNames, yEntries: cultCupTotals)
+        
+        DispatchQueue.main.async{
+            self.eventsTable.reloadData()
+        }
+        
+        isObtainingCultCupData = false
+        CultCupDataPresent = true
+        numberOfRows = culturalEvents.count+2
+        
+        print("Cult cup data obtained")
+    }
     
 }

@@ -31,7 +31,6 @@ let gateAspectRatio: CGFloat = 542/634
 let cloudAspectRatio: CGFloat = 6378/3839
 
 //Colors for scoreboard view
-
 let scoreboardBGColor = UIColor(colorLiteralRed: 0.2235, green: 0.30588, blue: 0.38039, alpha: 1.0)
 let pageControlBGColor = UIColor(colorLiteralRed: 0.1686, green: 0.2431, blue: 0.3098, alpha: 1.0)
 let diamondColor = UIColor(colorLiteralRed: 0.70588, green: 0.37647, blue: 0.52157, alpha: 1.0)
@@ -40,11 +39,26 @@ let jadeColor = UIColor(colorLiteralRed: 0.60392, green: 0.58039, blue: 0.41176,
 let agateColor = UIColor(colorLiteralRed: 0.2902, green: 0.615686, blue: 0.627451, alpha: 1.0)
 let opalColor = UIColor(colorLiteralRed: 0.52157, green: 0.4470588, blue: 0.78039, alpha: 1.0)
 
-//Events data
-let emptyDictionary: [[String:Any]] = [[:]]
-var culturalEvents: [[String:Any]] = [[:]]
+//Booleans indicating whether data is present or loading
+var isObtainingCultCupData: Bool = false
+var isObtainingSportsCupData: Bool = false
+var isObtainingSpectrumCupData: Bool = false
 
-func obtainScoreboardData() {
+var CultCupDataPresent: Bool = false
+var SportsCupDataPresent: Bool = false
+var SpectrumCupDataPresent: Bool = false
+
+//Events data
+var culturalEvents: [[String:Any]] = [[:]]
+var sportsEvents: [[String:Any]] = [[:]]
+var spectrumEvents: [[String:Any]] = [[:]]
+var cultCupTotals: [Double] = [0,0,0,0,0]
+var sportsCupTotals: [Double] = [0,0,0,0,0]
+var spectrumCupTotals: [Double] = [0,0,0,0,0]
+
+let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
+
+func obtainScoreboardData(index: Int) {
     
     let urlToHit = URL(string: "https://aaveg.net/scoreboard/getall")
     var request = URLRequest(url: urlToHit!)
@@ -74,16 +88,40 @@ func obtainScoreboardData() {
             let responseString = String(data: data!, encoding: .utf8)
             let jsonData = responseString?.data(using: .utf8)
             if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
+                if (json["status_code"] as! Int) != 200 {
+                    print("ERROR. STATUS CODE = \(json["status_code"] as! Int)")
+                    return
+                }
+                
                 let message = json["message"] as! [String: Any]
-                let culturals = message["Culturals"] as! [[String: Any]]
-                for item in culturals {
-                    culturalEvents.append(item)
+                if index==1 {
+                    culturalEvents.removeAll()
+                    let culturals = message["Culturals"] as! [[String: Any]]
+                    for item in culturals {
+                        culturalEvents.append(item)
+                    }
+                }
+                
+                else if index==2 {
+                    sportsEvents.removeAll()
+                    let sports = message["Sports"] as! [[String: Any]]
+                    for item in sports {
+                        sportsEvents.append(item)
+                    }
+                }
+                
+                else {
+                    spectrumEvents.removeAll()
+                    let spectrum = message["Spectrum"] as! [[String: Any]]
+                    for item in spectrum {
+                        spectrumEvents.append(item)
                 }
             }
             
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "\(index)stcupdataobtained"), object: nil)
         }
         
-    })
+        }})
     
     task.resume()
     

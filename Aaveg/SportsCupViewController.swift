@@ -21,7 +21,7 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("VC1 - ViewdidLoad")
+        print("Sports Cup View Loaded")
         
         eventsTable.delegate = self
         eventsTable.dataSource = self

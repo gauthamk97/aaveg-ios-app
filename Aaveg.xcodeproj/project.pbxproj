@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6A12AD0A1DFA6F0E00FEA2AF /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A12AD051DFA6EE700FEA2AF /* Charts.framework */; };
 		6A12AD0B1DFA6F0E00FEA2AF /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A12AD051DFA6EE700FEA2AF /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6A81558E1DFE6B8700D34C27 /* ChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A81558D1DFE6B8700D34C27 /* ChartFormatter.swift */; };
 		ACF2C2DD1DF9B52200C7F97A /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2DC1DF9B52200C7F97A /* TutorialViewController.swift */; };
 		ACF2C2DF1DF9B53500C7F97A /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2DE1DF9B53500C7F97A /* TutorialPageViewController.swift */; };
 		ACF2C2E11DF9B80E00C7F97A /* CulturalsCupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2E01DF9B80E00C7F97A /* CulturalsCupViewController.swift */; };
@@ -74,6 +75,7 @@
 
 /* Begin PBXFileReference section */
 		6A12ACFE1DFA6EE700FEA2AF /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
+		6A81558D1DFE6B8700D34C27 /* ChartFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartFormatter.swift; sourceTree = "<group>"; };
 		ACF2C2DC1DF9B52200C7F97A /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		ACF2C2DE1DF9B53500C7F97A /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		ACF2C2E01DF9B80E00C7F97A /* CulturalsCupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CulturalsCupViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		ACB5F5401DF6CC7E00029C8A /* Scoreboard Screen */ = {
 			isa = PBXGroup;
 			children = (
+				6A81558D1DFE6B8700D34C27 /* ChartFormatter.swift */,
 				ACF2C2DC1DF9B52200C7F97A /* TutorialViewController.swift */,
 				ACF2C2DE1DF9B53500C7F97A /* TutorialPageViewController.swift */,
 				ACF2C2E01DF9B80E00C7F97A /* CulturalsCupViewController.swift */,
@@ -300,6 +303,7 @@
 				ACFBA1D81DCA22A200E99255 /* globalVariables.swift in Sources */,
 				ACF2C2DF1DF9B53500C7F97A /* TutorialPageViewController.swift in Sources */,
 				ACFBA1D11DCA147500E99255 /* SWRevealViewController.m in Sources */,
+				6A81558E1DFE6B8700D34C27 /* ChartFormatter.swift in Sources */,
 				ACF2C2E71DF9C10900C7F97A /* SpectrumCupViewController.swift in Sources */,
 				ACF2C2E51DF9B9A900C7F97A /* TableViewCell.swift in Sources */,
 				ACFBA1DC1DCB2DB500E99255 /* CloudGenerator.swift in Sources */,
