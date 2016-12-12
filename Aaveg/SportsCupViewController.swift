@@ -16,17 +16,36 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var scoreboardGraphView: BarChartView!
     @IBOutlet weak var eventsTable: UITableView!
     
-    let numberOfRows: Int = 15
+    var numberOfRows: Int = 1
     let rowHeight: CGFloat = 1110/25
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.onrefresh), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.white
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Sports Cup View Loaded")
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.dataObtained), name: NSNotification.Name(rawValue: "2stcupdataobtained"), object: nil)
+        
         eventsTable.delegate = self
         eventsTable.dataSource = self
+        eventsTable.addSubview(refreshControl)
         
+        //Obtaining data
+        obtainScoreboardData(index: 2)
+
         //Setting table height according to number of events
+        if SportsCupDataPresent == true {
+            numberOfRows = sportsEvents.count+2 //1 is added for header row. 1 is added for total
+        }
+        else {
+            numberOfRows = 1
+        }
+        
         tableheightConstraint.constant = rowHeight*CGFloat(numberOfRows)
         
         //Setting chart details
@@ -35,13 +54,12 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
-        let hostelPoints: [Double] = [25,12,20,5,10]
-        setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
+        if SportsCupDataPresent {
+            setChartValues(xEntries: hostelNames, yEntries: sportsCupTotals)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
         let hostelPoints: [Double] = [0,0,0,0,0]
         setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
     }
@@ -52,6 +70,7 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableheightConstraint.constant = rowHeight*CGFloat(numberOfRows)
         return numberOfRows
     }
     
@@ -61,6 +80,7 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventscell") as! TableViewCell
+        cell.selectionStyle = .none
         
         if indexPath.row == 0 {
             cell.colHeader.text = "Event Name"
@@ -79,13 +99,96 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }
             
+        else if indexPath.row == sportsEvents.count+1 {
+            cell.colHeader.text = "Total"
+            
+            if (sportsCupTotals[0].truncatingRemainder(dividingBy: 1) == 0) {
+                cell.col1.text = "\(Int(sportsCupTotals[0]))"
+            }
+            else {
+                cell.col1.text = "\(sportsCupTotals[0])"
+            }
+            
+            if (sportsCupTotals[1].truncatingRemainder(dividingBy: 1) == 0) {
+                cell.col2.text = "\(Int(sportsCupTotals[1]))"
+            }
+            else {
+                cell.col2.text = "\(sportsCupTotals[1])"
+            }
+            
+            if (sportsCupTotals[2].truncatingRemainder(dividingBy: 1) == 0) {
+                cell.col3.text = "\(Int(sportsCupTotals[2]))"
+            }
+            else {
+                cell.col3.text = "\(sportsCupTotals[2])"
+            }
+            
+            if (sportsCupTotals[3].truncatingRemainder(dividingBy: 1) == 0) {
+                cell.col4.text = "\(Int(sportsCupTotals[3]))"
+            }
+            else {
+                cell.col4.text = "\(sportsCupTotals[3])"
+            }
+            
+            if (sportsCupTotals[4].truncatingRemainder(dividingBy: 1) == 0) {
+                cell.col5.text = "\(Int(sportsCupTotals[4]))"
+            }
+            else {
+                cell.col5.text = "\(sportsCupTotals[4])"
+            }
+            
+            cell.colHeader.font = UIFont.boldSystemFont(ofSize: 13)
+            cell.col1.font = UIFont.boldSystemFont(ofSize: 13)
+            cell.col2.font = UIFont.boldSystemFont(ofSize: 13)
+            cell.col3.font = UIFont.boldSystemFont(ofSize: 13)
+            cell.col4.font = UIFont.boldSystemFont(ofSize: 13)
+            cell.col5.font = UIFont.boldSystemFont(ofSize: 13)
+            
+        }
+            
         else {
-            cell.colHeader.text = "Event Number \(indexPath.row)"
-            cell.col1.text = "10"
-            cell.col2.text = "5"
-            cell.col3.text = "15"
-            cell.col4.text = "5"
-            cell.col5.text = "10"
+            cell.colHeader.text = sportsEvents[indexPath.row-1]["event_name"] as? String
+            
+            let dscoreFloat = Float.init((sportsEvents[indexPath.row-1]["diamond_score"] as? String)!)!
+            cell.col1.text = "\(dscoreFloat)"
+            
+            if (dscoreFloat.truncatingRemainder(dividingBy: 1) == 0) {
+                let dscoreInt = Int(Float.init((sportsEvents[indexPath.row-1]["diamond_score"] as? String)!)!)
+                cell.col1.text = "\(dscoreInt)"
+            }
+            
+            let cscoreFloat = Float.init((sportsEvents[indexPath.row-1]["coral_score"] as? String)!)!
+            cell.col2.text = "\(cscoreFloat)"
+            
+            if (cscoreFloat.truncatingRemainder(dividingBy: 1) == 0) {
+                let cscoreInt = Int(Float.init((sportsEvents[indexPath.row-1]["coral_score"] as? String)!)!)
+                cell.col2.text = "\(cscoreInt)"
+            }
+            
+            let jscoreFloat = Float.init((sportsEvents[indexPath.row-1]["jade_score"] as? String)!)!
+            cell.col3.text = "\(jscoreFloat)"
+            
+            if (jscoreFloat.truncatingRemainder(dividingBy: 1) == 0) {
+                let jscoreInt = Int(Float.init((sportsEvents[indexPath.row-1]["jade_score"] as? String)!)!)
+                cell.col3.text = "\(jscoreInt)"
+            }
+            
+            let ascoreFloat = Float.init((sportsEvents[indexPath.row-1]["agate_score"] as? String)!)!
+            cell.col4.text = "\(ascoreFloat)"
+            
+            if (ascoreFloat.truncatingRemainder(dividingBy: 1) == 0) {
+                let ascoreInt = Int(Float.init((sportsEvents[indexPath.row-1]["agate_score"] as? String)!)!)
+                cell.col4.text = "\(ascoreInt)"
+            }
+            
+            let oscoreFloat = Float.init((sportsEvents[indexPath.row-1]["opal_score"] as? String)!)!
+            cell.col5.text = "\(oscoreFloat)"
+            
+            if (oscoreFloat.truncatingRemainder(dividingBy: 1) == 0) {
+                let oscoreInt = Int(Float.init((sportsEvents[indexPath.row-1]["opal_score"] as? String)!)!)
+                cell.col5.text = "\(oscoreInt)"
+            }
+            
         }
         
         return cell
@@ -108,8 +211,26 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
         
         scoreboardGraphView.chartDescription?.text = ""
         scoreboardGraphView.legend.enabled = false
+        scoreboardGraphView.noDataText = "Obtaining Data"
+        scoreboardGraphView.noDataTextColor = UIColor.white
         
-        scoreboardGraphView.animate(yAxisDuration: 1.1, easingOption: .easeInBack)
+        scoreboardGraphView.isUserInteractionEnabled = false //Prevents touch inputs to graph view
+        
+        scoreboardGraphView.leftAxis.axisMinimum = 0  //Prevents gap at bottom for lower scores
+        
+        //Setting x axis labels as hostel names
+        scoreboardGraphView.xAxis.granularityEnabled = true
+        scoreboardGraphView.xAxis.granularity = 1
+        
+        let xAxis=XAxis()
+        let chartFormmater=ChartFormatter()
+        
+        for i in 0...4{
+            chartFormmater.stringForValue(Double(i), axis: xAxis)
+        }
+        
+        xAxis.valueFormatter=chartFormmater
+        scoreboardGraphView.xAxis.valueFormatter=xAxis.valueFormatter
         
     }
     
@@ -122,11 +243,48 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         let chartDataSet = BarChartDataSet(values: dataEntries, label: "Points")
-        chartDataSet.colors = [diamondColor, coralColor, jadeColor, agateColor, opalColor]
+        chartDataSet.colors = [diamondColor, coralColor, jadeColor, agateColor, opalColor] //Sets color of bars
+        chartDataSet.valueColors = [UIColor.white as NSUIColor] //Sets color of labels on top of bars
         let chartData = BarChartData(dataSets: [chartDataSet])
         
         scoreboardGraphView.data = chartData
         scoreboardGraphView.animate(yAxisDuration: 1, easingOption: .easeInBack)
+        scoreboardGraphView.notifyDataSetChanged()
         
+    }
+    
+    func dataObtained() {
+        
+        for i in 0...4 {
+            sportsCupTotals[i] = 0
+        }
+        
+        for item in sportsEvents {
+            sportsCupTotals[0] += Double.init((item["diamond_score"] as? String)!)!
+            sportsCupTotals[1] += Double.init((item["coral_score"] as? String)!)!
+            sportsCupTotals[2] += Double.init((item["jade_score"] as? String)!)!
+            sportsCupTotals[3] += Double.init((item["agate_score"] as? String)!)!
+            sportsCupTotals[4] += Double.init((item["opal_score"] as? String)!)!
+        }
+        
+        setChartValues(xEntries: hostelNames, yEntries: sportsCupTotals)
+        
+        DispatchQueue.main.async{
+            self.eventsTable.reloadData()
+        }
+        
+        isObtainingSportsCupData = false
+        SportsCupDataPresent = true
+        numberOfRows = sportsEvents.count+2
+        
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
+        
+        print("Sports cup data obtained")
+    }
+    
+    func onrefresh(sender: UIRefreshControl) {
+        obtainScoreboardData(index: 2)
     }
 }

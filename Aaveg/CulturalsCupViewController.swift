@@ -18,6 +18,12 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     
     var numberOfRows: Int = 1
     let rowHeight: CGFloat = 1110/25
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.onrefresh), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.white
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +33,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
+        eventsTable.addSubview(refreshControl)
         
         //Obtaining data
         obtainScoreboardData(index: 1)
@@ -40,7 +47,6 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         tableheightConstraint.constant = rowHeight*CGFloat(numberOfRows)
-        eventsTable.bounces = false
         
         //Setting chart details
         setChart()
@@ -48,17 +54,12 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        let hostelPoints: [Double] = [2,3,0,2,5] //Presence of low score compared to others will cause backlash
-
         if CultCupDataPresent {
             setChartValues(xEntries: hostelNames, yEntries: cultCupTotals)
         }
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        
         let hostelPoints: [Double] = [0,0,0,0,0]
         setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
     }
@@ -69,7 +70,6 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         tableheightConstraint.constant = rowHeight*CGFloat(numberOfRows)
         return numberOfRows
     }
@@ -211,11 +211,16 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         
         scoreboardGraphView.chartDescription?.text = ""
         scoreboardGraphView.legend.enabled = false
-        
         scoreboardGraphView.noDataText = "Obtaining Data"
         scoreboardGraphView.noDataTextColor = UIColor.white
         
+        scoreboardGraphView.isUserInteractionEnabled = false //Prevents touch inputs to graph view
+        
         scoreboardGraphView.leftAxis.axisMinimum = 0  //Prevents gap at bottom for lower scores
+        
+        //Setting x axis labels as hostel names
+        scoreboardGraphView.xAxis.granularityEnabled = true
+        scoreboardGraphView.xAxis.granularity = 1
 
         let xAxis=XAxis()
         let chartFormmater=ChartFormatter()
@@ -226,8 +231,6 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         
         xAxis.valueFormatter=chartFormmater
         scoreboardGraphView.xAxis.valueFormatter=xAxis.valueFormatter
-        
-//        scoreboardGraphView.animate(yAxisDuration: 1, easingOption: .easeInBack)
         
     }
     
@@ -240,7 +243,8 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         let chartDataSet = BarChartDataSet(values: dataEntries, label: "Points")
-        chartDataSet.colors = [diamondColor, coralColor, jadeColor, agateColor, opalColor]
+        chartDataSet.colors = [diamondColor, coralColor, jadeColor, agateColor, opalColor] //Sets color of bars
+        chartDataSet.valueColors = [UIColor.white as NSUIColor] //Sets color of labels on top of bars
         let chartData = BarChartData(dataSets: [chartDataSet])
         
         scoreboardGraphView.data = chartData
@@ -272,7 +276,14 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         CultCupDataPresent = true
         numberOfRows = culturalEvents.count+2
         
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
+        
         print("Cult cup data obtained")
     }
     
+    func onrefresh(sender: UIRefreshControl) {
+        obtainScoreboardData(index: 1)
+    }
 }

@@ -12,7 +12,7 @@ import Charts
 @objc(BarChartFormatter)
 class ChartFormatter:NSObject,IAxisValueFormatter{
     
-    var months: [String]! = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
+    var months: [String]! = [ "Diamond", "Coral", "Jade", "Agate", "Opal"]
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         return months[Int(value)]
