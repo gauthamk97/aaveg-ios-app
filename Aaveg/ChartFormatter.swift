@@ -2,7 +2,7 @@
 //  ChartFormatter.swift
 //  Aaveg
 //
-//  Created by Farina Balkish A on 12/12/16.
+//  Created by Gautham Kumar on 12/12/16.
 //  Copyright © 2016 Gautham Kumar. All rights reserved.
 //
 

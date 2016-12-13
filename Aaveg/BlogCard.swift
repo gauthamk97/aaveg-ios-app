@@ -2,7 +2,7 @@
 //  BlogCard.swift
 //  Aaveg
 //
-//  Created by Farina Balkish A on 13/12/16.
+//  Created by Gautham Kumar on 13/12/16.
 //  Copyright © 2016 Gautham Kumar. All rights reserved.
 //
 
