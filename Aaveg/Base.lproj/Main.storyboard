@@ -199,7 +199,11 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Scoreboard" id="ZWp-5F-F49"/>
+                                    <navigationItem title="Scoreboard" id="ZWp-5F-F49">
+                                        <barButtonItem key="leftBarButtonItem" title="Menu" id="irE-XL-oUJ">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -219,6 +223,7 @@
                     <connections>
                         <outlet property="containerView" destination="5Mc-qb-W6g" id="wZe-0K-EEp"/>
                         <outlet property="pageControl" destination="y9n-du-tPV" id="Sp7-fS-ufS"/>
+                        <outlet property="scoreboardNavItem" destination="ZWp-5F-F49" id="tpl-W9-UQe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QSw-mN-9oU" userLabel="First Responder" sceneMemberID="firstResponder"/>

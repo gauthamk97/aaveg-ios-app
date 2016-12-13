@@ -40,13 +40,13 @@ let agateColor = UIColor(colorLiteralRed: 0.2902, green: 0.615686, blue: 0.62745
 let opalColor = UIColor(colorLiteralRed: 0.52157, green: 0.4470588, blue: 0.78039, alpha: 1.0)
 
 //Booleans indicating whether data is present or loading
-var isObtainingCultCupData: Bool = false
-var isObtainingSportsCupData: Bool = false
-var isObtainingSpectrumCupData: Bool = false
-
 var CultCupDataPresent: Bool = false
 var SportsCupDataPresent: Bool = false
 var SpectrumCupDataPresent: Bool = false
+
+var currentScoreboardPage: Int = 1
+var wasInternetPresent: Bool = true
+var isInternetPresent: Bool = true
 
 //Events data
 var culturalEvents: [[String:Any]] = [[:]]
@@ -60,6 +60,8 @@ let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
 
 func obtainScoreboardData(index: Int) {
     
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "obtaining\(index)stcupdata"), object: nil)
+    
     let urlToHit = URL(string: "https://aaveg.net/scoreboard/getall")
     var request = URLRequest(url: urlToHit!)
     request.httpMethod = "POST"
@@ -71,7 +73,10 @@ func obtainScoreboardData(index: Int) {
         
         if (error != nil) {
             if (httpStatus?.statusCode == nil) {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nointernet"), object: nil)
                 print("NO INTERNET")
+                isInternetPresent = false
+                wasInternetPresent = false
             }
             else {
                 print("Error occured : \(error)")
@@ -81,6 +86,7 @@ func obtainScoreboardData(index: Int) {
             
         else if httpStatus?.statusCode != 200 {
             print("Error : HTTPStatusCode is \(httpStatus?.statusCode)")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "servererror"), object: nil)
             return
         }
             
@@ -90,6 +96,7 @@ func obtainScoreboardData(index: Int) {
             if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
                 if (json["status_code"] as! Int) != 200 {
                     print("ERROR. STATUS CODE = \(json["status_code"] as! Int)")
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "servererror"), object: nil)
                     return
                 }
                 
@@ -118,6 +125,7 @@ func obtainScoreboardData(index: Int) {
                 }
             }
             
+            isInternetPresent = true
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "\(index)stcupdataobtained"), object: nil)
         }
         

@@ -30,6 +30,9 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         print("Cult Cup View Loaded")
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.dataObtained), name: NSNotification.Name(rawValue: "1stcupdataobtained"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.obtainingData), name: NSNotification.Name(rawValue: "obtaining1stcupdata"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.noInternet), name: NSNotification.Name(rawValue: "nointernet"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.serverError), name: NSNotification.Name(rawValue: "servererror"), object: nil)
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
@@ -39,7 +42,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         obtainScoreboardData(index: 1)
         
         //Setting table height according to number of events
-        if CultCupDataPresent == true {
+        if CultCupDataPresent == true && isInternetPresent {
             numberOfRows = culturalEvents.count+2 //1 is added for header row. 1 is added for total
         }
         else {
@@ -54,14 +57,20 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if CultCupDataPresent {
+        if CultCupDataPresent && isInternetPresent {
             setChartValues(xEntries: hostelNames, yEntries: cultCupTotals)
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        currentScoreboardPage = 1
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         let hostelPoints: [Double] = [0,0,0,0,0]
-        setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
+        if isInternetPresent {
+            setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -270,20 +279,41 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         
         DispatchQueue.main.async{
             self.eventsTable.reloadData()
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
         }
         
-        isObtainingCultCupData = false
         CultCupDataPresent = true
         numberOfRows = culturalEvents.count+2
-        
-        if refreshControl.isRefreshing {
-            refreshControl.endRefreshing()
-        }
         
         print("Cult cup data obtained")
     }
     
     func onrefresh(sender: UIRefreshControl) {
         obtainScoreboardData(index: 1)
+    }
+    
+    func obtainingData() {
+        scoreboardGraphView.data = nil
+        scoreboardGraphView.noDataText = "Obtaining Data"
+        scoreboardGraphView.notifyDataSetChanged()
+    }
+    
+    func noInternet() {
+        scoreboardGraphView.data = nil
+        scoreboardGraphView.noDataText = "No Internet"
+        scoreboardGraphView.notifyDataSetChanged()
+        DispatchQueue.main.async {
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    func serverError() {
+        scoreboardGraphView.noDataText = "Server Error"
+        scoreboardGraphView.data = nil
+        scoreboardGraphView.notifyDataSetChanged()
     }
 }

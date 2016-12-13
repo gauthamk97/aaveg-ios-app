@@ -10,6 +10,7 @@ class TutorialViewController: UIViewController {
     
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var scoreboardNavItem: UINavigationItem!
     
     var tutorialPageViewController: TutorialPageViewController? {
         didSet {
@@ -19,6 +20,9 @@ class TutorialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scoreboardNavItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.rightButtonClicked))
+        scoreboardNavItem.rightBarButtonItem?.tintColor = UIColor.white
         
         pageControl.addTarget(self, action: #selector(TutorialViewController.didChangePageControlValue), for: .valueChanged)
         
@@ -39,17 +43,33 @@ class TutorialViewController: UIViewController {
     func didChangePageControlValue() {
         tutorialPageViewController?.scrollToViewController(index: pageControl.currentPage)
     }
+    
+    func leftButtonClicked() {
+        print("Clicked the left button")
+    }
+    
+    func rightButtonClicked() {
+        if wasInternetPresent {
+            obtainScoreboardData(index: currentScoreboardPage)
+        }
+        
+        else {
+            obtainScoreboardData(index: 1)
+            obtainScoreboardData(index: 2)
+            obtainScoreboardData(index: 3)
+            wasInternetPresent = true
+        }
+
+    }
 }
 
 extension TutorialViewController: TutorialPageViewControllerDelegate {
     
-    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
-                                    didUpdatePageCount count: Int) {
+    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController, didUpdatePageCount count: Int) {
         pageControl.numberOfPages = count
     }
     
-    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
-                                    didUpdatePageIndex index: Int) {
+    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController, didUpdatePageIndex index: Int) {
         pageControl.currentPage = index
     }
     

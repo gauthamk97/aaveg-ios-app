@@ -30,6 +30,9 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
         print("Spectrum Cup View Loaded")
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.dataObtained), name: NSNotification.Name(rawValue: "3stcupdataobtained"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.obtainingData), name: NSNotification.Name(rawValue: "obtaining3stcupdata"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.noInternet), name: NSNotification.Name(rawValue: "nointernet"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.serverError), name: NSNotification.Name(rawValue: "servererror"), object: nil)
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
@@ -39,7 +42,7 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
         obtainScoreboardData(index: 3)
         
         //Setting table height according to number of events
-        if SpectrumCupDataPresent == true {
+        if SpectrumCupDataPresent == true && isInternetPresent {
             numberOfRows = spectrumEvents.count+2 //1 is added for header row. 1 is added for total
         }
         else {
@@ -54,14 +57,20 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if SpectrumCupDataPresent {
+        if SpectrumCupDataPresent && isInternetPresent {
             setChartValues(xEntries: hostelNames, yEntries: spectrumCupTotals)
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        currentScoreboardPage = 3
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         let hostelPoints: [Double] = [0,0,0,0,0]
-        setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
+        if isInternetPresent {
+            setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
+        }
     }
     
     
@@ -273,20 +282,41 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
         
         DispatchQueue.main.async{
             self.eventsTable.reloadData()
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
         }
         
-        isObtainingSpectrumCupData = false
         SpectrumCupDataPresent = true
         numberOfRows = spectrumEvents.count+2
-        
-        if refreshControl.isRefreshing {
-            refreshControl.endRefreshing()
-        }
         
         print("Spectrum cup data obtained")
     }
     
     func onrefresh(sender: UIRefreshControl) {
         obtainScoreboardData(index: 3)
+    }
+    
+    func obtainingData() {
+        scoreboardGraphView.data = nil
+        scoreboardGraphView.noDataText = "Obtaining Data"
+        scoreboardGraphView.notifyDataSetChanged()
+    }
+    
+    func noInternet() {
+        scoreboardGraphView.data = nil
+        scoreboardGraphView.noDataText = "No Internet"
+        scoreboardGraphView.notifyDataSetChanged()
+        DispatchQueue.main.async {
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    func serverError() {
+        scoreboardGraphView.noDataText = "Server Error"
+        scoreboardGraphView.data = nil
+        scoreboardGraphView.notifyDataSetChanged()
     }
 }

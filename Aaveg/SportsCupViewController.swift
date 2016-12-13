@@ -30,6 +30,9 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
         print("Sports Cup View Loaded")
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.dataObtained), name: NSNotification.Name(rawValue: "2stcupdataobtained"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.obtainingData), name: NSNotification.Name(rawValue: "obtaining2stcupdata"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.noInternet), name: NSNotification.Name(rawValue: "nointernet"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.serverError), name: NSNotification.Name(rawValue: "servererror"), object: nil)
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
@@ -39,7 +42,7 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
         obtainScoreboardData(index: 2)
 
         //Setting table height according to number of events
-        if SportsCupDataPresent == true {
+        if SportsCupDataPresent == true && isInternetPresent {
             numberOfRows = sportsEvents.count+2 //1 is added for header row. 1 is added for total
         }
         else {
@@ -54,14 +57,20 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if SportsCupDataPresent {
+        if SportsCupDataPresent && isInternetPresent {
             setChartValues(xEntries: hostelNames, yEntries: sportsCupTotals)
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        currentScoreboardPage = 2
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         let hostelPoints: [Double] = [0,0,0,0,0]
-        setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
+        if isInternetPresent {
+            setChartValues(xEntries: hostelNames, yEntries: hostelPoints)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -271,20 +280,41 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
         
         DispatchQueue.main.async{
             self.eventsTable.reloadData()
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
         }
-        
-        isObtainingSportsCupData = false
+    
         SportsCupDataPresent = true
         numberOfRows = sportsEvents.count+2
-        
-        if refreshControl.isRefreshing {
-            refreshControl.endRefreshing()
-        }
         
         print("Sports cup data obtained")
     }
     
     func onrefresh(sender: UIRefreshControl) {
         obtainScoreboardData(index: 2)
+    }
+    
+    func obtainingData() {
+        scoreboardGraphView.data = nil
+        scoreboardGraphView.noDataText = "Obtaining Data"
+        scoreboardGraphView.notifyDataSetChanged()
+    }
+    
+    func noInternet() {
+        scoreboardGraphView.data = nil
+        scoreboardGraphView.noDataText = "No Internet"
+        scoreboardGraphView.notifyDataSetChanged()
+        DispatchQueue.main.async {
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    func serverError() {
+        scoreboardGraphView.noDataText = "Server Error"
+        scoreboardGraphView.data = nil
+        scoreboardGraphView.notifyDataSetChanged()
     }
 }

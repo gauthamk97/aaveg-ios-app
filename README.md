@@ -6,8 +6,7 @@ Splash Screen :-
 	Gate Dimensions Check
 
 Scoreboard :- 
-	Refresh Button
-	Conditions of improper net connection
+	Double Check improper net connection situations
 
 Blog :-
 	Start Work (Conceptualize)
