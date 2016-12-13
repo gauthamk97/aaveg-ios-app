@@ -11,6 +11,8 @@
 		6A12AD0B1DFA6F0E00FEA2AF /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A12AD051DFA6EE700FEA2AF /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6A81558E1DFE6B8700D34C27 /* ChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A81558D1DFE6B8700D34C27 /* ChartFormatter.swift */; };
 		6AEB7B371E0001CF00E90EA1 /* BlogCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB7B361E0001CF00E90EA1 /* BlogCard.swift */; };
+		ACC2B5931E0051EA00B90F81 /* BlogCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2B5921E0051EA00B90F81 /* BlogCardsViewController.swift */; };
+		ACC2B5951E0068F700B90F81 /* BlogPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2B5941E0068F700B90F81 /* BlogPostViewController.swift */; };
 		ACF2C2DD1DF9B52200C7F97A /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2DC1DF9B52200C7F97A /* TutorialViewController.swift */; };
 		ACF2C2DF1DF9B53500C7F97A /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2DE1DF9B53500C7F97A /* TutorialPageViewController.swift */; };
 		ACF2C2E11DF9B80E00C7F97A /* CulturalsCupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2E01DF9B80E00C7F97A /* CulturalsCupViewController.swift */; };
@@ -78,6 +80,8 @@
 		6A12ACFE1DFA6EE700FEA2AF /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		6A81558D1DFE6B8700D34C27 /* ChartFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartFormatter.swift; sourceTree = "<group>"; };
 		6AEB7B361E0001CF00E90EA1 /* BlogCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogCard.swift; sourceTree = "<group>"; };
+		ACC2B5921E0051EA00B90F81 /* BlogCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogCardsViewController.swift; sourceTree = "<group>"; };
+		ACC2B5941E0068F700B90F81 /* BlogPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPostViewController.swift; sourceTree = "<group>"; };
 		ACF2C2DC1DF9B52200C7F97A /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		ACF2C2DE1DF9B53500C7F97A /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		ACF2C2E01DF9B80E00C7F97A /* CulturalsCupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CulturalsCupViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				6AEB7B361E0001CF00E90EA1 /* BlogCard.swift */,
+				ACC2B5921E0051EA00B90F81 /* BlogCardsViewController.swift */,
+				ACC2B5941E0068F700B90F81 /* BlogPostViewController.swift */,
 			);
 			name = "Blog Screen";
 			sourceTree = "<group>";
@@ -177,9 +183,9 @@
 				ACFBA1D21DCA148400E99255 /* SWRevealViewController */,
 				ACFBA1B91DCA134000E99255 /* AppDelegate.swift */,
 				ACFBA1BD1DCA134000E99255 /* Main.storyboard */,
-				6AEB7B3A1E0001E300E90EA1 /* Blog Screen */,
 				ACB5F53F1DF6CC6D00029C8A /* Home Screen */,
 				ACB5F5401DF6CC7E00029C8A /* Scoreboard Screen */,
+				6AEB7B3A1E0001E300E90EA1 /* Blog Screen */,
 				ACFBA1D71DCA22A200E99255 /* globalVariables.swift */,
 				ACFBA1C31DCA134000E99255 /* Assets.xcassets */,
 				ACFBA1C51DCA134000E99255 /* LaunchScreen.storyboard */,
@@ -311,8 +317,10 @@
 				ACFBA1DA1DCB2A5800E99255 /* Cloud.swift in Sources */,
 				ACFBA1BA1DCA134000E99255 /* AppDelegate.swift in Sources */,
 				ACF2C2E11DF9B80E00C7F97A /* CulturalsCupViewController.swift in Sources */,
+				ACC2B5951E0068F700B90F81 /* BlogPostViewController.swift in Sources */,
 				ACFBA1D81DCA22A200E99255 /* globalVariables.swift in Sources */,
 				ACF2C2DF1DF9B53500C7F97A /* TutorialPageViewController.swift in Sources */,
+				ACC2B5931E0051EA00B90F81 /* BlogCardsViewController.swift in Sources */,
 				ACFBA1D11DCA147500E99255 /* SWRevealViewController.m in Sources */,
 				6A81558E1DFE6B8700D34C27 /* ChartFormatter.swift in Sources */,
 				ACF2C2E71DF9C10900C7F97A /* SpectrumCupViewController.swift in Sources */,

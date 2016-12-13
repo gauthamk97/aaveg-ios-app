@@ -134,3 +134,16 @@ func obtainScoreboardData(index: Int) {
     task.resume()
     
 }
+
+//Blog Card Offsets
+let screensize = UIScreen.main.bounds
+let cardXOffset: CGFloat = (5/375)*screensize.width
+let cardWidth: CGFloat = (365/375)*screensize.width
+let imageAspectRatio: CGFloat = 2/5
+let imageWidth: CGFloat = cardWidth
+let imageHeight: CGFloat = imageWidth*imageAspectRatio
+let titleWidth: CGFloat = cardWidth
+let titleHeight: CGFloat = 30
+let authorWidth: CGFloat = cardWidth
+let authorHeight: CGFloat = 30
+let cardHeight: CGFloat = imageHeight + titleHeight + authorHeight
