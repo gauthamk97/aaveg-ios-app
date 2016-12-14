@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="2108" y="1809"/>
         </scene>
-        <!--View Controller-->
+        <!--Blog Post View Controller-->
         <scene sceneID="Hxg-dH-ftZ">
             <objects>
-                <viewController id="ahA-iN-trX" sceneMemberID="viewController">
+                <viewController id="ahA-iN-trX" customClass="BlogPostViewController" customModule="Aaveg" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XYX-2C-Flq"/>
                         <viewControllerLayoutGuide type="bottom" id="caP-VJ-GGJ"/>

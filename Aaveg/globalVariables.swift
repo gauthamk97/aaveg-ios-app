@@ -135,15 +135,27 @@ func obtainScoreboardData(index: Int) {
     
 }
 
-//Blog Card Offsets
+//Blog Card Constants
 let screensize = UIScreen.main.bounds
 let cardXOffset: CGFloat = (5/375)*screensize.width
 let cardWidth: CGFloat = (365/375)*screensize.width
 let imageAspectRatio: CGFloat = 2/5
-let imageWidth: CGFloat = cardWidth
-let imageHeight: CGFloat = imageWidth*imageAspectRatio
-let titleWidth: CGFloat = cardWidth
-let titleHeight: CGFloat = 30
-let authorWidth: CGFloat = cardWidth
-let authorHeight: CGFloat = 30
-let cardHeight: CGFloat = imageHeight + titleHeight + authorHeight
+let imageCardWidth: CGFloat = cardWidth
+let imageCardHeight: CGFloat = imageCardWidth*imageAspectRatio
+let titleCardWidth: CGFloat = cardWidth
+let titleCardHeight: CGFloat = 30
+let authorCardWidth: CGFloat = cardWidth
+let authorCardHeight: CGFloat = 30
+let cardHeight: CGFloat = imageCardHeight + titleCardHeight + authorCardHeight
+
+
+//Blog Page Constants
+let contentOffsets: CGFloat = (10/375)*screensize.width
+let blogPageBackgroundColor = UIColor(red: 0.9098, green: 0.91765, blue: 0.9647, alpha: 1.0)
+let coverImageWidth: CGFloat = screensize.width
+let coverImageHeight: CGFloat = coverImageWidth*imageAspectRatio
+let titleWidth: CGFloat = screensize.width-(2*contentOffsets)
+let titleHeight: CGFloat = 60
+let subtitleWidth: CGFloat = screensize.width-(2*contentOffsets)
+let subtitleHeight: CGFloat = 45
+let contentViewWidth: CGFloat = screensize.width-(2*contentOffsets)
