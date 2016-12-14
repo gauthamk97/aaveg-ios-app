@@ -10,36 +10,22 @@ import UIKit
 
 class BlogCardsViewController: UIViewController {
 
-    var scrollView: UIScrollView!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     var blogCards: [BlogCard] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //Initializing ScrollView
         
-        scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.gray
-        self.view.addSubview(scrollView)
-        self.setScrollViewConstraints()
+        //Prevents vertical offset of scroll view
+        self.automaticallyAdjustsScrollViewInsets = false
         
         //Creating cards
-//        var tempCard = BlogCard(yPosition: 10, id: 1)
-//        blogCards.append(tempCard)
-        
-//        tempCard = BlogCard(yPosition: 10 + CGFloat(blogCards.count)*(cardHeight+10), id: 2)
-//        blogCards.append(tempCard)
-//        
-//        tempCard = BlogCard(yPosition: 10 + CGFloat(blogCards.count)*(cardHeight+10), id: 3)
-//        blogCards.append(tempCard)
-        
-        for card in blogCards {
-            self.scrollView.addSubview(card)
-            card.setConstraints()
-        }
-        
-        //Setting scroll height
-        scrollView.contentSize.height = CGFloat(blogCards.count)*(cardHeight+10) + 10
+        addCard()
+        addCard()
+        addCard()
+        addCard()
+        addCard()
         
         //Watching for when user selects a card
         NotificationCenter.default.addObserver(self, selector: #selector(self.cardSelected), name: NSNotification.Name(rawValue: "cardSelected"), object: nil)
@@ -55,19 +41,25 @@ class BlogCardsViewController: UIViewController {
         performSegue(withIdentifier: "toBlogView", sender: self)
     }
     
-    func setScrollViewConstraints() {
+    func addCard() {
         
-        print("Setting scroll view constraints")
+        let tempCard = BlogCard(id: blogCards.count + 1)
         
-        let leftconstraint = NSLayoutConstraint(item: self.scrollView, attribute: .leading, relatedBy: .equal, toItem: scrollView.superview, attribute: .leading, multiplier: 1, constant: 0)
+        //Removing bottom constraint of penultimate card
+        if tempCard.cardID > 1 {
+            self.scrollView.removeConstraint(blogCards[blogCards.count-1].allConstraints["bottomconstraint"]!)
+        }
         
-        let rightconstraint = NSLayoutConstraint(item: self.scrollView, attribute: .trailing, relatedBy: .equal, toItem: scrollView.superview, attribute: .trailing, multiplier: 1, constant: 0)
+        blogCards.append(tempCard)
+        self.scrollView.addSubview(blogCards[blogCards.count-1])
+        blogCards[blogCards.count-1].setConstraints()
         
-        let topconstraint = NSLayoutConstraint(item: self.scrollView, attribute: .top, relatedBy: .equal, toItem: scrollView.superview, attribute: .top, multiplier: 1, constant: 0)
-        
-        let bottomconstraint = NSLayoutConstraint(item: self.scrollView, attribute: .bottom, relatedBy: .equal, toItem: scrollView.superview, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([leftconstraint,rightconstraint, bottomconstraint,topconstraint])
+        //Setting the new top constraint for the final card
+        if tempCard.cardID > 1 {
+            self.scrollView.removeConstraint(blogCards[blogCards.count-1].allConstraints["topconstraint"]!)
+            let topconstraint = NSLayoutConstraint(item: blogCards[blogCards.count-1], attribute: .top, relatedBy: .equal, toItem: blogCards[blogCards.count-2], attribute: .bottom, multiplier: 1, constant: 10)
+            NSLayoutConstraint.activate([topconstraint])
+        }
     }
 
     /*
