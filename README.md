@@ -9,4 +9,5 @@ Scoreboard :-
 	Double Check improper net connection situations
 
 Blog :-
+	Author View
 	API Integration
