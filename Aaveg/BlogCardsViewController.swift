@@ -30,6 +30,9 @@ class BlogCardsViewController: UIViewController {
         //Watching for when user selects a card
         NotificationCenter.default.addObserver(self, selector: #selector(self.cardSelected), name: NSNotification.Name(rawValue: "cardSelected"), object: nil)
         
+        //Setting status bar to white
+        UIApplication.shared.statusBarStyle = .lightContent
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -9,55 +9,29 @@
 import UIKit
 
 class BlogPostViewController: UIViewController {
-
-    var scrollView: UIScrollView!
-    var coverImage: UIImageView!
-    var titleLabel: UILabel!
-    var subtitleLabel: UILabel!
-    var contentView: UITextView!
-    var authorImage: UIImageView!
-    var authorLabel: UILabel!
-    var authorDescription: UITextView!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var authorImage: UIImageView!
+    @IBOutlet weak var authorImageTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var authorImageBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var aboutAuthorText: UITextView!
+    @IBOutlet weak var authorView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Setting up scrollView
-        scrollView = UIScrollView(frame: self.view.frame)
-        scrollView.backgroundColor = blogPageBackgroundColor
-        scrollView.contentSize.width = screensize.width
-        self.view.addSubview(scrollView)
+        //Checking for size of About the author page
+        //checkAboutAuthorSize()
         
-        //Setting up cover image
-        coverImage = UIImageView(frame: CGRect(x: 0, y: 0, width: coverImageWidth, height: coverImageHeight))
-        coverImage.backgroundColor = UIColor.red
-        coverImage.contentMode = .scaleAspectFit
-        self.scrollView.addSubview(coverImage)
+        //Setting status bar to white
+        UIApplication.shared.statusBarStyle = .lightContent
         
-        //Setting up title label
-        titleLabel = UILabel(frame: CGRect(x: contentOffsets, y: coverImageHeight, width: titleWidth, height: titleHeight))
-        titleLabel.backgroundColor = UIColor.blue
-        titleLabel.text = "This is text"
-        self.scrollView.addSubview(titleLabel)
+        //Prevents gap at top of scroll view
+        self.automaticallyAdjustsScrollViewInsets = false
         
-        //Setting up subtitle label
-        subtitleLabel = UILabel(frame: CGRect(x: contentOffsets, y: coverImageHeight+titleHeight, width: subtitleWidth, height: subtitleHeight))
-        subtitleLabel.backgroundColor = UIColor.blue
-        subtitleLabel.text = "This is subtitle"
-        self.scrollView.addSubview(subtitleLabel)
+        //Makes author icon circular
+        authorImage.layer.cornerRadius = authorImage.frame.width/2
         
-        //Setting up the content view
-        contentView = UITextView(frame: CGRect(x: contentOffsets, y: coverImageHeight+titleHeight+subtitleHeight, width: contentViewWidth, height: scrollView.frame.height-coverImageHeight-titleHeight-subtitleHeight))
-        contentView.backgroundColor = UIColor.gray
-//        contentView.isEditable = false
-        contentView.contentSize.width = contentViewWidth
-        contentView.contentSize.height = scrollView.frame.height-coverImageHeight-titleHeight-subtitleHeight
-        contentView.text = "This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. "
-        self.scrollView.addSubview(contentView)
-        
-        scrollView.contentSize.height = coverImageHeight+titleHeight+subtitleHeight
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,7 +39,13 @@ class BlogPostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func checkAboutAuthorSize() {
+        if authorImage.frame.height < aboutAuthorText.frame.height {
+            authorView.removeConstraints([authorImageTopConstraint, authorImageBottomConstraint])
+            
+            //let topConstraint = NSLayoutConstraint(item: self.aboutAuthorText, attribute: .top, relatedBy: .equal, toItem: <#T##Any?#>, attribute: <#T##NSLayoutAttribute#>, multiplier: <#T##CGFloat#>, constant: <#T##CGFloat#>)
+        }
+    }
     /*
     // MARK: - Navigation
 
