@@ -99,21 +99,15 @@ class BlogCard: UIView {
         let rightconstraint = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: self.superview, attribute: .trailing, multiplier: 1, constant: 15)
         let topconstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: self.superview, attribute: .top, multiplier: 1, constant: 10)
         let centerXconstraint = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: self.superview, attribute: .centerX, multiplier: 1, constant: 0)
-        let bottomconstraint = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.superview, attribute: .bottom, multiplier: 1, constant: -10)
-        
-        //let heightconstraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
         
         self.allConstraints["leftconstraint"] = leftconstraint
         self.allConstraints["rightconstraint"] = rightconstraint
         self.allConstraints["topconstraint"] = topconstraint
         self.allConstraints["centerXconstraint"] = centerXconstraint
-        self.allConstraints["bottomconstraint"] = bottomconstraint
-       // self.allConstraints["heightconstraint"] = heightconstraint
         
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([leftconstraint, rightconstraint, topconstraint, centerXconstraint, bottomconstraint])
-        
+        NSLayoutConstraint.activate([leftconstraint, rightconstraint, topconstraint, centerXconstraint])
         
     }
     
