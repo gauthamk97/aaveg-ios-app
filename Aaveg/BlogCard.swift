@@ -18,13 +18,16 @@ class BlogCard: UIView {
     var cardID: Int!
     var allConstraints: [String:NSLayoutConstraint] = [:]
     
-    init(id: Int) {
+    init(id: Int, title: String, author: String) {
         
         super.init(frame: CGRect(x: cardXOffset, y: 0, width: cardWidth, height: cardHeight))
         
         self.backgroundColor = UIColor.blue
         
+        //Setting properties of the card
         cardID = id
+        titleLabel.text = title
+        authorLabel.text = author
         
         //Cover Image Constraints
         coverImage.backgroundColor = UIColor.red
@@ -41,7 +44,6 @@ class BlogCard: UIView {
         NSLayoutConstraint.activate([imageLeftConstraint, imageRightConstraint, imageTopConstraint, imageAspectRatioConstraint])
         
         //Title Label Constraints
-        titleLabel.text = "This is title"
         self.addSubview(titleLabel)
         titleLabel.backgroundColor = UIColor.darkGray
         
@@ -54,7 +56,6 @@ class BlogCard: UIView {
         NSLayoutConstraint.activate([titleLeftConstraint, titleRightConstraint, titleTopConstraint, titleHeightConstraint])
         
         //Author Label Constraints
-        authorLabel.text = "This is author"
         self.addSubview(authorLabel)
         authorLabel.backgroundColor = UIColor.brown
         
@@ -109,6 +110,13 @@ class BlogCard: UIView {
         
         NSLayoutConstraint.activate([leftconstraint, rightconstraint, topconstraint, centerXconstraint])
         
+    }
+    
+    func setImage(Image64Encode: String) {
+        
+        
+        let imageData = NSData(base64Encoded: Image64Encode, options: NSData.Base64DecodingOptions.init(rawValue: 0))
+        self.coverImage.image = UIImage(data: imageData as! Data)
     }
     
     /*

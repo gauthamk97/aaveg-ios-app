@@ -8,8 +8,7 @@
 
 import UIKit
 
-class BlogCardsViewController: UIViewController {
-
+class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     var blogCards: [BlogCard] = []
@@ -17,11 +16,18 @@ class BlogCardsViewController: UIViewController {
     var activityHeightConstraint: NSLayoutConstraint!
     var activityTopConstraint: NSLayoutConstraint!
     
+    var blogIDs: [String] = []
+    var isRefreshingCards: Bool = false
+    var totalNumberOfPosts: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Prevents vertical offset of scroll view
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        //Setting scrollView Delegates
+        scrollView.delegate = self
         
         //Setting up loading activity indicator
         loadingMoreCardsIndicator = UIActivityIndicatorView()
@@ -31,13 +37,12 @@ class BlogCardsViewController: UIViewController {
         loadingMoreCardsIndicator.startAnimating()
         setActivityIndicatorConstraints()
         
-        //Creating cards
-        addCard()
-        addCard()
-        addCard()
+        //Getting Blog IDs
+        getBlogIDs()
         
         //Watching for when user selects a card
         NotificationCenter.default.addObserver(self, selector: #selector(self.cardSelected), name: NSNotification.Name(rawValue: "cardSelected"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.blogIDsRecieved), name: NSNotification.Name(rawValue: "blogIDsRecieved"), object: nil)
         
         //Setting status bar to white
         UIApplication.shared.statusBarStyle = .lightContent
@@ -47,6 +52,34 @@ class BlogCardsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if ((scrollView.contentOffset.y >= (scrollView.contentSize.height-scrollView.frame.size.height)) && !isRefreshingCards) {
+            print("Have to refresh")
+            let currentNumberOfCards = blogCards.count
+            
+            if currentNumberOfCards==totalNumberOfPosts {
+                
+                self.scrollView.removeConstraint(activityHeightConstraint)
+                activityHeightConstraint = NSLayoutConstraint(item: loadingMoreCardsIndicator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 10)
+                NSLayoutConstraint.activate([activityHeightConstraint])
+                
+                self.loadingMoreCardsIndicator.stopAnimating()
+                self.loadingMoreCardsIndicator.isHidden = true
+                
+            }
+            
+            else if ((totalNumberOfPosts-currentNumberOfCards) <= 2) {
+                getCardDetails(idBegin: Int.init(blogIDs[currentNumberOfCards])!, idEnd: Int.init(blogIDs[blogIDs.count-1])!)
+            }
+                
+            else {
+                getCardDetails(idBegin: Int.init(blogIDs[currentNumberOfCards])!, idEnd: Int.init(blogIDs[currentNumberOfCards+2])!)
+            }
+        }
+        
     }
     
     func cardSelected() {
@@ -59,21 +92,19 @@ class BlogCardsViewController: UIViewController {
         let centreXconstraint = NSLayoutConstraint(item: loadingMoreCardsIndicator, attribute: .centerX, relatedBy: .equal, toItem: loadingMoreCardsIndicator.superview, attribute: .centerX, multiplier: 1.0, constant: 0)
         let bottomconstraint = NSLayoutConstraint(item: loadingMoreCardsIndicator, attribute: .bottom, relatedBy: .equal, toItem: loadingMoreCardsIndicator.superview, attribute: .bottom, multiplier: 1.0, constant: 0)
         activityHeightConstraint = NSLayoutConstraint(item: loadingMoreCardsIndicator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40)
-        
+        activityTopConstraint = NSLayoutConstraint(item: loadingMoreCardsIndicator, attribute: .top, relatedBy: .equal, toItem: loadingMoreCardsIndicator.superview, attribute: .top, multiplier: 1.0, constant: 0)
         loadingMoreCardsIndicator.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([leftconstraint, centreXconstraint, bottomconstraint, activityHeightConstraint])
+        NSLayoutConstraint.activate([leftconstraint, centreXconstraint, bottomconstraint, activityHeightConstraint, activityTopConstraint])
         
     }
     
-    func addCard() {
+    func addCard(id: Int, title: String, author: String) {
         
-        let tempCard = BlogCard(id: blogCards.count + 1)
+        let tempCard = BlogCard(id: id, title: title, author: author)
         
         //Removing activity's constraint to penultimate card
-        if blogCards.count > 0 {
-            self.scrollView.removeConstraint(activityTopConstraint)
-        }
+        self.scrollView.removeConstraint(activityTopConstraint)
         
         blogCards.append(tempCard)
         self.scrollView.addSubview(blogCards[blogCards.count-1])
@@ -84,7 +115,7 @@ class BlogCardsViewController: UIViewController {
         NSLayoutConstraint.activate([activityTopConstraint])
         
         //Setting the new top constraint for the final card
-        if tempCard.cardID > 1 {
+        if blogCards.count > 1 {
         
             self.scrollView.removeConstraint(blogCards[blogCards.count-1].allConstraints["topconstraint"]!)
             let topconstraint = NSLayoutConstraint(item: blogCards[blogCards.count-1], attribute: .top, relatedBy: .equal, toItem: blogCards[blogCards.count-2], attribute: .bottom, multiplier: 1, constant: 10)
@@ -94,14 +125,111 @@ class BlogCardsViewController: UIViewController {
         }
     }
 
-    /*
-    // MARK: - Navigation
+    func getBlogIDs() {
+        
+        let urlToHit = URL(string: "https://aaveg.net/blog/getAllBlogIds")
+        var request = URLRequest(url: urlToHit!)
+        request.httpMethod = "POST"
+        request.httpBody = nil //Parameters to send, if needed (must be encoded)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            let httpStatus = response as? HTTPURLResponse
+            
+            if error != nil {
+                if httpStatus?.statusCode == nil {
+                    print("No internet")
+                }
+                    
+                else {
+                    print("Error : \(error)")
+                }
+                return
+            }
+                
+            else if httpStatus?.statusCode != 200 {
+                print("Status code is not 200. It is \(httpStatus?.statusCode)")
+                return
+            }
+                
+            else {
+                let responseString = String(data: data!, encoding: .utf8)
+                let jsonData = responseString?.data(using: .utf8)
+                if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any]{
+                    self.blogIDs = json["message"] as! [String]
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "blogIDsRecieved"), object: nil)
+                }
+                
+            }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        }
+        
+        task.resume()
+        
     }
-    */
+    
+    
+    func blogIDsRecieved() {
+        print(self.blogIDs)
+        totalNumberOfPosts = blogIDs.count
+        let idbegin:Int = Int(blogIDs[0])!
+        let idend:Int = Int(blogIDs[2])!
+        print("Ids - \(idbegin) \(idend)")
+        getCardDetails(idBegin: idbegin, idEnd: idend)
+    }
+    
+    func getCardDetails(idBegin: Int, idEnd: Int) {
+        
+        //Setting UI elements and variables
+        isRefreshingCards = true
+        
+        let urlToHit = URL(string: "https://aaveg.net/blog/getBlogById")
+        var request = URLRequest(url: urlToHit!)
+        request.httpMethod = "POST"
+        let paramsString = "blog_id=\(idBegin)&blog_id_end=\(idEnd)"
+        request.httpBody = paramsString.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            let httpStatus = response as? HTTPURLResponse
+            
+            if error != nil {
+                if httpStatus?.statusCode == nil {
+                    print("noo internet")
+                }
+                
+                else {
+                    print("Error : \(error)")
+                }
+                return
+            }
+            
+            else if httpStatus?.statusCode != 200 {
+                print("Status code not 200. It is \(httpStatus?.statusCode)")
+                return
+            }
+            
+            else {
+                let responseString = String(data: data!, encoding: .utf8)
+                let jsonData = responseString?.data(using: .utf8)
+                if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any]{
+                    let cardDetails = json["message"] as! [[String: Any]]
+                    print("Card details - \(cardDetails)")
+                    
+                    for card in cardDetails {
+                        let blogID = Int.init(card["blog_id"] as! String)
+                        DispatchQueue.main.async {
+                            self.addCard(id: blogID!, title: card["title"] as! String, author: card["author_name"] as! String)
+                        }
+                    }
+                    
+                    self.isRefreshingCards = false
+                }
+            }
+        }
+        
+        task.resume()
+        
+    }
 
 }

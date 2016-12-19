@@ -127,7 +127,7 @@ func obtainScoreboardData(index: Int) {
             
             isInternetPresent = true
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "\(index)stcupdataobtained"), object: nil)
-        }
+            }
         
         }})
     
