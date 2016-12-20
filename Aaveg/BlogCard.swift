@@ -31,7 +31,8 @@ class BlogCard: UIView {
         
         //Cover Image Constraints
         coverImage.backgroundColor = UIColor.red
-        coverImage.contentMode = .scaleAspectFit
+        coverImage.contentMode = .scaleAspectFill
+        coverImage.clipsToBounds = true
         self.addSubview(coverImage)
         
         let imageLeftConstraint = NSLayoutConstraint(item: coverImage, attribute: .leading, relatedBy: .equal, toItem: coverImage.superview, attribute: .leading, multiplier: 1, constant: 0)

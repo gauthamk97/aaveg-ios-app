@@ -139,7 +139,7 @@ func obtainScoreboardData(index: Int) {
 let screensize = UIScreen.main.bounds
 let cardXOffset: CGFloat = (5/375)*screensize.width
 let cardWidth: CGFloat = (365/375)*screensize.width
-let imageAspectRatio: CGFloat = 2/5
+let imageAspectRatio: CGFloat = 1/2
 let imageCardWidth: CGFloat = cardWidth
 let imageCardHeight: CGFloat = imageCardWidth*imageAspectRatio
 let titleCardWidth: CGFloat = cardWidth

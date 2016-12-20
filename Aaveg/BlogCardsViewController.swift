@@ -62,7 +62,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
             
             if currentNumberOfCards==totalNumberOfPosts {
                 
-                self.scrollView.removeConstraint(activityHeightConstraint)
+                self.loadingMoreCardsIndicator.removeConstraint(activityHeightConstraint)
                 activityHeightConstraint = NSLayoutConstraint(item: loadingMoreCardsIndicator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 10)
                 NSLayoutConstraint.activate([activityHeightConstraint])
                 
