@@ -9,5 +9,7 @@ Scoreboard :-
 	Double Check improper net connection situations
 
 Blog :-
-	Author View
-	API Integration
+	Author View Fix
+	Refresh Button
+	Design overhaul
+	Base64 Decoding Check
