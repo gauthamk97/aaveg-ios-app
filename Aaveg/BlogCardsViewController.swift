@@ -57,7 +57,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if ((scrollView.contentOffset.y >= (scrollView.contentSize.height-scrollView.frame.size.height)) && !isRefreshingCards) {
-            print("Have to refresh")
+            
             let currentNumberOfCards = blogCards.count
             
             if currentNumberOfCards==totalNumberOfPosts {
@@ -123,6 +123,9 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
             blogCards[blogCards.count-1].allConstraints["topconstraint"] = topconstraint
 
         }
+        
+        //Fetch image
+        tempCard.getImageForCard()
     }
 
     func getBlogIDs() {
@@ -167,7 +170,6 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
         task.resume()
         
     }
-    
     
     func blogIDsRecieved() {
         print(self.blogIDs)
