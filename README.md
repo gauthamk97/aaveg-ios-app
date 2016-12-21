@@ -10,6 +10,5 @@ Scoreboard :-
 
 Blog :-
 	Author View Fix
-	Refresh Button
 	Design overhaul
 	Base64 Decoding Check

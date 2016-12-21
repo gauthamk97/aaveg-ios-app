@@ -204,4 +204,22 @@ class BlogPostViewController: UIViewController {
         task.resume()
     }
 
+    @IBAction func onClickRefresh(_ sender: AnyObject) {
+        
+        DispatchQueue.main.async {
+            self.loadingActivityIndicator.isHidden = false
+            self.loadingActivityIndicator.startAnimating()
+            
+            self.coverImageView.image = nil
+            self.imageLoadingActivityIndicator.isHidden = false
+            self.imageLoadingActivityIndicator.startAnimating()
+            
+            //Scrolls to top
+            self.scrollView.contentOffset.y = 0
+        }
+        
+        self.setContent()
+        self.setImage()
+        
+    }
 }

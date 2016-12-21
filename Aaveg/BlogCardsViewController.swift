@@ -233,5 +233,30 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
         task.resume()
         
     }
+    
+    @IBAction func onClickRefresh(_ sender: AnyObject) {
+        
+        for card in blogCards {
+            card.removeFromSuperview()
+        }
+        
+        blogCards = []
+        
+        //Ensures calling of scrollViewDidScroll which calls API to receive more cards
+        scrollView.contentOffset.y = scrollView.contentSize.height-scrollView.frame.size.height
+        
+        //Resetting loading activity indicator
+        self.scrollView.removeConstraint(activityTopConstraint)
+        self.loadingMoreCardsIndicator.removeConstraint(activityHeightConstraint)
+        
+        activityHeightConstraint = NSLayoutConstraint(item: loadingMoreCardsIndicator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40)
+        activityTopConstraint = NSLayoutConstraint(item: loadingMoreCardsIndicator, attribute: .top, relatedBy: .equal, toItem: loadingMoreCardsIndicator.superview, attribute: .top, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([activityTopConstraint, activityHeightConstraint])
+        
+        loadingMoreCardsIndicator.isHidden = false
+        loadingMoreCardsIndicator.startAnimating()
+        
+    }
 
 }
