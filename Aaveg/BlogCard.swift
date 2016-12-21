@@ -23,7 +23,7 @@ class BlogCard: UIView {
         
         super.init(frame: CGRect(x: cardXOffset, y: 0, width: cardWidth, height: cardHeight))
         
-        self.backgroundColor = UIColor.blue
+        self.backgroundColor = UIColor.white
         
         //Setting properties of the card
         cardID = id
@@ -32,7 +32,7 @@ class BlogCard: UIView {
         isImagePresent = false
         
         //Cover Image Constraints
-        coverImage.backgroundColor = UIColor.red
+        coverImage.backgroundColor = UIColor.lightGray
         coverImage.contentMode = .scaleAspectFill
         coverImage.clipsToBounds = true
         self.addSubview(coverImage)
@@ -43,31 +43,34 @@ class BlogCard: UIView {
         let imageAspectRatioConstraint = NSLayoutConstraint(item: coverImage, attribute: .height, relatedBy: .equal, toItem: coverImage, attribute: .width, multiplier: imageAspectRatio, constant: 0)
         
         coverImage.translatesAutoresizingMaskIntoConstraints = false
-        coverImage.image = UIImage(named: "cloud")
         NSLayoutConstraint.activate([imageLeftConstraint, imageRightConstraint, imageTopConstraint, imageAspectRatioConstraint])
         
         //Title Label Constraints
         self.addSubview(titleLabel)
-        titleLabel.backgroundColor = UIColor.darkGray
+        titleLabel.backgroundColor = UIColor.clear
         
-        let titleLeftConstraint = NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: titleLabel.superview, attribute: .leading, multiplier: 1, constant: 0)
-        let titleRightConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: titleLabel.superview, attribute: .trailing, multiplier: 1, constant: 0)
+        let titleLeftConstraint = NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: titleLabel.superview, attribute: .leading, multiplier: 1, constant: 7)
+        let titleRightConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: titleLabel.superview, attribute: .trailing, multiplier: 1, constant: -7)
         let titleTopConstraint = NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: coverImage, attribute: .bottom, multiplier: 1, constant: 0)
-        let titleHeightConstraint = NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 45)
+        let titleHeightConstraint = NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
         
+        titleLabel.font = UIFont(name: "PingFangTC-Light", size: 20)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.numberOfLines = 2
         NSLayoutConstraint.activate([titleLeftConstraint, titleRightConstraint, titleTopConstraint, titleHeightConstraint])
         
         //Author Label Constraints
         self.addSubview(authorLabel)
-        authorLabel.backgroundColor = UIColor.brown
+        authorLabel.backgroundColor = UIColor.clear
+        authorLabel.textAlignment = .left
         
-        let authorLeftConstraint = NSLayoutConstraint(item: authorLabel, attribute: .leading, relatedBy: .equal, toItem: authorLabel.superview, attribute: .leading, multiplier: 1, constant: 0)
-        let authorRightConstraint = NSLayoutConstraint(item: authorLabel, attribute: .trailing, relatedBy: .equal, toItem: authorLabel.superview, attribute: .trailing, multiplier: 1, constant: 0)
-        let authorTopConstraint = NSLayoutConstraint(item: authorLabel, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 0)
+        let authorLeftConstraint = NSLayoutConstraint(item: authorLabel, attribute: .leading, relatedBy: .equal, toItem: authorLabel.superview, attribute: .leading, multiplier: 1, constant: 7)
+        let authorRightConstraint = NSLayoutConstraint(item: authorLabel, attribute: .trailing, relatedBy: .equal, toItem: authorLabel.superview, attribute: .trailing, multiplier: 1, constant: -7)
+        let authorTopConstraint = NSLayoutConstraint(item: authorLabel, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: -5)
         let authorHeightConstraint = NSLayoutConstraint(item: authorLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 25)
         let limitconstraint = NSLayoutConstraint(item: authorLabel, attribute: .bottom, relatedBy: .equal, toItem: authorLabel.superview, attribute: .bottom, multiplier: 1, constant: 0)
         
+        authorLabel.font = UIFont(name: "PingFangSC-Thin", size: 14)
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([authorLeftConstraint, authorRightConstraint, authorTopConstraint, authorHeightConstraint, limitconstraint])
         

@@ -30,6 +30,10 @@ class BlogPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Design of View
+        blogTitle.font = UIFont(name: "PingFangTC-Regular", size: 24)
+        blogSubtitle.font = UIFont(name: "PingFangTC-Light", size: 16)
+        
         //Checking for size of About the author page
         //checkAboutAuthorSize()
         
