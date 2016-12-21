@@ -56,7 +56,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        if ((scrollView.contentOffset.y >= (scrollView.contentSize.height-scrollView.frame.size.height)) && !isRefreshingCards) {
+        if ((scrollView.contentOffset.y + 15 >= (scrollView.contentSize.height-scrollView.frame.size.height)) && !isRefreshingCards) {
             
             let currentNumberOfCards = blogCards.count
             
