@@ -12,3 +12,4 @@ Blog :-
 	Author View Fix
 	Design overhaul
 	Base64 Decoding Check
+	Check if content decoding works for ALL scenarios/tags (bold, tabs, etc)

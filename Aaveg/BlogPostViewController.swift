@@ -127,12 +127,12 @@ class BlogPostViewController: UIViewController {
                     let title = message["title"] as! String
                     let subtitle = message["subtitle"] as! String
                     let content = message["content"] as! String
-                    let newcontent = content.replacingOccurrences(of: "<p>", with: "").replacingOccurrences(of: "</p>", with: "\n").replacingOccurrences(of: "<br />", with: "\n")
+                    let realcontent = content.html2String.replacingOccurrences(of: "\n", with: "\n\n")
                     
                     DispatchQueue.main.async {
                         self.blogTitle.text = title
                         self.blogSubtitle.text = subtitle
-                        self.blogContentTextView.text = newcontent
+                        self.blogContentTextView.text = realcontent
                         self.authorNameLabel.text = authorname
                         self.loadingActivityIndicator.isHidden = true
                         self.loadingActivityIndicator.stopAnimating()
@@ -224,6 +224,18 @@ class BlogPostViewController: UIViewController {
         
         self.setContent()
         self.setImage()
+        
+    }
+}
+
+extension String {
+    var html2String:String {
+        do {
+            return try NSAttributedString(data: data(using: String.Encoding.utf8)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil).string
+        }
+        catch {
+            return "Error in Decoding Content. Please view on website."
+        }
         
     }
 }
