@@ -186,8 +186,14 @@ class BlogPostViewController: UIViewController {
                     
                     let message = json["message"] as! [String:Any]
                     let image_path = message["image_path"] as! String
-                    let index1 = image_path.index(image_path.startIndex, offsetBy: 22)
-                    let properEncode = image_path.substring(from: index1)
+                    let index1 = image_path.range(of: "base64,")?.upperBound
+                    
+                    if (index1 == nil) {
+                        print("base64, not present in image_path")
+                        return
+                    }
+                    
+                    let properEncode = image_path.substring(from: index1!)
                     let imageData = NSData(base64Encoded: properEncode, options: NSData.Base64DecodingOptions.init(rawValue: 0))
                     
                     if (imageData == nil) {

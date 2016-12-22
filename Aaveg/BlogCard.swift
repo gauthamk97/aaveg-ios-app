@@ -121,9 +121,16 @@ class BlogCard: UIView {
     
     func setImage(Image64Encode: String) {
         
-        let index1 = Image64Encode.index(Image64Encode.startIndex, offsetBy: 22)
-        let properEncode = Image64Encode.substring(from: index1)
+        let index1 = Image64Encode.range(of: "base64,")?.upperBound
+        
+        if (index1 == nil) {
+            print("base64, not present in image_path")
+            return
+        }
+        
+        let properEncode = Image64Encode.substring(from: index1!)
         let imageData = NSData(base64Encoded: properEncode, options: NSData.Base64DecodingOptions.init(rawValue: 0))
+        
         if (imageData == nil) {
             print("error in base64 conversion - \(cardID)\n")
             return
