@@ -147,8 +147,6 @@ let titleCardHeight: CGFloat = 30
 let authorCardWidth: CGFloat = cardWidth
 let authorCardHeight: CGFloat = 30
 let cardHeight: CGFloat = imageCardHeight + titleCardHeight + authorCardHeight
-//let titleLabelColor = UIColor(colorLiteralRed: <#T##Float#>, green: <#T##Float#>, blue: <#T##Float#>, alpha: <#T##Float#>)
-//let authorLabelColor = UIColor(colorLiteralRed: <#T##Float#>, green: <#T##Float#>, blue: <#T##Float#>, alpha: <#T##Float#>)
 
 //Blog Page Constants
 let contentOffsets: CGFloat = (10/375)*screensize.width
