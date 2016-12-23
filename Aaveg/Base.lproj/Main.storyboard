@@ -263,7 +263,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpP-zm-fKo">
-                                        <rect key="frame" x="10" y="488.5" width="355" height="100"/>
+                                        <rect key="frame" x="10" y="498.5" width="355" height="100"/>
                                         <subviews>
                                             <textView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJ6-he-pgp">
                                                 <rect key="frame" x="100" y="0.0" width="255" height="100"/>
@@ -316,7 +316,7 @@
                                     <constraint firstItem="ZrX-jz-YX3" firstAttribute="centerX" secondItem="zGj-Ww-chn" secondAttribute="centerX" id="4wr-ot-Xd2"/>
                                     <constraint firstAttribute="trailing" secondItem="kzu-fO-lkr" secondAttribute="trailing" constant="10" id="EV8-ET-8Yb"/>
                                     <constraint firstItem="AOo-tO-NPC" firstAttribute="top" secondItem="kzu-fO-lkr" secondAttribute="bottom" id="FlJ-fQ-v0a"/>
-                                    <constraint firstItem="rpP-zm-fKo" firstAttribute="top" secondItem="bUC-9x-zAJ" secondAttribute="bottom" id="G5M-oe-7A1"/>
+                                    <constraint firstItem="rpP-zm-fKo" firstAttribute="top" secondItem="bUC-9x-zAJ" secondAttribute="bottom" constant="10" id="G5M-oe-7A1"/>
                                     <constraint firstItem="PUa-Yx-UeF" firstAttribute="leading" secondItem="zGj-Ww-chn" secondAttribute="leading" id="HQO-cM-MrC"/>
                                     <constraint firstItem="1fa-KS-Vil" firstAttribute="top" secondItem="ZrX-jz-YX3" secondAttribute="bottom" id="Icb-47-VTk"/>
                                     <constraint firstAttribute="trailing" secondItem="rpP-zm-fKo" secondAttribute="trailing" constant="10" id="K2w-pY-jUE">
