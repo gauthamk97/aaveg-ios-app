@@ -10,5 +10,5 @@ Scoreboard :-
 
 Blog :-
 	Author View Fix
-	Design overhaul
 	Check if content decoding works for ALL scenarios/tags (bold, tabs, etc)
+	Minor design changes if needed

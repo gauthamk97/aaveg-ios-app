@@ -161,5 +161,8 @@ let subtitleWidth: CGFloat = screensize.width-(2*contentOffsets)
 let subtitleHeight: CGFloat = 45
 let contentViewWidth: CGFloat = screensize.width-(2*contentOffsets)
 
-
 var selectedBlogCard = BlogCard(id: 0, title: "temp", author: "temp")
+
+//Blog author About Me's
+
+
