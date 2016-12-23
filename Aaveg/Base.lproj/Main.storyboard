@@ -263,17 +263,17 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpP-zm-fKo">
-                                        <rect key="frame" x="10" y="575.5" width="355" height="100"/>
+                                        <rect key="frame" x="10" y="585.5" width="355" height="120"/>
                                         <subviews>
-                                            <textView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJ6-he-pgp">
-                                                <rect key="frame" x="100" y="0.0" width="255" height="100"/>
+                                            <textView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kJ6-he-pgp">
+                                                <rect key="frame" x="100" y="10" width="255" height="100"/>
                                                 <color key="backgroundColor" red="0.78039215689999997" green="0.79215686269999996" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <string key="text">A Telugu speaking chennaiite who is independent, curious, ever-hungry and a bit too lazy. Give me any song, I can dance for it. Give me any topic, I will write about it. </string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="etg-I9-Ipi">
-                                                <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                                <rect key="frame" x="10" y="20" width="80" height="80"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="HhJ-sM-PWJ">
@@ -288,19 +288,19 @@
                                             <constraint firstItem="etg-I9-Ipi" firstAttribute="leading" secondItem="rpP-zm-fKo" secondAttribute="leading" constant="10" id="8ZT-xq-OZ8">
                                                 <variation key="heightClass=compact" constant="30"/>
                                             </constraint>
-                                            <constraint firstAttribute="bottom" secondItem="etg-I9-Ipi" secondAttribute="bottom" constant="10" id="IIJ-Db-ysA"/>
                                             <constraint firstAttribute="trailing" secondItem="kJ6-he-pgp" secondAttribute="trailing" id="QuO-GE-zw3">
                                                 <variation key="heightClass=compact" constant="30"/>
                                             </constraint>
+                                            <constraint firstItem="kJ6-he-pgp" firstAttribute="top" secondItem="rpP-zm-fKo" secondAttribute="top" constant="10" id="Uza-4U-2wr"/>
                                             <constraint firstItem="kJ6-he-pgp" firstAttribute="leading" secondItem="etg-I9-Ipi" secondAttribute="trailing" constant="10" id="ZsH-vN-RKG">
                                                 <variation key="heightClass=compact" constant="40"/>
                                             </constraint>
-                                            <constraint firstItem="etg-I9-Ipi" firstAttribute="top" secondItem="rpP-zm-fKo" secondAttribute="top" constant="10" id="cMX-3i-e2K"/>
+                                            <constraint firstAttribute="bottom" secondItem="kJ6-he-pgp" secondAttribute="bottom" constant="10" id="cGp-J6-qTJ"/>
                                             <constraint firstItem="etg-I9-Ipi" firstAttribute="centerY" secondItem="kJ6-he-pgp" secondAttribute="centerY" id="xHa-wa-IWe"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUC-9x-zAJ">
-                                        <rect key="frame" x="10" y="535.5" width="355" height="30"/>
+                                        <rect key="frame" x="10" y="545.5" width="355" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="7cn-5A-vSL"/>
                                         </constraints>
@@ -326,7 +326,7 @@
                                     <constraint firstAttribute="trailing" secondItem="ZrX-jz-YX3" secondAttribute="trailing" id="NqL-53-bEs"/>
                                     <constraint firstAttribute="bottom" secondItem="rpP-zm-fKo" secondAttribute="bottom" constant="10" id="OFU-VX-GPM"/>
                                     <constraint firstItem="PUa-Yx-UeF" firstAttribute="top" secondItem="zGj-Ww-chn" secondAttribute="top" id="OWT-W1-bc8"/>
-                                    <constraint firstItem="bUC-9x-zAJ" firstAttribute="top" secondItem="AOo-tO-NPC" secondAttribute="bottom" id="Ypg-fO-h9g"/>
+                                    <constraint firstItem="bUC-9x-zAJ" firstAttribute="top" secondItem="AOo-tO-NPC" secondAttribute="bottom" constant="10" id="Ypg-fO-h9g"/>
                                     <constraint firstAttribute="trailing" secondItem="1fa-KS-Vil" secondAttribute="trailing" constant="10" id="ZN5-WP-BCV"/>
                                     <constraint firstItem="bUC-9x-zAJ" firstAttribute="leading" secondItem="zGj-Ww-chn" secondAttribute="leading" constant="10" id="agg-dG-jLH"/>
                                     <constraint firstItem="1fa-KS-Vil" firstAttribute="top" secondItem="PUa-Yx-UeF" secondAttribute="bottom" id="bjA-cd-548"/>
@@ -368,8 +368,6 @@
                     <connections>
                         <outlet property="aboutAuthorText" destination="kJ6-he-pgp" id="HJn-Uo-v9j"/>
                         <outlet property="authorImage" destination="etg-I9-Ipi" id="puQ-eq-ttY"/>
-                        <outlet property="authorImageBottomConstraint" destination="IIJ-Db-ysA" id="WuO-jI-ljq"/>
-                        <outlet property="authorImageTopConstraint" destination="cMX-3i-e2K" id="yKU-p3-hta"/>
                         <outlet property="authorNameLabel" destination="bUC-9x-zAJ" id="2lq-Nc-t9t"/>
                         <outlet property="authorView" destination="rpP-zm-fKo" id="vvd-75-4Mk"/>
                         <outlet property="blogContentTextView" destination="AOo-tO-NPC" id="AOM-eB-S9b"/>

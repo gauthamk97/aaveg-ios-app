@@ -34,9 +34,7 @@ class BlogPostViewController: UIViewController {
         blogTitle.font = UIFont(name: "PingFangTC-Regular", size: 26)
         blogSubtitle.font = UIFont(name: "PingFangTC-Regular", size: 18)
         blogContentTextView.font = UIFont(name: "PingFangTC-Light", size: 16)
-        
-        //Checking for size of About the author page
-        //checkAboutAuthorSize()
+        aboutAuthorText.font = UIFont(name: "PingFangTC-Light", size: 14)
         
         //Setting status bar to white
         UIApplication.shared.statusBarStyle = .lightContent
@@ -75,14 +73,6 @@ class BlogPostViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func checkAboutAuthorSize() {
-        if authorImage.frame.height < aboutAuthorText.frame.height {
-            authorView.removeConstraints([authorImageTopConstraint, authorImageBottomConstraint])
-            
-            //let topConstraint = NSLayoutConstraint(item: self.aboutAuthorText, attribute: .top, relatedBy: .equal, toItem: <#T##Any?#>, attribute: <#T##NSLayoutAttribute#>, multiplier: <#T##CGFloat#>, constant: <#T##CGFloat#>)
-        }
     }
     
     func setContent() {
@@ -128,13 +118,21 @@ class BlogPostViewController: UIViewController {
                     let title = message["title"] as! String
                     let subtitle = message["subtitle"] as! String
                     let content = message["content"] as! String
-                    let realcontent = content.html2String.replacingOccurrences(of: "\n", with: "\n\n")
+                    var realcontent = content.html2String.replacingOccurrences(of: "\n", with: "\n\n")
+                    
+                    //Removing unnecessary newline at end
+                    let ending = realcontent.substring(from: realcontent.index(realcontent.endIndex, offsetBy: -2))
+                    if ending == "\n\n" {
+                        realcontent = realcontent.substring(to: realcontent.index(realcontent.endIndex, offsetBy: -2))
+                    }
+                    
                     
                     DispatchQueue.main.async {
                         self.blogTitle.text = title
                         self.blogSubtitle.text = subtitle
                         self.blogContentTextView.text = realcontent
                         self.authorNameLabel.text = authorname
+                        self.setAuthorView(name: authorname)
                         self.loadingActivityIndicator.isHidden = true
                         self.loadingActivityIndicator.stopAnimating()
                     }
@@ -213,6 +211,34 @@ class BlogPostViewController: UIViewController {
         }
         
         task.resume()
+    }
+    
+    func setAuthorView(name: String) {
+        
+        if name == "Avinash Tadavarthy" {
+            self.aboutAuthorText.text = AvinashAboutMe
+        }
+        
+        else if name == "Kiran Krishnan" {
+            self.aboutAuthorText.text = KiranAboutMe
+        }
+        
+        else if name == "Tanvi Kumar" {
+            self.aboutAuthorText.text = TanviAboutMe
+        }
+        
+        else if name == "Anirudh Banerjee" {
+            self.aboutAuthorText.text = AnirudhAboutMe
+        }
+        
+        else if name == "Mathirush S" {
+            self.aboutAuthorText.text = MathirushAboutMe
+        }
+        
+        else {
+            self.aboutAuthorText.text = ContentTeamAboutMe
+        }
+        
     }
 
     @IBAction func onClickRefresh(_ sender: AnyObject) {
