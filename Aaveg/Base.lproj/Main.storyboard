@@ -277,7 +277,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="HhJ-sM-PWJ">
-                                                        <variation key="heightClass=compact" constant="80"/>
+                                                        <variation key="heightClass=compact" constant="105"/>
                                                     </constraint>
                                                     <constraint firstAttribute="width" secondItem="etg-I9-Ipi" secondAttribute="height" multiplier="1:1" id="bJS-0p-VMP"/>
                                                 </constraints>
@@ -510,37 +510,37 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="6H1-Ri-tJE">
-                                                            <rect key="frame" x="266.5" y="0.0" width="52.5" height="43.5"/>
+                                                            <rect key="frame" x="267" y="0.0" width="52" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="CTw-f8-sim">
-                                                            <rect key="frame" x="321" y="0.0" width="52" height="43.5"/>
+                                                            <rect key="frame" x="321" y="0.0" width="52" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="amm-Gf-sQk">
-                                                            <rect key="frame" x="212.5" y="0.0" width="52" height="43.5"/>
+                                                            <rect key="frame" x="212" y="0.0" width="53" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="pfs-4f-5dZ">
-                                                            <rect key="frame" x="158" y="8" width="52.5" height="27.5"/>
+                                                            <rect key="frame" x="158" y="8" width="52" height="27"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="9P8-7G-ImE">
-                                                            <rect key="frame" x="104" y="0.0" width="52" height="43.5"/>
+                                                            <rect key="frame" x="104" y="0.0" width="52" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column Header" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="c27-wP-1Qk">
-                                                            <rect key="frame" x="2" y="0.0" width="100" height="43.5"/>
+                                                            <rect key="frame" x="2" y="0.0" width="100" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="JKW-dd-l7k">
                                                                     <variation key="heightClass=compact" constant="200"/>
@@ -673,37 +673,37 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="1Ja-KN-M8d">
-                                                            <rect key="frame" x="266.5" y="0.0" width="52.5" height="43.5"/>
+                                                            <rect key="frame" x="267" y="0.0" width="52" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Zly-Vg-bMI">
-                                                            <rect key="frame" x="321" y="0.0" width="52" height="43.5"/>
+                                                            <rect key="frame" x="321" y="0.0" width="52" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="RcT-BE-4uG">
-                                                            <rect key="frame" x="212.5" y="0.0" width="52" height="43.5"/>
+                                                            <rect key="frame" x="212" y="0.0" width="53" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="bBR-Ad-ggg">
-                                                            <rect key="frame" x="158" y="8" width="52.5" height="27.5"/>
+                                                            <rect key="frame" x="158" y="8" width="52" height="27"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="fvh-jW-5SK">
-                                                            <rect key="frame" x="104" y="0.0" width="52" height="43.5"/>
+                                                            <rect key="frame" x="104" y="0.0" width="52" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column Header" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="F97-pc-Ywu">
-                                                            <rect key="frame" x="2" y="0.0" width="100" height="43.5"/>
+                                                            <rect key="frame" x="2" y="0.0" width="100" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="NQo-oc-A3z">
                                                                     <variation key="heightClass=compact" constant="200"/>
@@ -836,37 +836,37 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ybI-9p-css">
-                                                            <rect key="frame" x="266.5" y="0.0" width="52.5" height="43.5"/>
+                                                            <rect key="frame" x="267" y="0.0" width="52" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="d11-pl-Ycn">
-                                                            <rect key="frame" x="321" y="0.0" width="52" height="43.5"/>
+                                                            <rect key="frame" x="321" y="0.0" width="52" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="uwV-Ra-atE">
-                                                            <rect key="frame" x="212.5" y="0.0" width="52" height="43.5"/>
+                                                            <rect key="frame" x="212" y="0.0" width="53" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="bey-fL-CXr">
-                                                            <rect key="frame" x="158" y="8" width="52.5" height="27.5"/>
+                                                            <rect key="frame" x="158" y="8" width="52" height="27"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="wIA-qg-Ue0">
-                                                            <rect key="frame" x="104" y="0.0" width="52" height="43.5"/>
+                                                            <rect key="frame" x="104" y="0.0" width="52" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column Header" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="HVj-b8-rTX">
-                                                            <rect key="frame" x="2" y="0.0" width="100" height="43.5"/>
+                                                            <rect key="frame" x="2" y="0.0" width="100" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="xs6-gY-RAC">
                                                                     <variation key="heightClass=compact" constant="200"/>

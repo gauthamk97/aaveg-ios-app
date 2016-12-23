@@ -75,6 +75,10 @@ class BlogPostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillLayoutSubviews() {
+        self.authorImage.layer.cornerRadius = self.authorImage.frame.width/2
+    }
+    
     func setContent() {
         
         let urlToHit = URL(string: "https://aaveg.net/blog/getBlogById")
@@ -217,22 +221,27 @@ class BlogPostViewController: UIViewController {
         
         if name == "Avinash Tadavarthy" {
             self.aboutAuthorText.text = AvinashAboutMe
+            self.authorImage.image = UIImage(named: "avinash")
         }
         
         else if name == "Kiran Krishnan" {
             self.aboutAuthorText.text = KiranAboutMe
+            self.authorImage.image = UIImage(named: "kiran")
         }
         
         else if name == "Tanvi Kumar" {
             self.aboutAuthorText.text = TanviAboutMe
+            self.authorImage.image = UIImage(named: "tanvi")
         }
         
         else if name == "Anirudh Banerjee" {
             self.aboutAuthorText.text = AnirudhAboutMe
+            self.authorImage.image = UIImage(named: "anirudh")
         }
         
         else if name == "Mathirush S" {
             self.aboutAuthorText.text = MathirushAboutMe
+            self.authorImage.image = UIImage(named: "mathirush")
         }
         
         else {
