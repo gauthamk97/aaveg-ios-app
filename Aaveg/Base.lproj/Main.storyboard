@@ -153,11 +153,12 @@
         <scene sceneID="NZ0-Ck-2OB">
             <objects>
                 <navigationController id="GIc-hl-LhM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H2g-1H-GEp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="H2g-1H-GEp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.35969614408263306" green="0.39117865896358545" blue="0.77432379201680668" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
@@ -185,12 +186,23 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.91764705879999997" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ4-8u-FF5">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.91764705879999997" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vJ4-8u-FF5" secondAttribute="trailing" id="4pA-LE-HJZ"/>
+                            <constraint firstItem="vJ4-8u-FF5" firstAttribute="leading" secondItem="NYM-Dl-CCk" secondAttribute="leading" id="8Lh-I1-v89"/>
                             <constraint firstItem="Giq-sI-6k2" firstAttribute="top" secondItem="5KL-kx-wjD" secondAttribute="bottom" id="B62-wf-S9y"/>
                             <constraint firstAttribute="trailing" secondItem="Giq-sI-6k2" secondAttribute="trailing" id="Dqc-aW-6nM"/>
                             <constraint firstItem="xvj-Pb-CCr" firstAttribute="top" secondItem="Giq-sI-6k2" secondAttribute="bottom" id="E95-B3-8D8"/>
                             <constraint firstItem="Giq-sI-6k2" firstAttribute="leading" secondItem="NYM-Dl-CCk" secondAttribute="leading" id="jZ7-oy-GT6"/>
+                            <constraint firstItem="vJ4-8u-FF5" firstAttribute="top" secondItem="5KL-kx-wjD" secondAttribute="bottom" id="nuK-LW-AoD"/>
+                            <constraint firstItem="xvj-Pb-CCr" firstAttribute="top" secondItem="vJ4-8u-FF5" secondAttribute="bottom" id="wAM-d0-s0o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="m0C-RG-0g1">
@@ -205,6 +217,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noInternetLabel" destination="vJ4-8u-FF5" id="okI-7H-6BI"/>
                         <outlet property="scrollView" destination="Giq-sI-6k2" id="uqd-zZ-7RW"/>
                         <segue destination="ahA-iN-trX" kind="show" identifier="toBlogView" id="z3x-XW-GuH"/>
                     </connections>
@@ -344,9 +357,16 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cA5-s8-62X">
                                 <rect key="frame" x="-4" y="64" width="383" height="603"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fI-Fa-MPs">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1fI-Fa-MPs" secondAttribute="trailing" id="Btb-dG-W5x"/>
                             <constraint firstAttribute="trailing" secondItem="zGj-Ww-chn" secondAttribute="trailing" id="F96-Wi-6aJ"/>
                             <constraint firstItem="cA5-s8-62X" firstAttribute="top" secondItem="XYX-2C-Flq" secondAttribute="bottom" id="d1J-BS-i1F"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cA5-s8-62X" secondAttribute="trailing" constant="-20" id="dd2-hc-dlp"/>
@@ -354,6 +374,9 @@
                             <constraint firstItem="zGj-Ww-chn" firstAttribute="leading" secondItem="1y5-u3-n9d" secondAttribute="leading" id="eRl-z9-fhD"/>
                             <constraint firstItem="caP-VJ-GGJ" firstAttribute="top" secondItem="cA5-s8-62X" secondAttribute="bottom" id="i63-GW-oAx"/>
                             <constraint firstItem="cA5-s8-62X" firstAttribute="leading" secondItem="1y5-u3-n9d" secondAttribute="leadingMargin" constant="-20" id="oRO-st-au0"/>
+                            <constraint firstItem="1fI-Fa-MPs" firstAttribute="leading" secondItem="1y5-u3-n9d" secondAttribute="leading" id="tX8-Wm-oPK"/>
+                            <constraint firstItem="caP-VJ-GGJ" firstAttribute="top" secondItem="1fI-Fa-MPs" secondAttribute="bottom" id="yGc-zw-MNx"/>
+                            <constraint firstItem="1fI-Fa-MPs" firstAttribute="top" secondItem="XYX-2C-Flq" secondAttribute="bottom" id="ygE-3A-PRS"/>
                             <constraint firstItem="caP-VJ-GGJ" firstAttribute="top" secondItem="zGj-Ww-chn" secondAttribute="bottom" id="yis-tV-aMI"/>
                         </constraints>
                     </view>
@@ -374,6 +397,7 @@
                         <outlet property="blogSubtitle" destination="kzu-fO-lkr" id="613-dt-MAp"/>
                         <outlet property="blogTitle" destination="1fa-KS-Vil" id="xx6-jZ-EdS"/>
                         <outlet property="coverImageView" destination="ZrX-jz-YX3" id="l64-fB-aIb"/>
+                        <outlet property="errorLabel" destination="1fI-Fa-MPs" id="R9V-LI-1ES"/>
                         <outlet property="imageLoadingActivityIndicator" destination="PUa-Yx-UeF" id="bN3-tM-D1r"/>
                         <outlet property="loadingActivityIndicator" destination="cA5-s8-62X" id="g7j-x2-C4i"/>
                         <outlet property="scrollView" destination="zGj-Ww-chn" id="z1Y-zw-NMO"/>

@@ -9,6 +9,5 @@ Scoreboard :-
 	Double Check improper net connection situations
 
 Blog :-
-	No internet cases
 	Check if content decoding works for ALL scenarios/tags (bold, tabs, etc)
 	Minor design changes if needed

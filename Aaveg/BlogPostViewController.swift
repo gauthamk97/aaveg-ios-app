@@ -27,6 +27,8 @@ class BlogPostViewController: UIViewController {
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var imageLoadingActivityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var errorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +70,10 @@ class BlogPostViewController: UIViewController {
         
         //Setting color of navbar items to white (Back Button)
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        //Removing errorLabel at the start
+        self.errorLabel.isHidden = true
+        self.errorLabel.backgroundColor = blogPageBackgroundColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,7 +99,9 @@ class BlogPostViewController: UIViewController {
             
             if error != nil {
                 if httpStatus?.statusCode == nil {
-                    print("no internet")
+                    DispatchQueue.main.async {
+                        self.errorLabel.isHidden = false
+                    }
                 }
                     
                 else {
@@ -139,6 +147,7 @@ class BlogPostViewController: UIViewController {
                         self.setAuthorView(name: authorname)
                         self.loadingActivityIndicator.isHidden = true
                         self.loadingActivityIndicator.stopAnimating()
+                        self.errorLabel.isHidden = true
                     }
                     
                 }
@@ -163,7 +172,9 @@ class BlogPostViewController: UIViewController {
             
             if error != nil {
                 if httpStatus?.statusCode == nil {
-                    print("no internet")
+                    DispatchQueue.main.async {
+                        self.errorLabel.isHidden = false
+                    }
                 }
                     
                 else {
@@ -208,6 +219,7 @@ class BlogPostViewController: UIViewController {
                         self.coverImageView.image = UIImage(data: imageData as! Data)
                         self.imageLoadingActivityIndicator.isHidden = true
                         self.imageLoadingActivityIndicator.stopAnimating()
+                        self.errorLabel.isHidden = true
                     }
                     
                 }
@@ -253,6 +265,8 @@ class BlogPostViewController: UIViewController {
     @IBAction func onClickRefresh(_ sender: AnyObject) {
         
         DispatchQueue.main.async {
+            self.errorLabel.isHidden = true
+            
             self.loadingActivityIndicator.isHidden = false
             self.loadingActivityIndicator.startAnimating()
             

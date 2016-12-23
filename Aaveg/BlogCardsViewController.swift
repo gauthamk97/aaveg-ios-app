@@ -20,6 +20,8 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
     var isRefreshingCards: Bool = false
     var totalNumberOfPosts: Int = 0
     
+    @IBOutlet weak var noInternetLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +48,9 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
         
         //Setting status bar to white
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        //Removing no internet label at first
+        noInternetLabel.isHidden = true
         
     }
 
@@ -141,7 +146,9 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
             
             if error != nil {
                 if httpStatus?.statusCode == nil {
-                    print("No internet")
+                    DispatchQueue.main.async {
+                        self.noInternetLabel.isHidden = false
+                    }
                 }
                     
                 else {
@@ -160,6 +167,9 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
                 let jsonData = responseString?.data(using: .utf8)
                 if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any]{
                     self.blogIDs = json["message"] as! [String]
+                    DispatchQueue.main.async {
+                        self.noInternetLabel.isHidden = true
+                    }
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "blogIDsRecieved"), object: nil)
                 }
                 
@@ -198,6 +208,9 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
             if error != nil {
                 if httpStatus?.statusCode == nil {
                     print("noo internet")
+                    DispatchQueue.main.async {
+                        self.noInternetLabel.isHidden = false
+                    }
                 }
                 
                 else {
@@ -226,6 +239,10 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
                     }
                     
                     self.isRefreshingCards = false
+                    
+                    DispatchQueue.main.async {
+                        self.noInternetLabel.isHidden = true
+                    }
                 }
             }
         }
@@ -244,6 +261,11 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
         
         //Ensures calling of scrollViewDidScroll which calls API to receive more cards
         scrollView.contentOffset.y = scrollView.contentSize.height-scrollView.frame.size.height
+        
+        //If there was no internet before the refresh
+        if noInternetLabel.isHidden == false {
+            self.getBlogIDs()
+        }
         
         //Resetting loading activity indicator
         self.scrollView.removeConstraint(activityTopConstraint)
