@@ -11,3 +11,8 @@ Scoreboard :-
 Blog :-
 	Check if content decoding works for ALL scenarios/tags (bold, tabs, etc)
 	Minor design changes if needed
+
+Events :-
+    Clusters Page Colouring
+    Events Page
+    Event Description Page
