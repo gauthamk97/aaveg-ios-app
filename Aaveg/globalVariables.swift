@@ -164,13 +164,13 @@ var selectedBlogCard = BlogCard(id: 0, title: "temp", author: "temp")
 
 //Blog author About Me's
 
-let KiranAboutMe = "Lost in the Patterns of Music, Sport and Life. A Man of Few Words. Quoraholic but still stuck in Eternal Sonder.\n\nAlso, mildly OCD."
+let KiranAboutMe = "A perpetually sleep deprived and hungry human being who writes and plays basketball.\n\nI'm a Mallu who never became one of them #mwonjanz"
 
-let MathirushAboutMe = "A perpetually sleep deprived and hungry human being who writes and plays basketball.\n\nI'm a Mallu who never became one of them #mwonjanz"
+let MathirushAboutMe = "Lost in the Patterns of Music, Sport and Life. A Man of Few Words. Quoraholic but still stuck in Eternal Sonder.\n\nAlso, mildly OCD."
 
-let AnirudhAboutMe = "Blogger. Day dreamer. Approachable, outgoing, tall wheatish person.\n\nWrites to express.\n\nAlso, I'm fluffy."
+let AnirudhAboutMe = "Lazy. Optimistic. Meticulous. Pedantic. Fascinating.\n\nI am a multicultural Bengali who loves everything under the sun as long as it isn't in LHC."
 
-let TanviAboutMe = "Lazy. Optimistic. Meticulous. Pedantic. Fascinating.\n\nI am a multicultural Bengali who loves everything under the sun as long as it isn't in LHC."
+let TanviAboutMe = "Blogger. Day dreamer. Approachable, outgoing, tall wheatish person.\n\nWrites to express.\n\nAlso, I'm fluffy."
 
 let AvinashAboutMe = "A Telugu speaking chennaiite who is independent, curious, ever-hungry and a bit too lazy.\n\nGive me any song, I can dance for it.\n\nGive me any topic, I will write about it."
 
