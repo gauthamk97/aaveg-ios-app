@@ -14,6 +14,7 @@
 		AC2471F91E11830800EDFCC3 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2471F81E11830800EDFCC3 /* EventsViewController.swift */; };
 		AC2471FC1E1189C500EDFCC3 /* EventsTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2471FB1E1189C500EDFCC3 /* EventsTile.swift */; };
 		AC2471FE1E1195E200EDFCC3 /* ClustersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2471FD1E1195E200EDFCC3 /* ClustersViewController.swift */; };
+		AC987CD61E141C3500378A89 /* EventPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC987CD51E141C3500378A89 /* EventPageViewController.swift */; };
 		ACC2B5931E0051EA00B90F81 /* BlogCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2B5921E0051EA00B90F81 /* BlogCardsViewController.swift */; };
 		ACC2B5951E0068F700B90F81 /* BlogPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2B5941E0068F700B90F81 /* BlogPostViewController.swift */; };
 		ACF2C2DD1DF9B52200C7F97A /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF2C2DC1DF9B52200C7F97A /* TutorialViewController.swift */; };
@@ -86,6 +87,7 @@
 		AC2471F81E11830800EDFCC3 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		AC2471FB1E1189C500EDFCC3 /* EventsTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTile.swift; sourceTree = "<group>"; };
 		AC2471FD1E1195E200EDFCC3 /* ClustersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClustersViewController.swift; sourceTree = "<group>"; };
+		AC987CD51E141C3500378A89 /* EventPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPageViewController.swift; sourceTree = "<group>"; };
 		ACC2B5921E0051EA00B90F81 /* BlogCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogCardsViewController.swift; sourceTree = "<group>"; };
 		ACC2B5941E0068F700B90F81 /* BlogPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPostViewController.swift; sourceTree = "<group>"; };
 		ACF2C2DC1DF9B52200C7F97A /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				AC2471FD1E1195E200EDFCC3 /* ClustersViewController.swift */,
 				AC2471F81E11830800EDFCC3 /* EventsViewController.swift */,
+				AC987CD51E141C3500378A89 /* EventPageViewController.swift */,
 				AC2471FB1E1189C500EDFCC3 /* EventsTile.swift */,
 			);
 			name = "Events Screen";
@@ -332,6 +335,7 @@
 				ACFBA1C21DCA134000E99255 /* Aaveg.xcdatamodeld in Sources */,
 				ACF2C2DD1DF9B52200C7F97A /* TutorialViewController.swift in Sources */,
 				ACFBA1DA1DCB2A5800E99255 /* Cloud.swift in Sources */,
+				AC987CD61E141C3500378A89 /* EventPageViewController.swift in Sources */,
 				ACFBA1BA1DCA134000E99255 /* AppDelegate.swift in Sources */,
 				AC2471FC1E1189C500EDFCC3 /* EventsTile.swift in Sources */,
 				ACF2C2E11DF9B80E00C7F97A /* CulturalsCupViewController.swift in Sources */,

@@ -24,6 +24,8 @@ class ClustersViewController: UIViewController {
         for i in 0...6 {
             addTile(name: clusters[i], color: bgColors[i])
         }
+        
+        self.title = "Clusters"
 
     }
 
@@ -46,6 +48,7 @@ class ClustersViewController: UIViewController {
         tempTile.setTitle(name, for: .normal)
         tempTile.setTitleColor(UIColor.white, for: .normal)
         self.addTileConstraints(tile: tempTile)
+        tempTile.addTarget(self, action: #selector(self.onSelectingCluster), for: .touchUpInside)
         tiles.append(tempTile)
         
     }
@@ -114,6 +117,12 @@ class ClustersViewController: UIViewController {
             }
             
         }
+        
+    }
+    
+    func onSelectingCluster() {
+        
+        performSegue(withIdentifier: "toEventsView", sender: self)
         
     }
     
