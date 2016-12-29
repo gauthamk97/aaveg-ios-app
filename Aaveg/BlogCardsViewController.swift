@@ -20,6 +20,8 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
     var isRefreshingCards: Bool = false
     var totalNumberOfPosts: Int = 0
     
+    var refreshControl = UIRefreshControl()
+    
     @IBOutlet weak var noInternetLabel: UILabel!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
@@ -52,6 +54,12 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
         
         //Removing no internet label at first
         noInternetLabel.isHidden = true
+        
+        //Initializing refresh control
+        refreshControl.tintColor = UIColor.gray
+        refreshControl.backgroundColor = self.scrollView.backgroundColor
+        refreshControl.addTarget(self, action: #selector(self.onClickRefresh(_:)), for: .valueChanged)
+        self.scrollView.addSubview(refreshControl)
         
         if self.revealViewController() != nil {
             print("setting reveal view controller")
@@ -249,6 +257,9 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
                     self.isRefreshingCards = false
                     
                     DispatchQueue.main.async {
+                        if self.refreshControl.isRefreshing {
+                            self.refreshControl.endRefreshing()
+                        }
                         self.noInternetLabel.isHidden = true
                     }
                 }
