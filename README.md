@@ -13,6 +13,7 @@ Blog :-
 	Minor design changes if needed
 
 Events :-
-    Clusters Page Colouring
-    Events Page
-    Event Description Page
+    Clusters and Events Page Colouring
+    Clusters and Events API Incorporation
+    Events Page Design
+    Events Page First, Second and Third Place
