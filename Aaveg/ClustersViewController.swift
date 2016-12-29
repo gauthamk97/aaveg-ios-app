@@ -11,9 +11,12 @@ import UIKit
 class ClustersViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     var tiles: [EventsTile] = []
     var clusters: [String] = ["Gaming", "Lits", "Miscallaneous", "Sports", "Music", "Dance", "Art"]
     var bgColors: [UIColor] = [UIColor.blue, UIColor.lightGray, UIColor.red, UIColor.green, UIColor.darkGray, UIColor.brown, UIColor.cyan]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,11 @@ class ClustersViewController: UIViewController {
         
         self.title = "Clusters"
 
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
 
     override func didReceiveMemoryWarning() {

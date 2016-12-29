@@ -11,6 +11,7 @@ class TutorialViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var scoreboardNavItem: UINavigationItem!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     var tutorialPageViewController: TutorialPageViewController? {
         didSet {
@@ -27,6 +28,12 @@ class TutorialViewController: UIViewController {
         pageControl.addTarget(self, action: #selector(TutorialViewController.didChangePageControlValue), for: .valueChanged)
         
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -21,6 +21,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
     var totalNumberOfPosts: Int = 0
     
     @IBOutlet weak var noInternetLabel: UILabel!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,13 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
         
         //Removing no internet label at first
         noInternetLabel.isHidden = true
+        
+        if self.revealViewController() != nil {
+            print("setting reveal view controller")
+            menuButton.target = self.revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         
     }
 

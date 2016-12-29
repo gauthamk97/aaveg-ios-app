@@ -29,9 +29,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Removing gesture recognizer in case user just clicked Home
-        self.view.removeGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        
         //Sky BGColor
         self.view.backgroundColor = UIColor(red: 0, green: 0.75, blue: 1, alpha: 1)
         
@@ -46,10 +43,9 @@ class HomeViewController: UIViewController {
         cloudGen.startAllAnimations(view: self.view)
         
         //Setting background
-        backgroundImageView = UIImageView(image: UIImage(named: "bgSkyEffect"))
+        backgroundImageView = UIImageView(image: UIImage(named: "background"))
         backgroundImageView.frame = self.view.frame
         backgroundImageView.contentMode = .scaleAspectFit
-        backgroundImageView.image = UIImage(named: "background")
         backgroundImageView.isUserInteractionEnabled = false
         
         self.view.addSubview(backgroundImageView)
@@ -147,10 +143,9 @@ class HomeViewController: UIViewController {
             self.aavegLogoImageView.center.y = 0.13 * self.view.frame.height
             self.aavegLogoImageView.alpha = 1
         }) { (true) in
-            //Setting up pan gesture recognizer for reveal view
-            if self.revealViewController() != nil {
-                self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-            }
+            
+                self.performSegue(withIdentifier: "toRevealViewController", sender: self)
+        
         }
         
         self.cloudGen.slowlyfadeAway()
