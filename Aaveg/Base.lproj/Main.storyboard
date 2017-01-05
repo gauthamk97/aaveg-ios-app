@@ -187,13 +187,18 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cur-LX-BA3">
                                 <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Dnv-x3-qVG"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cur-LX-BA3" firstAttribute="leading" secondItem="aCW-q8-nkY" secondAttribute="leading" id="3D7-vj-yOM"/>
                             <constraint firstItem="P2f-VI-6Fd" firstAttribute="top" secondItem="cur-LX-BA3" secondAttribute="bottom" id="AnX-rn-J2j"/>
+                            <constraint firstItem="Dnv-x3-qVG" firstAttribute="top" secondItem="YuO-6C-dwB" secondAttribute="bottom" id="Pws-f9-EgN"/>
+                            <constraint firstItem="Dnv-x3-qVG" firstAttribute="leading" secondItem="aCW-q8-nkY" secondAttribute="leading" id="TJc-kb-FHV"/>
                             <constraint firstItem="cur-LX-BA3" firstAttribute="top" secondItem="YuO-6C-dwB" secondAttribute="bottom" id="WGL-8N-dXH"/>
                             <constraint firstAttribute="trailing" secondItem="cur-LX-BA3" secondAttribute="trailing" id="agc-fW-2jn"/>
+                            <constraint firstItem="P2f-VI-6Fd" firstAttribute="top" secondItem="Dnv-x3-qVG" secondAttribute="bottom" id="b6X-iA-hN6"/>
+                            <constraint firstAttribute="trailing" secondItem="Dnv-x3-qVG" secondAttribute="trailing" id="slz-Lr-KEt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pof-TF-Zuo">
@@ -202,6 +207,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingActivityIndicator" destination="Dnv-x3-qVG" id="Frr-br-GNI"/>
                         <outlet property="menuButton" destination="F41-z8-ruX" id="v1f-gr-vrv"/>
                         <outlet property="scrollView" destination="cur-LX-BA3" id="BaQ-dc-WVu"/>
                         <segue destination="ycj-LA-QsL" kind="show" identifier="toEventsView" id="cxm-Rf-5D5"/>
@@ -259,50 +265,50 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUb-Wc-NJs">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqJ-Tm-shJ">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" red="0.81176470588235294" green="0.70980392156862748" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7p-Tn-OHH">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7p-Tn-OHH">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0F-H5-0B9">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSa-mS-dCo">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSa-mS-dCo">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djl-6T-vlL">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" red="0.70126421444212217" green="0.60249340942566909" blue="0.41779495683323359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwH-We-a7L">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwH-We-a7L">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Winners" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbG-17-OKg">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.25490196078431371" green="0.34509803921568627" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="RSa-mS-dCo" firstAttribute="leading" secondItem="n7p-Tn-OHH" secondAttribute="trailing" id="0SJ-sJ-4wf"/>
                                     <constraint firstItem="RSa-mS-dCo" firstAttribute="centerY" secondItem="cwH-We-a7L" secondAttribute="centerY" id="2QU-fA-Yoj"/>
                                     <constraint firstItem="n7p-Tn-OHH" firstAttribute="leading" secondItem="JUb-Wc-NJs" secondAttribute="leading" id="5DF-xf-9Ib"/>
                                     <constraint firstItem="rbG-17-OKg" firstAttribute="top" secondItem="JUb-Wc-NJs" secondAttribute="top" constant="8" id="5ao-Zq-l3N"/>
                                     <constraint firstItem="rbG-17-OKg" firstAttribute="leading" secondItem="JUb-Wc-NJs" secondAttribute="leading" id="9bR-Jd-4hG"/>
+                                    <constraint firstAttribute="bottom" secondItem="cwH-We-a7L" secondAttribute="bottom" constant="10" id="9qg-Rp-y4R"/>
                                     <constraint firstItem="UqJ-Tm-shJ" firstAttribute="centerY" secondItem="d0F-H5-0B9" secondAttribute="centerY" id="By6-Ax-JF1"/>
-                                    <constraint firstAttribute="bottom" secondItem="n7p-Tn-OHH" secondAttribute="bottom" constant="10" id="H30-hs-Xhp"/>
                                     <constraint firstItem="RSa-mS-dCo" firstAttribute="width" secondItem="cwH-We-a7L" secondAttribute="width" id="UfT-wJ-LpI"/>
                                     <constraint firstItem="n7p-Tn-OHH" firstAttribute="centerY" secondItem="RSa-mS-dCo" secondAttribute="centerY" id="V3z-4o-EFM"/>
                                     <constraint firstItem="d0F-H5-0B9" firstAttribute="width" secondItem="djl-6T-vlL" secondAttribute="width" id="XaB-av-JN8"/>
@@ -398,7 +404,7 @@
                             </scrollView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="GUo-me-OdH"/>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.34509803919999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="9fB-Qc-w8j" firstAttribute="top" secondItem="GUo-me-OdH" secondAttribute="bottom" id="30T-lz-wYG"/>
                             <constraint firstItem="JUb-Wc-NJs" firstAttribute="leading" secondItem="Lb1-wR-Xcx" secondAttribute="leadingMargin" id="5VZ-Gq-Mqb"/>
@@ -1151,6 +1157,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uF8-JN-2FG"/>
+        <segue reference="Eg6-kI-JL4"/>
     </inferredMetricsTieBreakers>
 </document>

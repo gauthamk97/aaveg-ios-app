@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         obtainScoreboardData(index: 2)
         obtainScoreboardData(index: 3)
         
+        //Get event and clusters data
+        getClusterAndEvents()
+        
         return true
     }
 

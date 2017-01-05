@@ -12,32 +12,34 @@ class ClustersViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
+    
+    let listOfClusters = [String](clusters.keys)
     
     var tiles: [EventsTile] = []
-    var clusters: [String] = ["Gaming", "Lits", "Miscallaneous", "Sports", "Music", "Dance", "Art", "Videography"]
     var bgColors: [UIColor] = [diamondColor, coralColor, agateColor, opalColor, diamondColor, agateColor, coralColor, opalColor]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //Watching for presence of data
+        NotificationCenter.default.addObserver(self, selector: #selector(self.checkIfDataPresent), name: NSNotification.Name(rawValue: "clusterandeventsdataobtained"), object: nil)
+        
         //Setting status bar to white
         UIApplication.shared.statusBarStyle = .lightContent
         
         //Prevents gap at top
         self.automaticallyAdjustsScrollViewInsets = false
         
-        for i in 0..<clusters.count {
-            addTile(name: clusters[i], color: bgColors[i])
-        }
-        
         self.title = "Clusters"
-
+        
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        checkIfDataPresent()
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,14 +54,31 @@ class ClustersViewController: UIViewController {
         }
     }
 
+    func checkIfDataPresent() {
+        
+        if isClusterAndEventsPresent == false {
+            loadingActivityIndicator.startAnimating()
+        }
+            
+        else {
+            loadingActivityIndicator.stopAnimating()
+            for i in 0..<clusters.count {
+                addTile(name: listOfClusters[i], color: bgColors[i])
+            }
+        }
+    }
+    
     func addTile(name: String, color: UIColor) {
         
         let tempTile = EventsTile()
+        tempTile.tileName = name
         tempTile.backgroundColor = color
         tempTile.setTitle(name, for: .normal)
         tempTile.setTitleColor(UIColor.white, for: .normal)
+        tempTile.titleLabel?.numberOfLines = 2
+        tempTile.titleLabel?.textAlignment = .center
         self.addTileConstraints(tile: tempTile)
-        tempTile.addTarget(self, action: #selector(self.onSelectingCluster), for: .touchUpInside)
+        tempTile.addTarget(self, action: #selector(self.onSelectingCluster(_:)), for: .touchUpInside)
         tiles.append(tempTile)
         
     }
@@ -131,8 +150,9 @@ class ClustersViewController: UIViewController {
         
     }
     
-    func onSelectingCluster() {
+    func onSelectingCluster(_ sender: EventsTile) {
         
+        selectedCluster = sender.tileName
         performSegue(withIdentifier: "toEventsView", sender: self)
         
     }

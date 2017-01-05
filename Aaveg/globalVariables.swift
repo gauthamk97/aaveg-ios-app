@@ -188,3 +188,59 @@ var blogPosts: [Int: [String: Any]] = [:]
 func initializeBlogPost(id: Int) {
     blogPosts[id] = ["isImagePresent": false, "isContentPresent": false]
 }
+
+//Get Cluster and Events List
+
+var isClusterAndEventsPresent = false
+var clusters: [String: [String]] = [:]
+var events: [Int: [String: Any]] = [:]
+var selectedCluster: String = ""
+var selectedEvent: String = ""
+
+func getClusterAndEvents() {
+    let urlToHit = URL(string: "https://aaveg.net/events/getclusterevents")
+    var request = URLRequest(url: urlToHit!)
+    request.httpMethod = "POST"
+    request.httpBody = nil //Parameters to send, if needed (must be encoded)
+    
+    let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+        
+        let httpStatus = response as? HTTPURLResponse
+        
+        if (error != nil) {
+            if (httpStatus?.statusCode == nil) {
+                print("NO INTERNET")
+            }
+            else {
+                print("Error occured : \(error)")
+            }
+            return;
+        }
+            
+        else if httpStatus?.statusCode != 200 {
+            print("Error : HTTPStatusCode is \(httpStatus?.statusCode)")
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "servererror"), object: nil)
+            return
+        }
+            
+        else {
+            let responseString = String(data: data!, encoding: .utf8)
+            let jsonData = responseString?.data(using: .utf8)
+            if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
+                if (json["status_code"] as! Int) != 200 {
+                    print("ERROR. STATUS CODE = \(json["status_code"] as! Int)")
+//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "servererror"), object: nil)
+                    return
+                }
+                
+                clusters = json["message"] as! [String: [String]]
+                isClusterAndEventsPresent = true
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "clusterandeventsdataobtained"), object: nil)
+                
+            }
+            
+        }})
+    
+    task.resume()
+}

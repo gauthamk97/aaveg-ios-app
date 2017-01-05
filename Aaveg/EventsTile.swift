@@ -12,6 +12,7 @@ class EventsTile: UIButton {
 
     var centreXConstraint = NSLayoutConstraint()
     var bottomConstraint = NSLayoutConstraint()
+    var tileName: String = ""
     
     /*
     // Only override draw() if you perform custom drawing.

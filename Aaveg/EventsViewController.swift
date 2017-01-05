@@ -18,7 +18,7 @@ class EventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        events = ["FIFA", "CS:GO", "Mini Militia"]
+        events = clusters[selectedCluster]!
         
         //Prevents gap at top
         self.automaticallyAdjustsScrollViewInsets = false
@@ -27,7 +27,7 @@ class EventsViewController: UIViewController {
             addTile(name: events[i], color: bgColors[i])
         }
         
-        self.title = "Events"
+        self.title = selectedCluster
         
         //Setting nav items to white color
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -48,11 +48,14 @@ class EventsViewController: UIViewController {
     func addTile(name: String, color: UIColor) {
         
         let tempTile = EventsTile()
+        tempTile.tileName = name
         tempTile.backgroundColor = color
         tempTile.setTitle(name, for: .normal)
         tempTile.setTitleColor(UIColor.white, for: .normal)
+        tempTile.titleLabel?.numberOfLines = 2
+        tempTile.titleLabel?.textAlignment = .center
         self.addTileConstraints(tile: tempTile)
-        tempTile.addTarget(self, action: #selector(self.onSelectingEvent), for: .touchUpInside)
+        tempTile.addTarget(self, action: #selector(self.onSelectingEvent(_: )), for: .touchUpInside)
         tiles.append(tempTile)
         
     }
@@ -124,8 +127,9 @@ class EventsViewController: UIViewController {
         
     }
 
-    func onSelectingEvent() {
+    func onSelectingEvent(_ sender: EventsTile) {
         
+        selectedEvent = sender.tileName
         performSegue(withIdentifier: "toEventsPageViewController", sender: self)
         
     }
