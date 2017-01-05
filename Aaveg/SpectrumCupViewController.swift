@@ -36,7 +36,8 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
-        eventsTable.addSubview(refreshControl)
+        self.scrollView.addSubview(refreshControl)
+        self.scrollView.alwaysBounceVertical = true
         
         //Obtaining data
         obtainScoreboardData(index: 3)

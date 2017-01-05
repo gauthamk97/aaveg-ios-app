@@ -36,7 +36,8 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
-        eventsTable.addSubview(refreshControl)
+        self.scrollView.addSubview(refreshControl)
+        self.scrollView.alwaysBounceVertical = true
         
         //Obtaining data
         obtainScoreboardData(index: 2)
