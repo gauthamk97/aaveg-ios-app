@@ -13,7 +13,7 @@ Blog :-
 	Minor design changes if needed
 
 Events :-
-    Clusters and Events Page Colouring
-    Clusters and Events API Incorporation
-    Events Page Design
-    Events Page First, Second and Third Place
+    Events Page Winners font and first, second, third font
+    Events on View Loading : Memory Warning
+    Rulebook check on format
+    Time and Date format change
