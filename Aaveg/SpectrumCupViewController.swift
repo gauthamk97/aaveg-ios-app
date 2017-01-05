@@ -208,13 +208,13 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
     func setChart() {
         
         scoreboardGraphView.leftAxis.drawGridLinesEnabled = false //Removes horizontal lines
-        scoreboardGraphView.leftAxis.labelTextColor = UIColor.gray //Sets labels on left axis to white color
-        scoreboardGraphView.leftAxis.axisLineColor = UIColor.black //Sets left axis to white color
+        scoreboardGraphView.leftAxis.labelTextColor = UIColor.white //Sets labels on left axis to white color
+        scoreboardGraphView.leftAxis.axisLineColor = UIColor.black //Sets left axis to black color
         
         scoreboardGraphView.xAxis.labelPosition = .bottom //Pushes x axis to bottom
         scoreboardGraphView.xAxis.drawGridLinesEnabled = false  //Removes vertical lines cutting the bars
-        scoreboardGraphView.xAxis.labelTextColor = UIColor.gray //Sets labels on x axis to white color
-        scoreboardGraphView.xAxis.axisLineColor = UIColor.black //sets x axis to white color
+        scoreboardGraphView.xAxis.labelTextColor = UIColor.white //Sets labels on x axis to white color
+        scoreboardGraphView.xAxis.axisLineColor = UIColor.black //sets x axis to black color
         
         scoreboardGraphView.rightAxis.drawGridLinesEnabled = false //Removes horizontal lines
         scoreboardGraphView.rightAxis.drawAxisLineEnabled = false //Removes right axis
