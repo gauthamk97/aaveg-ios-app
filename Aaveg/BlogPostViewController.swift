@@ -48,8 +48,8 @@ class BlogPostViewController: UIViewController {
         authorImage.layer.cornerRadius = authorImage.frame.width/2
         
         //Checking if image is present
-        if selectedBlogCard.isImagePresent {
-            self.coverImageView.image = selectedBlogCard.coverImage.image
+        if blogPosts[selectedBlogID]?["isImagePresent"] as! Bool {
+            self.coverImageView.image = imageWithString(Image64Encode: blogPosts[selectedBlogID]?["image_path"] as! String)
             imageLoadingActivityIndicator.isHidden = true
             imageLoadingActivityIndicator.stopAnimating()
         }
@@ -85,7 +85,44 @@ class BlogPostViewController: UIViewController {
         self.authorImage.layer.cornerRadius = self.authorImage.frame.width/2
     }
     
+    func imageWithString(Image64Encode: String) -> UIImage? {
+        
+        let index1 = Image64Encode.range(of: "base64,")?.upperBound
+        
+        if (index1 == nil) {
+            print("base64, not present in image_path")
+            return nil
+        }
+        
+        let properEncode = Image64Encode.substring(from: index1!)
+        let imageData = NSData(base64Encoded: properEncode, options: NSData.Base64DecodingOptions.init(rawValue: 0))
+        
+        if (imageData == nil) {
+            print("error in base64 conversion - \(selectedBlogID)\n")
+            return nil
+        }
+        
+        return UIImage(data: imageData as! Data)
+        
+    }
+    
     func setContent() {
+        
+        if blogPosts[selectedBlogID]?["isContentPresent"] as! Bool {
+            DispatchQueue.main.async {
+                self.blogTitle.text = blogPosts[selectedBlogID]?["title"] as? String
+                self.blogSubtitle.text = blogPosts[selectedBlogID]?["subtitle"] as? String
+                self.blogContentTextView.text = blogPosts[selectedBlogID]?["content"] as! String
+                self.authorNameLabel.text = blogPosts[selectedBlogID]?["author_name"] as? String
+                self.setAuthorView(name: blogPosts[selectedBlogID]?["author_name"] as! String)
+                self.loadingActivityIndicator.isHidden = true
+                self.loadingActivityIndicator.stopAnimating()
+                self.errorLabel.isHidden = true
+            }
+            
+            return
+        }
+        
         
         let urlToHit = URL(string: "https://aaveg.net/blog/getBlogById")
         var request = URLRequest(url: urlToHit!)
@@ -138,6 +175,11 @@ class BlogPostViewController: UIViewController {
                         realcontent = realcontent.substring(to: realcontent.index(realcontent.endIndex, offsetBy: -2))
                     }
                     
+                    blogPosts[selectedBlogID]?["author_name"] = authorname
+                    blogPosts[selectedBlogID]?["title"] = title
+                    blogPosts[selectedBlogID]?["subtitle"] = subtitle
+                    blogPosts[selectedBlogID]?["content"] = realcontent
+                    blogPosts[selectedBlogID]?["isContentPresent"] = true
                     
                     DispatchQueue.main.async {
                         self.blogTitle.text = title
@@ -222,6 +264,8 @@ class BlogPostViewController: UIViewController {
                         self.errorLabel.isHidden = true
                     }
                     
+                    blogPosts[selectedBlogID]?["isImagePresent"] = true
+                    
                 }
             }
         }
@@ -278,6 +322,8 @@ class BlogPostViewController: UIViewController {
             self.scrollView.contentOffset.y = 0
         }
         
+        blogPosts[selectedBlogID]?["isContentPresent"] = false
+        blogPosts[selectedBlogID]?["isImagePresent"] = false
         self.setContent()
         self.setImage()
         

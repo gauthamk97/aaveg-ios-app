@@ -161,6 +161,7 @@ let subtitleHeight: CGFloat = 45
 let contentViewWidth: CGFloat = screensize.width-(2*contentOffsets)
 
 var selectedBlogCard = BlogCard(id: 0, title: "temp", author: "temp")
+var selectedBlogID: Int = 0
 
 //Blog author About Me's
 
@@ -175,3 +176,10 @@ let TanviAboutMe = "Blogger. Day dreamer. Approachable, outgoing, tall wheatish 
 let AvinashAboutMe = "A Telugu speaking chennaiite who is independent, curious, ever-hungry and a bit too lazy.\n\nGive me any song, I can dance for it.\n\nGive me any topic, I will write about it."
 
 let ContentTeamAboutMe = "The Content Team is the best peace out."
+
+//Blog Posts
+var blogPosts: [Int: [String: Any]] = [:]
+
+func initializeBlogPost(id: Int) {
+    blogPosts[id] = ["isImagePresent": false, "isContentPresent": false]
+}

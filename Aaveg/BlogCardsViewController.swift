@@ -122,6 +122,9 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
     
     func addCard(id: Int, title: String, author: String) {
         
+        //Initializing blog posts
+        initializeBlogPost(id: id)
+        
         let tempCard = BlogCard(id: id, title: title, author: author)
         
         //Removing activity's constraint to penultimate card

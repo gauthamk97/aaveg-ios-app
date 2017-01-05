@@ -17,7 +17,7 @@ class BlogCard: UIView {
     var clickButton = UIButton(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
     var cardID: Int!
     var allConstraints: [String:NSLayoutConstraint] = [:]
-    var isImagePresent: Bool = false
+    
     
     init(id: Int, title: String, author: String) {
         
@@ -29,7 +29,6 @@ class BlogCard: UIView {
         cardID = id
         titleLabel.text = title
         authorLabel.text = author
-        isImagePresent = false
         
         //Cover Image Constraints
         coverImage.backgroundColor = UIColor.lightGray
@@ -98,6 +97,7 @@ class BlogCard: UIView {
     func cardSelected() {
         print("\(cardID!) card selected")
         selectedBlogCard = self
+        selectedBlogID = self.cardID
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "cardSelected"), object: nil)
     }
     
@@ -137,10 +137,16 @@ class BlogCard: UIView {
         }
         
         self.coverImage.image = UIImage(data: imageData as! Data)
-        isImagePresent = true
+        blogPosts[self.cardID]?["isImagePresent"] = true
+        blogPosts[self.cardID]?["image_path"] = Image64Encode
+
     }
     
     func getImageForCard() {
+        
+        if (blogPosts[self.cardID]?["isImagePresent"] as! Bool) == true {
+            setImage(Image64Encode: blogPosts[self.cardID]?["image_path"] as! String)
+        }
         
         print("Getting image for card \(cardID)")
         let ID: Int = cardID
