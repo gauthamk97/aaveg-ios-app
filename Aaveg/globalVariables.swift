@@ -58,6 +58,11 @@ var spectrumCupTotals: [Double] = [0,0,0,0,0]
 
 let hostelNames = ["Diamond", "Coral", "Jade", "Agate", "Opal"]
 
+///Event Tile Colours
+let eventTileColour1 = UIColor(colorLiteralRed: 0.165, green: 0.322, blue: 0.263, alpha: 1)
+let eventTileColour2 = UIColor(colorLiteralRed: 0.2, green: 0.192, blue: 0.333, alpha: 1)
+let eventTileColour3 = UIColor(red: 0.478, green: 0.424, blue: 0.243, alpha: 1.0)
+
 func obtainScoreboardData(index: Int) {
     
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "obtaining\(index)stcupdata"), object: nil)

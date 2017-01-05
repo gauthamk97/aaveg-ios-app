@@ -27,13 +27,16 @@ class TutorialViewController: UIViewController {
         
         pageControl.addTarget(self, action: #selector(TutorialViewController.didChangePageControlValue), for: .valueChanged)
         
-        UIApplication.shared.statusBarStyle = .lightContent
-        
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //Setting status bar color
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

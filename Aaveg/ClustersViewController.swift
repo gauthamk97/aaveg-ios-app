@@ -14,17 +14,20 @@ class ClustersViewController: UIViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     var tiles: [EventsTile] = []
-    var clusters: [String] = ["Gaming", "Lits", "Miscallaneous", "Sports", "Music", "Dance", "Art"]
-    var bgColors: [UIColor] = [UIColor.blue, UIColor.lightGray, UIColor.red, UIColor.green, UIColor.darkGray, UIColor.brown, UIColor.cyan]
+    var clusters: [String] = ["Gaming", "Lits", "Miscallaneous", "Sports", "Music", "Dance", "Art", "Videography"]
+    var bgColors: [UIColor] = [diamondColor, coralColor, agateColor, opalColor, diamondColor, agateColor, coralColor, opalColor]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Setting status bar to white
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         //Prevents gap at top
         self.automaticallyAdjustsScrollViewInsets = false
         
-        for i in 0...6 {
+        for i in 0..<clusters.count {
             addTile(name: clusters[i], color: bgColors[i])
         }
         

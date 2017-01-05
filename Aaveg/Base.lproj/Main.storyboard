@@ -156,9 +156,13 @@
         <scene sceneID="k3W-qY-Hke">
             <objects>
                 <navigationController id="UcF-s9-vF4" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bhz-lY-yXl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Bhz-lY-yXl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.078431372550000003" green="0.42745098040000001" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Okq-t2-HpK" kind="relationship" relationship="rootViewController" id="Bs4-Cr-hf4"/>
@@ -193,7 +197,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pof-TF-Zuo">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="F41-z8-ruX"/>
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="F41-z8-ruX">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="F41-z8-ruX" id="v1f-gr-vrv"/>

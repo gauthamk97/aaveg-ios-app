@@ -13,7 +13,7 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     var tiles: [EventsTile] = []
     var events: [String] = []
-    var bgColors: [UIColor] = [UIColor.lightGray, UIColor.red, UIColor.brown]
+    var bgColors: [UIColor] = [diamondColor, coralColor, agateColor, opalColor, diamondColor, agateColor, coralColor, opalColor]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +23,14 @@ class EventsViewController: UIViewController {
         //Prevents gap at top
         self.automaticallyAdjustsScrollViewInsets = false
         
-        for i in 0...2 {
+        for i in 0..<events.count {
             addTile(name: events[i], color: bgColors[i])
         }
         
         self.title = "Events"
         
+        //Setting nav items to white color
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
 
     override func didReceiveMemoryWarning() {
