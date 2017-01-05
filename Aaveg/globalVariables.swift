@@ -193,7 +193,7 @@ func initializeBlogPost(id: Int) {
 
 var isClusterAndEventsPresent = false
 var clusters: [String: [String]] = [:]
-var events: [Int: [String: Any]] = [:]
+var events: [String: [String: Any]] = [:]
 var selectedCluster: String = ""
 var selectedEvent: String = ""
 

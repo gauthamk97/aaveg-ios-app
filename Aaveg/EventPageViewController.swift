@@ -32,7 +32,13 @@ class EventPageViewController: UIViewController {
 
         self.title = selectedEvent
         
-        self.getEventDetails()
+        if events[selectedEvent] != nil {
+            setDetails(eventDetails: events[selectedEvent]!)
+        }
+        
+        else {
+            self.getEventDetails()
+        }
         
         self.loadingIndicator.backgroundColor = self.scrollView.backgroundColor
         
@@ -92,26 +98,10 @@ class EventPageViewController: UIViewController {
 
                     let eventDetails = json["message"] as! [String: Any]
                    
-                    DispatchQueue.main.async {
-                        
-                        if eventDetails["first_place"] as! String == "" {
-                            self.expandScrollView()
-                        }
-                        
-                        else {
-                            self.firstPlaceLabel.text = eventDetails["first_place"] as? String
-                            self.secondPlaceLabel.text = eventDetails["second_place"] as? String
-                            self.thirdPlaceLabel.text = eventDetails["third_place"] as? String
-                        }
-                        
-                        self.loadingIndicator.stopAnimating()
-                        self.descriptionTextView.text = eventDetails["event_desc"] as! String
-                        self.venueLabel.text = "Venue : \(eventDetails["event_venue"] as! String)"
-                        self.dateLabel.text = "Date : \(eventDetails["event_date"] as! String)"
-                        self.timeLabel.text = "Time : \(eventDetails["event_start_time"] as! String) - \(eventDetails["event_end_time"] as! String)"
-                        self.categoryLabel.text = "Category : \(eventDetails["event_category"] as! String) Cup"
-                    }
+                    //Storing event details
+                    events[(eventDetails["event_name"] as? String)!] = eventDetails
                     
+                    self.setDetails(eventDetails: eventDetails)
                 }
                 
             }
@@ -121,4 +111,29 @@ class EventPageViewController: UIViewController {
         task.resume()
     }
 
+    
+    func setDetails(eventDetails: [String: Any]) {
+        
+        DispatchQueue.main.async {
+            
+            if eventDetails["first_place"] as! String == "" {
+                self.expandScrollView()
+            }
+                
+            else {
+                self.firstPlaceLabel.text = eventDetails["first_place"] as? String
+                self.secondPlaceLabel.text = eventDetails["second_place"] as? String
+                self.thirdPlaceLabel.text = eventDetails["third_place"] as? String
+            }
+            
+            self.loadingIndicator.stopAnimating()
+            self.descriptionTextView.text = eventDetails["event_desc"] as! String
+            self.venueLabel.text = "Venue : \(eventDetails["event_venue"] as! String)"
+            self.dateLabel.text = "Date : \(eventDetails["event_date"] as! String)"
+            self.timeLabel.text = "Time : \(eventDetails["event_start_time"] as! String) - \(eventDetails["event_end_time"] as! String)"
+            self.categoryLabel.text = "Category : \(eventDetails["event_category"] as! String) Cup"
+        }
+        
+    }
+    
 }
