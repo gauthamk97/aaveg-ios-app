@@ -78,6 +78,10 @@ class BlogCard: UIView {
         clickButton.backgroundColor = UIColor.clear
         clickButton.titleLabel?.text = ""
         clickButton.addTarget(self, action: #selector(self.cardSelected), for: UIControlEvents.touchUpInside)
+        clickButton.addTarget(self, action: #selector(self.cardPressed), for: UIControlEvents.touchDown)
+        clickButton.addTarget(self, action: #selector(self.cardLetGo), for: UIControlEvents.touchDragExit)
+        clickButton.addTarget(self, action: #selector(self.cardPressed), for: UIControlEvents.touchDragEnter)
+        
         self.addSubview(clickButton)
  
         let buttonLeftConstraint = NSLayoutConstraint(item: clickButton, attribute: .leading, relatedBy: .equal, toItem: clickButton.superview, attribute: .leading, multiplier: 1, constant: 0)
@@ -99,6 +103,14 @@ class BlogCard: UIView {
         selectedBlogCard = self
         selectedBlogID = self.cardID
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "cardSelected"), object: nil)
+    }
+    
+    func cardPressed() {
+        self.backgroundColor = UIColor.lightGray
+    }
+    
+    func cardLetGo() {
+        self.backgroundColor = UIColor.white
     }
     
     func setConstraints() {

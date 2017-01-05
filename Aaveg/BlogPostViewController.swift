@@ -74,8 +74,13 @@ class BlogPostViewController: UIViewController {
         //Removing errorLabel at the start
         self.errorLabel.isHidden = true
         self.errorLabel.backgroundColor = blogPageBackgroundColor
+        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        //Resetting color of selected card
+        selectedBlogCard.backgroundColor = UIColor.white
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

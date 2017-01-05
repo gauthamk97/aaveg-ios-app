@@ -275,6 +275,10 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func onClickRefresh(_ sender: AnyObject) {
         
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
+        
         for card in blogCards {
             card.removeFromSuperview()
         }
