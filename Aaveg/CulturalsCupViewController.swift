@@ -40,7 +40,9 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         self.scrollView.alwaysBounceVertical = true
         
         //Obtaining data
-        obtainScoreboardData(index: 1)
+        if CultCupDataPresent == false {
+            obtainScoreboardData(index: 1)
+        }
         
         //Setting table height according to number of events
         if CultCupDataPresent == true && isInternetPresent {
@@ -296,6 +298,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func obtainingData() {
+        CultCupDataPresent = false
         scoreboardGraphView.data = nil
         scoreboardGraphView.noDataText = "Obtaining Data"
         scoreboardGraphView.notifyDataSetChanged()

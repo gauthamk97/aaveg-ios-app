@@ -17,6 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //Get scoreboard data
+        obtainScoreboardData(index: 1)
+        obtainScoreboardData(index: 2)
+        obtainScoreboardData(index: 3)
+        
         return true
     }
 

@@ -40,7 +40,9 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
         self.scrollView.alwaysBounceVertical = true
         
         //Obtaining data
-        obtainScoreboardData(index: 2)
+        if SportsCupDataPresent == false {
+            obtainScoreboardData(index: 2)
+        }
 
         //Setting table height according to number of events
         if SportsCupDataPresent == true && isInternetPresent {
@@ -297,6 +299,7 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func obtainingData() {
+        SportsCupDataPresent = false
         scoreboardGraphView.data = nil
         scoreboardGraphView.noDataText = "Obtaining Data"
         scoreboardGraphView.notifyDataSetChanged()

@@ -40,7 +40,9 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
         self.scrollView.alwaysBounceVertical = true
         
         //Obtaining data
-        obtainScoreboardData(index: 3)
+        if SpectrumCupDataPresent == false {
+            obtainScoreboardData(index: 3)
+        }
         
         //Setting table height according to number of events
         if SpectrumCupDataPresent == true && isInternetPresent {
@@ -299,6 +301,7 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func obtainingData() {
+        SpectrumCupDataPresent = false
         scoreboardGraphView.data = nil
         scoreboardGraphView.noDataText = "Obtaining Data"
         scoreboardGraphView.notifyDataSetChanged()
