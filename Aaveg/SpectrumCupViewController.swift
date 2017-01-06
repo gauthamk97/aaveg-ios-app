@@ -40,8 +40,8 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
         self.scrollView.alwaysBounceVertical = true
         
         //Obtaining data
-        if SpectrumCupDataPresent == false {
-            obtainScoreboardData(index: 3)
+        if SpectrumCupDataPresent == true {
+            self.dataObtained()
         }
         
         //Setting table height according to number of events

@@ -107,6 +107,7 @@ func obtainScoreboardData(index: Int) {
                 
                 let message = json["message"] as! [String: Any]
                 if index==1 {
+                    CultCupDataPresent = true
                     culturalEvents.removeAll()
                     let culturals = message["Culturals"] as! [[String: Any]]
                     for item in culturals {
@@ -115,6 +116,7 @@ func obtainScoreboardData(index: Int) {
                 }
                 
                 else if index==2 {
+                    SportsCupDataPresent = true
                     sportsEvents.removeAll()
                     let sports = message["Sports"] as! [[String: Any]]
                     for item in sports {
@@ -123,6 +125,7 @@ func obtainScoreboardData(index: Int) {
                 }
                 
                 else {
+                    SpectrumCupDataPresent = true
                     spectrumEvents.removeAll()
                     let spectrum = message["Spectrum"] as! [[String: Any]]
                     for item in spectrum {

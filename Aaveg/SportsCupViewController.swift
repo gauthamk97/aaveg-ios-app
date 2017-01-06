@@ -40,10 +40,10 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
         self.scrollView.alwaysBounceVertical = true
         
         //Obtaining data
-        if SportsCupDataPresent == false {
-            obtainScoreboardData(index: 2)
+        if SportsCupDataPresent == true {
+            self.dataObtained()
         }
-
+        
         //Setting table height according to number of events
         if SportsCupDataPresent == true && isInternetPresent {
             numberOfRows = sportsEvents.count+2 //1 is added for header row. 1 is added for total

@@ -40,8 +40,8 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         self.scrollView.alwaysBounceVertical = true
         
         //Obtaining data
-        if CultCupDataPresent == false {
-            obtainScoreboardData(index: 1)
+        if CultCupDataPresent == true {
+            self.dataObtained()
         }
         
         //Setting table height according to number of events
