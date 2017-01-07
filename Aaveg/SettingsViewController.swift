@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController {
         
         self.splashScreenSwitch.addTarget(self, action: #selector(self.switchChange), for: UIControlEvents.valueChanged)
         
-        UIApplication.shared.statusBarStyle = .default
+        UIApplication.shared.statusBarStyle = .lightContent
         
         let prefs = UserDefaults.standard
         let shouldSkipHomeScreen = prefs.bool(forKey: "skipHomeScreen")
