@@ -137,9 +137,15 @@ class EventPageViewController: UIViewController {
             }
             
             self.descriptionTextView.text = realDescription
+            
+            let startTime = eventDetails["event_start_time"] as! String
+            let endTime = eventDetails["event_end_time"] as! String
+            let date = eventDetails["event_date"] as! String
+            let dateSplits = date.components(separatedBy: "-")
+            
             self.venueLabel.text = "Venue : \(eventDetails["event_venue"] as! String)"
-            self.dateLabel.text = "Date : \(eventDetails["event_date"] as! String)"
-            self.timeLabel.text = "Time : \(eventDetails["event_start_time"] as! String) - \(eventDetails["event_end_time"] as! String)"
+            self.dateLabel.text = "Date : \(dateSplits[2])-\(dateSplits[1])-\(dateSplits[0])"
+            self.timeLabel.text = "Time : \((startTime).substring(to: startTime.index(startTime.endIndex, offsetBy: -3))) - \((endTime.substring(to: endTime.index(endTime.endIndex, offsetBy: -3))))"
             self.categoryLabel.text = "Category : \(eventDetails["event_category"] as! String) Cup"
             var realcontent = self.tempRuleBook.html2String.replacingOccurrences(of: "\n", with: "\n\n")
             

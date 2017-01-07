@@ -14,4 +14,3 @@ Blog :-
 
 Events :-
     Events on View Loading : Memory Warning
-    Time and Date format change
