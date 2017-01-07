@@ -15,7 +15,7 @@ class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
     var tiles: [EventsTile] = []
-    var bgColors: [UIColor] = [diamondColor, coralColor, agateColor, opalColor, diamondColor, agateColor, coralColor, opalColor]
+    var bgColors: [UIColor] = [diamondColor, coralColor, agateColor, opalColor]
     
     var isRevealViewOpen: Bool = false
     
@@ -94,7 +94,7 @@ class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
             DispatchQueue.main.async {
                 self.loadingActivityIndicator.stopAnimating()
                 for i in 0..<clusters.count {
-                    self.addTile(name: listOfClusters[i], color: self.bgColors[i])
+                    self.addTile(name: listOfClusters[i], color: self.bgColors[i % 4])
                 }
             }
             

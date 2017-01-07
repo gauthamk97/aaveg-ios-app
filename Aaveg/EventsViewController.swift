@@ -13,7 +13,7 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     var tiles: [EventsTile] = []
     var events: [String] = []
-    var bgColors: [UIColor] = [diamondColor, coralColor, agateColor, opalColor, diamondColor, agateColor, coralColor, opalColor]
+    var bgColors: [UIColor] = [diamondColor, coralColor, agateColor, opalColor]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class EventsViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         
         for i in 0..<events.count {
-            addTile(name: events[i], color: bgColors[i])
+            addTile(name: events[i], color: bgColors[i % 4])
         }
         
         self.title = selectedCluster
