@@ -14,6 +14,7 @@
 		AC2471FE1E1195E200EDFCC3 /* ClustersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2471FD1E1195E200EDFCC3 /* ClustersViewController.swift */; };
 		AC7D5A121E211327007B9A38 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7D5A0D1E2112C7007B9A38 /* Charts.framework */; };
 		AC7D5A131E211327007B9A38 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC7D5A0D1E2112C7007B9A38 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AC7D5A171E214F2A007B9A38 /* BackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D5A161E214F2A007B9A38 /* BackViewController.swift */; };
 		AC987CD61E141C3500378A89 /* EventPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC987CD51E141C3500378A89 /* EventPageViewController.swift */; };
 		ACC2B5931E0051EA00B90F81 /* BlogCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2B5921E0051EA00B90F81 /* BlogCardsViewController.swift */; };
 		ACC2B5951E0068F700B90F81 /* BlogPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2B5941E0068F700B90F81 /* BlogPostViewController.swift */; };
@@ -87,6 +88,7 @@
 		AC2471FB1E1189C500EDFCC3 /* EventsTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTile.swift; sourceTree = "<group>"; };
 		AC2471FD1E1195E200EDFCC3 /* ClustersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClustersViewController.swift; sourceTree = "<group>"; };
 		AC7D5A061E2112C7007B9A38 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../Charts_Aaveg/Charts.xcodeproj; sourceTree = "<group>"; };
+		AC7D5A161E214F2A007B9A38 /* BackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackViewController.swift; sourceTree = "<group>"; };
 		AC987CD51E141C3500378A89 /* EventPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPageViewController.swift; sourceTree = "<group>"; };
 		ACC2B5921E0051EA00B90F81 /* BlogCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogCardsViewController.swift; sourceTree = "<group>"; };
 		ACC2B5941E0068F700B90F81 /* BlogPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPostViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				ACFBA1D21DCA148400E99255 /* SWRevealViewController */,
 				ACFBA1B91DCA134000E99255 /* AppDelegate.swift */,
 				ACFBA1BD1DCA134000E99255 /* Main.storyboard */,
+				AC7D5A161E214F2A007B9A38 /* BackViewController.swift */,
 				ACB5F53F1DF6CC6D00029C8A /* Home Screen */,
 				ACB5F5401DF6CC7E00029C8A /* Scoreboard Screen */,
 				AC2471FA1E11830D00EDFCC3 /* Events Screen */,
@@ -350,6 +353,7 @@
 				ACFBA1DC1DCB2DB500E99255 /* CloudGenerator.swift in Sources */,
 				6AEB7B371E0001CF00E90EA1 /* BlogCard.swift in Sources */,
 				ACFBA1D61DCA183A00E99255 /* HomeViewController.swift in Sources */,
+				AC7D5A171E214F2A007B9A38 /* BackViewController.swift in Sources */,
 				AC2471F91E11830800EDFCC3 /* EventsViewController.swift in Sources */,
 				AC2471FE1E1195E200EDFCC3 /* ClustersViewController.swift in Sources */,
 			);
