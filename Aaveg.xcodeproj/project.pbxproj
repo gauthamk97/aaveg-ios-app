@@ -159,6 +159,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AC7D5A1A1E2173AB007B9A38 /* Settings Screen */ = {
+			isa = PBXGroup;
+			children = (
+				AC7D5A181E2159B7007B9A38 /* SettingsViewController.swift */,
+			);
+			name = "Settings Screen";
+			sourceTree = "<group>";
+		};
 		ACB5F53F1DF6CC6D00029C8A /* Home Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,12 +214,12 @@
 				ACFBA1D21DCA148400E99255 /* SWRevealViewController */,
 				ACFBA1B91DCA134000E99255 /* AppDelegate.swift */,
 				ACFBA1BD1DCA134000E99255 /* Main.storyboard */,
-				AC7D5A181E2159B7007B9A38 /* SettingsViewController.swift */,
 				AC7D5A161E214F2A007B9A38 /* BackViewController.swift */,
 				ACB5F53F1DF6CC6D00029C8A /* Home Screen */,
 				ACB5F5401DF6CC7E00029C8A /* Scoreboard Screen */,
 				AC2471FA1E11830D00EDFCC3 /* Events Screen */,
 				6AEB7B3A1E0001E300E90EA1 /* Blog Screen */,
+				AC7D5A1A1E2173AB007B9A38 /* Settings Screen */,
 				ACFBA1D71DCA22A200E99255 /* globalVariables.swift */,
 				ACFBA1C31DCA134000E99255 /* Assets.xcassets */,
 				ACFBA1C51DCA134000E99255 /* LaunchScreen.storyboard */,
