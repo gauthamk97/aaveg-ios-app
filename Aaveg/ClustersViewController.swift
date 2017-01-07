@@ -14,8 +14,6 @@ class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
-    let listOfClusters = [String](clusters.keys)
-    
     var tiles: [EventsTile] = []
     var bgColors: [UIColor] = [diamondColor, coralColor, agateColor, opalColor, diamondColor, agateColor, coralColor, opalColor]
     
@@ -85,16 +83,21 @@ class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
     }
     
     func checkIfDataPresent() {
-        
+        print(isClusterAndEventsPresent)
         if isClusterAndEventsPresent == false {
-            loadingActivityIndicator.startAnimating()
+            DispatchQueue.main.async {
+                self.loadingActivityIndicator.startAnimating()
+            }
         }
             
         else {
-            loadingActivityIndicator.stopAnimating()
-            for i in 0..<clusters.count {
-                addTile(name: listOfClusters[i], color: bgColors[i])
+            DispatchQueue.main.async {
+                self.loadingActivityIndicator.stopAnimating()
+                for i in 0..<clusters.count {
+                    self.addTile(name: listOfClusters[i], color: self.bgColors[i])
+                }
             }
+            
         }
     }
     

@@ -199,8 +199,10 @@ var clusters: [String: [String]] = [:]
 var events: [String: [String: Any]] = [:]
 var selectedCluster: String = ""
 var selectedEvent: String = ""
+var listOfClusters: [String] = []
 
 func getClusterAndEvents() {
+    isClusterAndEventsPresent = false
     let urlToHit = URL(string: "https://aaveg.net/events/getclusterevents")
     var request = URLRequest(url: urlToHit!)
     request.httpMethod = "POST"
@@ -238,6 +240,7 @@ func getClusterAndEvents() {
                 
                 clusters = json["message"] as! [String: [String]]
                 isClusterAndEventsPresent = true
+                listOfClusters = [String](clusters.keys)
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "clusterandeventsdataobtained"), object: nil)
                 
