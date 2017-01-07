@@ -31,7 +31,9 @@ class TutorialPageViewController: UIPageViewController {
         
         tutorialDelegate?.tutorialPageViewController(self,
                                                      didUpdatePageCount: orderedViewControllers.count)
+        
     }
+    
     
     /**
      Scrolls to the next view controller.

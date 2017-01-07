@@ -129,7 +129,14 @@ class EventPageViewController: UIViewController {
             }
             
             self.loadingIndicator.stopAnimating()
-            self.descriptionTextView.text = eventDetails["event_desc"] as! String
+            
+            var realDescription = (eventDetails["event_desc"] as! String).html2String.replacingOccurrences(of: "\n", with: "\n\n")
+            var ending = realDescription.substring(from: realDescription.index(realDescription.endIndex, offsetBy: -2))
+            if ending == "\n\n" {
+                realDescription = realDescription.substring(to: realDescription.index(realDescription.endIndex, offsetBy: -2))
+            }
+            
+            self.descriptionTextView.text = realDescription
             self.venueLabel.text = "Venue : \(eventDetails["event_venue"] as! String)"
             self.dateLabel.text = "Date : \(eventDetails["event_date"] as! String)"
             self.timeLabel.text = "Time : \(eventDetails["event_start_time"] as! String) - \(eventDetails["event_end_time"] as! String)"
@@ -137,7 +144,7 @@ class EventPageViewController: UIViewController {
             var realcontent = self.tempRuleBook.html2String.replacingOccurrences(of: "\n", with: "\n\n")
             
             //Removing unnecessary newline at end
-            let ending = realcontent.substring(from: realcontent.index(realcontent.endIndex, offsetBy: -2))
+            ending = realcontent.substring(from: realcontent.index(realcontent.endIndex, offsetBy: -2))
             if ending == "\n\n" {
                 realcontent = realcontent.substring(to: realcontent.index(realcontent.endIndex, offsetBy: -2))
             }

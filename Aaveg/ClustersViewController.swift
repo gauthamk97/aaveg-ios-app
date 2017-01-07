@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClustersViewController: UIViewController {
+class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -18,6 +18,8 @@ class ClustersViewController: UIViewController {
     
     var tiles: [EventsTile] = []
     var bgColors: [UIColor] = [diamondColor, coralColor, agateColor, opalColor, diamondColor, agateColor, coralColor, opalColor]
+    
+    var isRevealViewOpen: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +39,33 @@ class ClustersViewController: UIViewController {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         }
         
         checkIfDataPresent()
+        
+        //Closing reveal view on tap
+        self.revealViewController().delegate = self
+        self.isRevealViewOpen = false
+        
+    }
+    
+    func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        
+        if isRevealViewOpen {
+            isRevealViewOpen = false
+            for tile in tiles {
+                tile.isUserInteractionEnabled = true
+            }
+        }
+        
+        else {
+            isRevealViewOpen = true
+            for tile in tiles {
+                tile.isUserInteractionEnabled = false
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +80,10 @@ class ClustersViewController: UIViewController {
         }
     }
 
+    func userDidTap() {
+        print("Calling fucniton")
+    }
+    
     func checkIfDataPresent() {
         
         if isClusterAndEventsPresent == false {

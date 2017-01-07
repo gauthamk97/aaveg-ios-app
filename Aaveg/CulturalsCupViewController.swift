@@ -81,6 +81,11 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("resetting")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetIsRevealViewOpen"), object: nil)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableheightConstraint.constant = rowHeight*CGFloat(numberOfRows)
         return numberOfRows

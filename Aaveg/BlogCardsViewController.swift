@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
+class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealViewControllerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     var blogCards: [BlogCard] = []
@@ -21,6 +21,8 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
     var totalNumberOfPosts: Int = 0
     
     var refreshControl = UIRefreshControl()
+    
+    var isRevealViewOpen: Bool = false
     
     @IBOutlet weak var noInternetLabel: UILabel!
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -66,13 +68,36 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         }
+        
+        //Closing reveal view on tap
+        self.revealViewController().delegate = self
+        self.isRevealViewOpen = false
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        
+        if isRevealViewOpen {
+            isRevealViewOpen = false
+            for card in blogCards {
+                card.isUserInteractionEnabled = true
+            }
+        }
+            
+        else {
+            isRevealViewOpen = true
+            for card in blogCards {
+                card.isUserInteractionEnabled = false
+            }
+        }
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -126,6 +151,10 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate {
         initializeBlogPost(id: id)
         
         let tempCard = BlogCard(id: id, title: title, author: author)
+        
+        if isRevealViewOpen {
+            tempCard.isUserInteractionEnabled = false
+        }
         
         //Removing activity's constraint to penultimate card
         self.scrollView.removeConstraint(activityTopConstraint)

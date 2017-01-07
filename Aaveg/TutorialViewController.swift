@@ -6,7 +6,7 @@
 //  Copyright © 2016 Gautham Kumar. All rights reserved.
 //
 
-class TutorialViewController: UIViewController {
+class TutorialViewController: UIViewController, SWRevealViewControllerDelegate {
     
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var containerView: UIView!
@@ -31,7 +31,12 @@ class TutorialViewController: UIViewController {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         }
+        
+        //Closing reveal view on tap
+        self.revealViewController().delegate = self
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,13 +44,13 @@ class TutorialViewController: UIViewController {
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let tutorialPageViewController = segue.destination as? TutorialPageViewController {
             self.tutorialPageViewController = tutorialPageViewController
         }
+        
     }
-    
-    
     
     /**
      Fired when the user taps on the pageControl to change its current page.
