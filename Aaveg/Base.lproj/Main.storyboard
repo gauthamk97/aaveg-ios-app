@@ -119,6 +119,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" red="0.90980392160000001" green="0.91764705879999997" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="vJ4-8u-FF5" secondAttribute="trailing" id="4pA-LE-HJZ"/>
                             <constraint firstItem="vJ4-8u-FF5" firstAttribute="leading" secondItem="NYM-Dl-CCk" secondAttribute="leading" id="8Lh-I1-v89"/>
@@ -189,7 +190,7 @@
                             </scrollView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Dnv-x3-qVG"/>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="cur-LX-BA3" firstAttribute="leading" secondItem="aCW-q8-nkY" secondAttribute="leading" id="3D7-vj-yOM"/>
                             <constraint firstItem="P2f-VI-6Fd" firstAttribute="top" secondItem="cur-LX-BA3" secondAttribute="bottom" id="AnX-rn-J2j"/>
