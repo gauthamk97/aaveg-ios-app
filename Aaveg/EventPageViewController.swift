@@ -148,7 +148,7 @@ class EventPageViewController: UIViewController {
             if ending == "\n\n" {
                 realcontent = realcontent.substring(to: realcontent.index(realcontent.endIndex, offsetBy: -2))
             }
-            
+            print(realcontent)
             self.rulebookTextView.text = realcontent
         }
         
