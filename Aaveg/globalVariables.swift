@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+//For locking portrait in splash screen
+var isInSplashScreen: Bool = true
+
 let LogoToScreenRatio: CGFloat = 7/8
 let LogoOffset: CGFloat = (1 - LogoToScreenRatio)/2
 

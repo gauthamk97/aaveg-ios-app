@@ -144,6 +144,7 @@ class HomeViewController: UIViewController {
             self.aavegLogoImageView.alpha = 1
         }) { (true) in
             
+                isInSplashScreen = false
                 self.performSegue(withIdentifier: "toRevealViewController", sender: self)
         
         }
