@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let baseColor = UIColor(colorLiteralRed: 0.169, green: 0.243, blue: 0.31, alpha: 0)
+
 //For locking portrait in splash screen
 var isInSplashScreen: Bool = true
 
@@ -257,3 +259,11 @@ func getClusterAndEvents() {
 //Schedule Variables
 var isSchedulePresent: Bool = false
 var scheduleData: Data = Data()
+
+//Updates Variables
+var updates: [[String: String]] = [["eventName":"Terribly Tiny Tales", "first": "Opal", "second": "Coral", "third": "Agate, Diamond"], ["eventName":"Counter Strike - GO", "first": "Agate", "second": "Diamond", "third": "Jade"], ["eventName":"FIFA", "first": "Jade", "second": "Coral", "third": "Agate"], ["eventName":"Mini Militia", "first": "Coral", "second": "Agate", "third": "Agate"], ["eventName":"Shoot at Sight", "first": "Coral", "second": "Coral", "third": "Coral, Diamond"]]
+
+let firstPlaceGoldColor = UIColor(colorLiteralRed: 0.812, green: 0.71, blue: 0.231, alpha: 1)
+let secondPlaceSilverColor = UIColor(red: 0.902, green: 0.91, blue: 0.98, alpha: 1)
+let thirdPlaceBronzeColor = UIColor(red: 0.702, green: 0.604, blue: 0.42, alpha: 1)
+let updateTileBaseColor = UIColor(red: 0.255, green: 0.345, blue: 0.424, alpha: 1)

@@ -23,7 +23,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Btk-xN-TY8">
                                 <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="fHx-hB-gdD">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="fHx-hB-gdD">
                                 <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -52,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcZ-No-j9n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2181.5999999999999" y="3113.7931034482763"/>
+            <point key="canvasLocation" x="-1908" y="3302"/>
         </scene>
         <!--Back View Controller-->
         <scene sceneID="DYL-25-Ug3">
@@ -115,6 +115,9 @@
                                 <state key="normal" title="Updates">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="pj6-5C-CZP" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="uc8-Li-epk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WPS-W1-HRJ">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -254,7 +257,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROM-UB-Ko2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2.8985507246376816" y="2676.358695652174"/>
+            <point key="canvasLocation" x="44" y="2594"/>
         </scene>
         <!--Blog Cards View Controller-->
         <scene sceneID="PT6-Qm-5e2">
@@ -310,7 +313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K9i-Rv-MMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1146.376811594203" y="2676.358695652174"/>
+            <point key="canvasLocation" x="998" y="2594"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="k3W-qY-Hke">
@@ -330,7 +333,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3tn-Cd-m1H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="571.01449275362324" y="1818.7500000000002"/>
+            <point key="canvasLocation" x="1509.5999999999999" y="1818.440779610195"/>
         </scene>
         <!--Clusters View Controller-->
         <scene sceneID="B8a-Hr-jyG">
@@ -375,7 +378,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANd-km-LQr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1592.753623188406" y="1817.9347826086957"/>
+            <point key="canvasLocation" x="2530.4000000000001" y="1817.5412293853076"/>
         </scene>
         <!--Events View Controller-->
         <scene sceneID="wQi-TM-Ojl">
@@ -408,7 +411,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ter-fT-hvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2715.9420289855075" y="1817.9347826086957"/>
+            <point key="canvasLocation" x="3653.5999999999999" y="1817.5412293853076"/>
         </scene>
         <!--Event Page View Controller-->
         <scene sceneID="Hsw-Vb-i6x">
@@ -446,7 +449,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djl-6T-vlL">
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <color key="textColor" red="0.70126421444212217" green="0.60249340942566909" blue="0.41779495683323359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.70196078431372544" green="0.60392156862745094" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwH-We-a7L">
@@ -605,7 +608,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgF-eu-Moa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3682.608695652174" y="1817.1195652173915"/>
+            <point key="canvasLocation" x="4431" y="1818"/>
         </scene>
         <!--Blog Post View Controller-->
         <scene sceneID="Hxg-dH-ftZ">
@@ -772,7 +775,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bA8-Lt-Z6C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2268.1159420289855" y="2676.358695652174"/>
+            <point key="canvasLocation" x="1954" y="2594"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="dGc-ud-rMY">
@@ -1344,7 +1347,43 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FuG-eB-rIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1068" y="2464"/>
+            <point key="canvasLocation" x="-1068" y="2463"/>
+        </scene>
+        <!--Updates View Controller-->
+        <scene sceneID="leE-F0-n44">
+            <objects>
+                <viewController id="xO5-Ep-XB9" customClass="UpdatesViewController" customModule="Aaveg" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="adb-dy-nMt"/>
+                        <viewControllerLayoutGuide type="bottom" id="eoH-uC-YkV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YNJ-if-utX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooF-H4-NdI"/>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ooF-H4-NdI" secondAttribute="trailing" id="CvR-7X-YOQ"/>
+                            <constraint firstItem="ooF-H4-NdI" firstAttribute="leading" secondItem="YNJ-if-utX" secondAttribute="leading" id="bcM-xG-tsV"/>
+                            <constraint firstItem="ooF-H4-NdI" firstAttribute="top" secondItem="adb-dy-nMt" secondAttribute="bottom" id="bvg-3e-cPC"/>
+                            <constraint firstItem="eoH-uC-YkV" firstAttribute="top" secondItem="ooF-H4-NdI" secondAttribute="bottom" id="yWK-AV-Tze"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eZc-ui-Ksa">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="1Rb-SW-dXh">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuButton" destination="1Rb-SW-dXh" id="gb2-Dk-n6R"/>
+                        <outlet property="scrollView" destination="ooF-H4-NdI" id="LNX-wu-SWt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V3P-cF-m2b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2994" y="3329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hWG-gk-uDK">
@@ -1363,7 +1402,29 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDf-VT-BxH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2180" y="2354"/>
+            <point key="canvasLocation" x="-1908" y="2463"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Fsq-yI-eLc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pj6-5C-CZP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="AoF-vc-vIy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.078431372550000003" green="0.42745098040000001" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xO5-Ep-XB9" kind="relationship" relationship="rootViewController" id="a6T-ob-iO8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7KU-YC-4ft" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2994.4000000000001" y="2462.5187406296855"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

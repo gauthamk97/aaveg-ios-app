@@ -17,6 +17,8 @@
 		AC7D5A171E214F2A007B9A38 /* BackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D5A161E214F2A007B9A38 /* BackViewController.swift */; };
 		AC7D5A191E2159B7007B9A38 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D5A181E2159B7007B9A38 /* SettingsViewController.swift */; };
 		AC7D5A1C1E223E38007B9A38 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D5A1B1E223E38007B9A38 /* ScheduleViewController.swift */; };
+		AC7D5A1F1E225E15007B9A38 /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D5A1E1E225E15007B9A38 /* UpdatesViewController.swift */; };
+		AC7D5A241E2265CD007B9A38 /* UpdateTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D5A231E2265CD007B9A38 /* UpdateTile.swift */; };
 		AC987CD61E141C3500378A89 /* EventPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC987CD51E141C3500378A89 /* EventPageViewController.swift */; };
 		ACC2B5931E0051EA00B90F81 /* BlogCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2B5921E0051EA00B90F81 /* BlogCardsViewController.swift */; };
 		ACC2B5951E0068F700B90F81 /* BlogPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2B5941E0068F700B90F81 /* BlogPostViewController.swift */; };
@@ -93,6 +95,8 @@
 		AC7D5A161E214F2A007B9A38 /* BackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackViewController.swift; sourceTree = "<group>"; };
 		AC7D5A181E2159B7007B9A38 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AC7D5A1B1E223E38007B9A38 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		AC7D5A1E1E225E15007B9A38 /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
+		AC7D5A231E2265CD007B9A38 /* UpdateTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTile.swift; sourceTree = "<group>"; };
 		AC987CD51E141C3500378A89 /* EventPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPageViewController.swift; sourceTree = "<group>"; };
 		ACC2B5921E0051EA00B90F81 /* BlogCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogCardsViewController.swift; sourceTree = "<group>"; };
 		ACC2B5941E0068F700B90F81 /* BlogPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPostViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +181,15 @@
 			name = "Schedule Screen";
 			sourceTree = "<group>";
 		};
+		AC7D5A201E226591007B9A38 /* Updates Screen */ = {
+			isa = PBXGroup;
+			children = (
+				AC7D5A1E1E225E15007B9A38 /* UpdatesViewController.swift */,
+				AC7D5A231E2265CD007B9A38 /* UpdateTile.swift */,
+			);
+			name = "Updates Screen";
+			sourceTree = "<group>";
+		};
 		ACB5F53F1DF6CC6D00029C8A /* Home Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +243,7 @@
 				AC2471FA1E11830D00EDFCC3 /* Events Screen */,
 				6AEB7B3A1E0001E300E90EA1 /* Blog Screen */,
 				AC7D5A1D1E225C70007B9A38 /* Schedule Screen */,
+				AC7D5A201E226591007B9A38 /* Updates Screen */,
 				AC7D5A1A1E2173AB007B9A38 /* Settings Screen */,
 				ACFBA1D71DCA22A200E99255 /* globalVariables.swift */,
 				ACFBA1C31DCA134000E99255 /* Assets.xcassets */,
@@ -357,8 +371,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACF2C2E31DF9B95500C7F97A /* SportsCupViewController.swift in Sources */,
+				AC7D5A1F1E225E15007B9A38 /* UpdatesViewController.swift in Sources */,
 				ACFBA1C21DCA134000E99255 /* Aaveg.xcdatamodeld in Sources */,
 				ACF2C2DD1DF9B52200C7F97A /* TutorialViewController.swift in Sources */,
+				AC7D5A241E2265CD007B9A38 /* UpdateTile.swift in Sources */,
 				AC7D5A1C1E223E38007B9A38 /* ScheduleViewController.swift in Sources */,
 				ACFBA1DA1DCB2A5800E99255 /* Cloud.swift in Sources */,
 				AC987CD61E141C3500378A89 /* EventPageViewController.swift in Sources */,
