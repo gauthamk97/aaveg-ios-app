@@ -253,3 +253,7 @@ func getClusterAndEvents() {
     
     task.resume()
 }
+
+//Schedule Variables
+var isSchedulePresent: Bool = false
+var scheduleData: Data = Data()
