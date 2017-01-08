@@ -8,16 +8,20 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController {
+class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     var scheduleImage: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    var isRevealViewOpen: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.revealViewController().delegate = self
+        
         //White status bar
         UIApplication.shared.statusBarStyle = .lightContent
         
@@ -60,6 +64,20 @@ class ScheduleViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        
+        if isRevealViewOpen {
+            isRevealViewOpen = false
+            scrollView.isUserInteractionEnabled = true
+        }
+            
+        else {
+            isRevealViewOpen = true
+            scrollView.isUserInteractionEnabled = false
+        }
+        
     }
     
     func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {

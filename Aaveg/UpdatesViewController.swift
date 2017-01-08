@@ -8,12 +8,13 @@
 
 import UIKit
 
-class UpdatesViewController: UIViewController {
+class UpdatesViewController: UIViewController, SWRevealViewControllerDelegate {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var updateTiles: [UpdateTile] = []
+    var isRevealViewOpen: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,8 @@ class UpdatesViewController: UIViewController {
         self.title = "Updates"
         
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        self.revealViewController().delegate = self
         
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
@@ -38,6 +41,19 @@ class UpdatesViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        
+        if isRevealViewOpen {
+            isRevealViewOpen = false
+            scrollView.isUserInteractionEnabled = true
+        }
+            
+        else {
+            isRevealViewOpen = true
+            scrollView.isUserInteractionEnabled = false
+        }
     }
     
     func addTile(update: [String: String]) {

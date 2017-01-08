@@ -86,6 +86,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
         
         if isRevealViewOpen {
             isRevealViewOpen = false
+            scrollView.isUserInteractionEnabled = true
             for card in blogCards {
                 card.isUserInteractionEnabled = true
             }
@@ -93,6 +94,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
             
         else {
             isRevealViewOpen = true
+            scrollView.isUserInteractionEnabled = false
             for card in blogCards {
                 card.isUserInteractionEnabled = false
             }

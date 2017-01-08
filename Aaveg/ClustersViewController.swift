@@ -52,6 +52,7 @@ class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
         
         if isRevealViewOpen {
             isRevealViewOpen = false
+            scrollView.isUserInteractionEnabled = true
             for tile in tiles {
                 tile.isUserInteractionEnabled = true
             }
@@ -59,6 +60,7 @@ class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
         
         else {
             isRevealViewOpen = true
+            scrollView.isUserInteractionEnabled = false
             for tile in tiles {
                 tile.isUserInteractionEnabled = false
             }
