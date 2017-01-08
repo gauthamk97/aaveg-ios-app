@@ -22,6 +22,8 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate {
 
         self.revealViewController().delegate = self
         
+        self.title = "Schedule"
+        
         //White status bar
         UIApplication.shared.statusBarStyle = .lightContent
         
