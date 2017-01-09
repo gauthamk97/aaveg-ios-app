@@ -192,7 +192,7 @@ let TanviAboutMe = "Blogger. Day dreamer. Approachable, outgoing, tall wheatish 
 
 let AvinashAboutMe = "A Telugu speaking chennaiite who is independent, curious, ever-hungry and a bit too lazy.\n\nGive me any song, I can dance for it.\n\nGive me any topic, I will write about it."
 
-let ContentTeamAboutMe = "The Content Team is the best peace out."
+let ContentTeamAboutMe = "Hailing from every corner of the nation, the Aaveg Content Team is known for their quick wit and catchy one liners.\n\nWhenever they're not taking power naps or working on EG Sheets, they're always out to prove that the pen truly is mightier than the sword."
 
 //Blog Posts
 var blogPosts: [Int: [String: Any]] = [:]

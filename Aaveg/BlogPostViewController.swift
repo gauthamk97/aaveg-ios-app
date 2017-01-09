@@ -310,6 +310,7 @@ class BlogPostViewController: UIViewController {
         
         else {
             self.aboutAuthorText.text = ContentTeamAboutMe
+            self.authorImage.image = UIImage(named: "contentTeam")
         }
         
     }

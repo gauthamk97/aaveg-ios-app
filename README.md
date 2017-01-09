@@ -3,7 +3,6 @@
 To Do :-
 
 Overall :-
-    Content Team author content and picture
     Rulebooks uploading and API
 
 Splash Screen :-
