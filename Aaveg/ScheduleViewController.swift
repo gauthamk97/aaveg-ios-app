@@ -8,20 +8,25 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate {
+class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    var scheduleImage: UIImageView!
-    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var insideView: UIView!
     
     var isRevealViewOpen: Bool = false
+    var viewHasLoaded: Bool = false
+    var scrollView: UIScrollView!
+    var scheduleImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.revealViewController().delegate = self
+        viewHasLoaded = false
+        self.view.layoutIfNeeded()
         
+        self.revealViewController().delegate = self
+        self.automaticallyAdjustsScrollViewInsets = false
         self.title = "Schedule"
         
         //White status bar
@@ -34,29 +39,28 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate {
             self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         }
         
+        scrollView = UIScrollView(frame: insideView.frame)
+        scrollView.delegate = self
+        scrollView.backgroundColor = UIColor.black
+        scrollView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        insideView.addSubview(scrollView)
+        
         if isSchedulePresent {
             print("Schedule already present")
             DispatchQueue.main.async() { () -> Void in
                 
                 self.scheduleImage = UIImageView(image: UIImage(data: scheduleData))
-                
                 self.scrollView.contentSize = self.scheduleImage.bounds.size
-                self.scrollView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-                
                 self.scrollView.addSubview(self.scheduleImage)
-                
-                let centreYConstraint = NSLayoutConstraint(item: self.scheduleImage, attribute: .centerY, relatedBy: .equal, toItem: self.scrollView, attribute: .centerY, multiplier: 1, constant: 0)
-                self.scheduleImage.translatesAutoresizingMaskIntoConstraints = false
-                self.scrollView.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([centreYConstraint])
-                
+                self.viewHasLoaded = true
                 isSchedulePresent = true
                 self.loadingIndicator.stopAnimating()
+                self.setZoomScale()
             }
         }
         
         else {
-            if let checkedUrl = URL(string: "https://aaveg.net/splash-assets/logo.png") {
+            if let checkedUrl = URL(string: "https://aaveg.net/schedule.jpg") {
                 downloadImage(url: checkedUrl)
             }
         }
@@ -66,6 +70,40 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillLayoutSubviews() {
+        if isSchedulePresent && viewHasLoaded {
+            setZoomScale()
+        }
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.scheduleImage
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        
+        scheduleImage.center.y = scrollView.center.y
+        
+    }
+    
+    func setZoomScale() {
+        
+        let scrollViewSize = scrollView.bounds.size
+        
+        let imageViewSize = scheduleImage.bounds.size
+        
+        let widthScale = scrollViewSize.width / imageViewSize.width
+        var heightScale: CGFloat = 0
+        
+        heightScale = scrollViewSize.height / imageViewSize.height
+
+        scrollView.maximumZoomScale = max(widthScale, heightScale)
+        scrollView.minimumZoomScale = min(widthScale, heightScale)
+        scrollView.zoomScale = scrollView.maximumZoomScale
+        
+        
     }
     
     func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
@@ -100,20 +138,16 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate {
             DispatchQueue.main.async() { () -> Void in
                 
                 self.scheduleImage = UIImageView(image: UIImage(data: data))
-                
                 self.scrollView.contentSize = self.scheduleImage.bounds.size
-                self.scrollView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-                
                 self.scrollView.addSubview(self.scheduleImage)
+                self.viewHasLoaded = true
                 
-                let centreYConstraint = NSLayoutConstraint(item: self.scheduleImage, attribute: .centerY, relatedBy: .equal, toItem: self.scrollView, attribute: .centerY, multiplier: 1, constant: 0)
-                self.scheduleImage.translatesAutoresizingMaskIntoConstraints = false
-                self.scrollView.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([centreYConstraint])
-
                 scheduleData = data
+                
                 isSchedulePresent = true
+                
                 self.loadingIndicator.stopAnimating()
+                self.setZoomScale()
             }
         }
     }
