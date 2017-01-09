@@ -185,6 +185,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
 
     func getBlogIDs() {
         
+        self.isRefreshingCards = true
         let urlToHit = URL(string: "https://aaveg.net/blog/getAllBlogIds")
         var request = URLRequest(url: urlToHit!)
         request.httpMethod = "POST"
@@ -198,11 +199,13 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
                 if httpStatus?.statusCode == nil {
                     DispatchQueue.main.async {
                         self.noInternetLabel.isHidden = false
+                        self.isRefreshingCards = false
                     }
                 }
                     
                 else {
                     print("Error : \(error)")
+                    self.isRefreshingCards = false
                 }
                 return
             }
@@ -260,6 +263,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
                     print("noo internet")
                     DispatchQueue.main.async {
                         self.noInternetLabel.isHidden = false
+                        self.isRefreshingCards = false
                     }
                 }
                 
@@ -288,7 +292,6 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
                         }
                     }
                     
-                    self.isRefreshingCards = false
                     
                     DispatchQueue.main.async {
                         if self.refreshControl.isRefreshing {
@@ -298,6 +301,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
                     }
                 }
             }
+            self.isRefreshingCards = false
         }
         
         task.resume()
@@ -305,9 +309,13 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
     }
     
     @IBAction func onClickRefresh(_ sender: AnyObject) {
-        
+        print(isRefreshingCards)
         if refreshControl.isRefreshing {
             refreshControl.endRefreshing()
+        }
+        
+        if isRefreshingCards {
+            return
         }
         
         for card in blogCards {
@@ -321,6 +329,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
         
         //If there was no internet before the refresh
         if noInternetLabel.isHidden == false {
+            noInternetLabel.isHidden = true
             self.getBlogIDs()
         }
         

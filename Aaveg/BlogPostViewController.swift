@@ -29,6 +29,9 @@ class BlogPostViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
+    var isObtainingBlogPostContent: Bool = false
+    var isObtainingBlogPostImage: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -128,7 +131,7 @@ class BlogPostViewController: UIViewController {
             return
         }
         
-        
+        self.isObtainingBlogPostContent = true
         let urlToHit = URL(string: "https://aaveg.net/blog/getBlogById")
         var request = URLRequest(url: urlToHit!)
         request.httpMethod = "POST"
@@ -149,12 +152,10 @@ class BlogPostViewController: UIViewController {
                 else {
                     print("Error : \(error)")
                 }
-                return
             }
                 
             else if httpStatus?.statusCode != 200 {
                 print("Status code not 200. It is \(httpStatus?.statusCode)")
-                return
             }
                 
             else {
@@ -164,6 +165,7 @@ class BlogPostViewController: UIViewController {
                     
                     if (json["status_code"] as! Int) != 200 {
                         print("Status code : \(json["status_code"])")
+                        self.isObtainingBlogPostContent = false
                         return
                     }
                     
@@ -199,6 +201,7 @@ class BlogPostViewController: UIViewController {
                     
                 }
             }
+            self.isObtainingBlogPostContent = false
         }
         
         task.resume()
@@ -207,6 +210,7 @@ class BlogPostViewController: UIViewController {
     
     func setImage() {
         
+        self.isObtainingBlogPostImage = true
         let urlToHit = URL(string: "https://aaveg.net/blog/getBlogById")
         var request = URLRequest(url: urlToHit!)
         request.httpMethod = "POST"
@@ -227,12 +231,10 @@ class BlogPostViewController: UIViewController {
                 else {
                     print("Error : \(error)")
                 }
-                return
             }
                 
             else if httpStatus?.statusCode != 200 {
                 print("Status code not 200. It is \(httpStatus?.statusCode)")
-                return
             }
                 
             else {
@@ -273,6 +275,7 @@ class BlogPostViewController: UIViewController {
                     
                 }
             }
+            self.isObtainingBlogPostImage = false
         }
         
         task.resume()
@@ -312,6 +315,11 @@ class BlogPostViewController: UIViewController {
     }
 
     @IBAction func onClickRefresh(_ sender: AnyObject) {
+        print(isObtainingBlogPostContent)
+        print(isObtainingBlogPostImage)
+        if isObtainingBlogPostImage || isObtainingBlogPostContent {
+            return
+        }
         
         DispatchQueue.main.async {
             self.errorLabel.isHidden = true
