@@ -6,6 +6,7 @@ Overall :-
     Repeated requests
     Content Team author content and picture
     Rulebooks uploading and API
+    Change boy sprite
 
 Splash Screen :-
     Slide Up to Enter Font
@@ -16,6 +17,3 @@ Scoreboard :-
 Blog :-
 	Check if content decoding works for ALL scenarios/tags (bold, tabs, etc)
 	Minor design changes if needed
-
-Events :-
-    Events on View Loading : Memory Warning
