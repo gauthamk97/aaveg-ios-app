@@ -6,7 +6,6 @@ Overall :-
     Repeated requests
     Content Team author content and picture
     Rulebooks uploading and API
-    Change boy sprite
 
 Splash Screen :-
     Slide Up to Enter Font

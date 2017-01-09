@@ -17,13 +17,13 @@ var isInSplashScreen: Bool = true
 let LogoToScreenRatio: CGFloat = 7/8
 let LogoOffset: CGFloat = (1 - LogoToScreenRatio)/2
 
-let boyToScreenInitialRatio: CGFloat = 0.35
-let boyToScreenFinalRatio: CGFloat = 0.5
+let boyToScreenInitialRatio: CGFloat = 0.15
+let boyToScreenFinalRatio: CGFloat = 0.25
 
 let boyInitialOffset: CGFloat = (1 - boyToScreenInitialRatio)/2
 let boyFinalOffset: CGFloat = (1 - boyToScreenFinalRatio)/2
 
-let boyAspectRatio: CGFloat = 1417/2093
+let boyAspectRatio: CGFloat = 871/1919
 
 let gateToScreenInitialRatio: CGFloat = 0.35
 let gateToScreenFinalRatio: CGFloat = 0.5
