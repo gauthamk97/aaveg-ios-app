@@ -9,8 +9,6 @@
 import UIKit
 
 class EventPageViewController: UIViewController {
-
-    let tempRuleBook = "<ul><li>Doodle Comic is an individual event.</li><li>There are no restrictions on the number of participants from each hostel.</li><li>Participants are required to be present at the venue half an hour before the commencement of the event for registration.</li><li>There will be only one round in this event.</li><li>The event will be held for a time period of 2 hours excluding the registration time.</li><li>A theme will be given to the participants during the initial 15 minutes of the event.</li><li>Participants are expected to bring their own A4 sheet and stationery.</li><li>Participants are allowed to use only one A4 sheet for their doodle.</li><li>Pencils, colour pens and markers are the only stationery which can be used for this event.</li><li>A maximum of 4 speech bubbles are allowed.</li><li>The word count should not exceed 25.</li><li>Mobile phones are strictly banned during the event.</li><li>All participants should complete their art work within the stipulated 2 hours of time.</li><li>Judges&rsquo; decision will be final. No arguments will be encouraged.</li></ul>"
     
     @IBOutlet weak var scrollViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -147,7 +145,9 @@ class EventPageViewController: UIViewController {
             self.dateLabel.text = "Date : \(dateSplits[2])-\(dateSplits[1])-\(dateSplits[0])"
             self.timeLabel.text = "Time : \((startTime).substring(to: startTime.index(startTime.endIndex, offsetBy: -3))) - \((endTime.substring(to: endTime.index(endTime.endIndex, offsetBy: -3))))"
             self.categoryLabel.text = "Category : \(eventDetails["event_category"] as! String) Cup"
-            var realcontent = self.tempRuleBook.html2String.replacingOccurrences(of: "\n", with: "\n\n")
+            
+            let tempRuleBook = eventDetails["event_rulebook"] as! String
+            var realcontent = tempRuleBook.html2String.replacingOccurrences(of: "\n", with: "\n\n")
             
             //Removing unnecessary newline at end
             ending = realcontent.substring(from: realcontent.index(realcontent.endIndex, offsetBy: -2))
