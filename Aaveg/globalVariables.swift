@@ -209,6 +209,7 @@ var events: [String: [String: Any]] = [:]
 var selectedCluster: String = ""
 var selectedEvent: String = ""
 var listOfClusters: [String] = []
+var noInternetForClusters: Bool = false
 
 func getClusterAndEvents() {
     isClusterAndEventsPresent = false
@@ -224,6 +225,8 @@ func getClusterAndEvents() {
         if (error != nil) {
             if (httpStatus?.statusCode == nil) {
                 print("NO INTERNET")
+                noInternetForClusters = true
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nointernetforclusters"), object: nil)
             }
             else {
                 print("Error occured : \(error)")
@@ -250,7 +253,7 @@ func getClusterAndEvents() {
                 clusters = json["message"] as! [String: [String]]
                 isClusterAndEventsPresent = true
                 listOfClusters = [String](clusters.keys)
-                
+                noInternetForClusters = false
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "clusterandeventsdataobtained"), object: nil)
                 
             }

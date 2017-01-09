@@ -351,17 +351,37 @@
                                 <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Dnv-x3-qVG"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bwy-qu-RwJ">
+                                <state key="normal" title="Tap To Reload">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="reloadData:" destination="Okq-t2-HpK" eventType="touchUpInside" id="BzW-gG-H8k"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Timed Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="au5-aW-rcp">
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="cur-LX-BA3" firstAttribute="leading" secondItem="aCW-q8-nkY" secondAttribute="leading" id="3D7-vj-yOM"/>
+                            <constraint firstItem="au5-aW-rcp" firstAttribute="leading" secondItem="aCW-q8-nkY" secondAttribute="leading" id="98f-Mw-TcJ"/>
                             <constraint firstItem="P2f-VI-6Fd" firstAttribute="top" secondItem="cur-LX-BA3" secondAttribute="bottom" id="AnX-rn-J2j"/>
+                            <constraint firstItem="bwy-qu-RwJ" firstAttribute="leading" secondItem="aCW-q8-nkY" secondAttribute="leading" id="GBX-cj-C0r"/>
+                            <constraint firstItem="P2f-VI-6Fd" firstAttribute="top" secondItem="bwy-qu-RwJ" secondAttribute="bottom" id="GIy-nM-P6Q"/>
+                            <constraint firstItem="au5-aW-rcp" firstAttribute="centerY" secondItem="aCW-q8-nkY" secondAttribute="centerY" id="Ppz-Y6-L0m"/>
                             <constraint firstItem="Dnv-x3-qVG" firstAttribute="top" secondItem="YuO-6C-dwB" secondAttribute="bottom" id="Pws-f9-EgN"/>
                             <constraint firstItem="Dnv-x3-qVG" firstAttribute="leading" secondItem="aCW-q8-nkY" secondAttribute="leading" id="TJc-kb-FHV"/>
                             <constraint firstItem="cur-LX-BA3" firstAttribute="top" secondItem="YuO-6C-dwB" secondAttribute="bottom" id="WGL-8N-dXH"/>
                             <constraint firstAttribute="trailing" secondItem="cur-LX-BA3" secondAttribute="trailing" id="agc-fW-2jn"/>
                             <constraint firstItem="P2f-VI-6Fd" firstAttribute="top" secondItem="Dnv-x3-qVG" secondAttribute="bottom" id="b6X-iA-hN6"/>
+                            <constraint firstAttribute="trailing" secondItem="bwy-qu-RwJ" secondAttribute="trailing" id="e6Y-0t-jiv"/>
+                            <constraint firstAttribute="trailing" secondItem="au5-aW-rcp" secondAttribute="trailing" id="gjq-4w-Aov"/>
                             <constraint firstAttribute="trailing" secondItem="Dnv-x3-qVG" secondAttribute="trailing" id="slz-Lr-KEt"/>
+                            <constraint firstItem="bwy-qu-RwJ" firstAttribute="top" secondItem="YuO-6C-dwB" secondAttribute="bottom" id="yX0-8G-GIb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pof-TF-Zuo">
@@ -372,7 +392,9 @@
                     <connections>
                         <outlet property="loadingActivityIndicator" destination="Dnv-x3-qVG" id="Frr-br-GNI"/>
                         <outlet property="menuButton" destination="F41-z8-ruX" id="v1f-gr-vrv"/>
+                        <outlet property="reloadButton" destination="bwy-qu-RwJ" id="stn-hH-FV8"/>
                         <outlet property="scrollView" destination="cur-LX-BA3" id="BaQ-dc-WVu"/>
+                        <outlet property="timedOutLabel" destination="au5-aW-rcp" id="bgo-jl-fVb"/>
                         <segue destination="ycj-LA-QsL" kind="show" identifier="toEventsView" id="cxm-Rf-5D5"/>
                     </connections>
                 </viewController>

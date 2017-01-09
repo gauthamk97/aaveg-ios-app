@@ -13,6 +13,8 @@ class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var timedOutLabel: UILabel!
     
     var tiles: [EventsTile] = []
     var bgColors: [UIColor] = [diamondColor, coralColor, agateColor, opalColor]
@@ -22,8 +24,14 @@ class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Hiding no internet stuff
+        self.reloadButton.isHidden = true
+        self.timedOutLabel.isHidden = true
+        
         //Watching for presence of data
         NotificationCenter.default.addObserver(self, selector: #selector(self.checkIfDataPresent), name: NSNotification.Name(rawValue: "clusterandeventsdataobtained"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.nointernet), name: NSNotification.Name(rawValue: "nointernetforclusters"), object: nil)
         
         //Setting status bar to white
         UIApplication.shared.statusBarStyle = .lightContent
@@ -84,8 +92,30 @@ class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
         print("Calling fucniton")
     }
     
+    func nointernet() {
+        DispatchQueue.main.async {
+            self.loadingActivityIndicator.stopAnimating()
+            self.timedOutLabel.isHidden = false
+            self.reloadButton.isHidden = false
+        }
+    }
+    
+    @IBAction func reloadData(_ sender: AnyObject) {
+        DispatchQueue.main.async {
+            self.loadingActivityIndicator.startAnimating()
+            self.timedOutLabel.isHidden = true
+            self.reloadButton.isHidden = true
+        }
+        getClusterAndEvents()
+    }
+    
     func checkIfDataPresent() {
-        print(isClusterAndEventsPresent)
+        
+        if noInternetForClusters {
+            self.nointernet()
+            return
+        }
+        
         if isClusterAndEventsPresent == false {
             DispatchQueue.main.async {
                 self.loadingActivityIndicator.startAnimating()
