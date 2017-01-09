@@ -14,6 +14,8 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate, 
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var insideView: UIView!
+    @IBOutlet weak var timedOutLabel: UILabel!
+    @IBOutlet weak var reloadButton: UIButton!
     
     var isRevealViewOpen: Bool = false
     var viewHasLoaded: Bool = false
@@ -22,6 +24,11 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Hiding no internet stuff
+        self.timedOutLabel.isHidden = true
+        self.reloadButton.isHidden = true
+        
         viewHasLoaded = false
         self.view.layoutIfNeeded()
         
@@ -127,12 +134,34 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate, 
             }.resume()
     }
     
+    func nointernet() {
+        DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimating()
+            self.timedOutLabel.isHidden = false
+            self.reloadButton.isHidden = false
+        }
+    }
+    
+    @IBAction func onReloadClick(_ sender: AnyObject) {
+        DispatchQueue.main.async {
+            self.loadingIndicator.startAnimating()
+            self.timedOutLabel.isHidden = true
+            self.reloadButton.isHidden = true
+        }
+        if let checkedUrl = URL(string: "https://aaveg.net/schedule.jpg") {
+            downloadImage(url: checkedUrl)
+        }
+    }
+    
     func downloadImage(url: URL) {
         print("Download Started")
         self.loadingIndicator.startAnimating()
         isSchedulePresent = false
         getDataFromUrl(url: url) { (data, response, error)  in
-            guard let data = data, error == nil else { return }
+            guard let data = data, error == nil else {
+                print("error")
+                self.nointernet()
+                return }
             print(response?.suggestedFilename ?? url.lastPathComponent)
             print("Download Finished")
             DispatchQueue.main.async() { () -> Void in

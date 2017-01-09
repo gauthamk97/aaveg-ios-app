@@ -26,14 +26,35 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="fHx-hB-gdD">
                                 <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cf4-8k-9XE">
+                                <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Tap To Reload">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onReloadClick:" destination="4ax-rn-d0f" eventType="touchUpInside" id="jlM-Xt-2zv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Timed Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaE-N5-Hd1">
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Cf4-8k-9XE" secondAttribute="trailing" id="1WI-N9-crg"/>
                             <constraint firstItem="4PZ-74-lN0" firstAttribute="top" secondItem="bxn-rn-od0" secondAttribute="bottom" id="8fQ-Iq-LMC"/>
                             <constraint firstItem="SYm-vO-Qv3" firstAttribute="top" secondItem="fHx-hB-gdD" secondAttribute="bottom" id="QcA-qP-Vd0"/>
+                            <constraint firstItem="SYm-vO-Qv3" firstAttribute="top" secondItem="Cf4-8k-9XE" secondAttribute="bottom" id="Xba-Lu-JQL"/>
+                            <constraint firstItem="MaE-N5-Hd1" firstAttribute="leading" secondItem="Mb9-mo-pWB" secondAttribute="leading" id="Xeg-a4-GBc"/>
+                            <constraint firstItem="MaE-N5-Hd1" firstAttribute="centerY" secondItem="Mb9-mo-pWB" secondAttribute="centerY" constant="-20" id="ZME-XE-fCj"/>
                             <constraint firstItem="fHx-hB-gdD" firstAttribute="leading" secondItem="Mb9-mo-pWB" secondAttribute="leading" id="a8c-bX-TGg"/>
+                            <constraint firstAttribute="trailing" secondItem="MaE-N5-Hd1" secondAttribute="trailing" id="ayd-ml-fUR"/>
+                            <constraint firstItem="Cf4-8k-9XE" firstAttribute="leading" secondItem="Mb9-mo-pWB" secondAttribute="leading" id="bR9-z5-sqy"/>
                             <constraint firstAttribute="trailing" secondItem="fHx-hB-gdD" secondAttribute="trailing" id="e9U-IW-BFP"/>
                             <constraint firstItem="SYm-vO-Qv3" firstAttribute="top" secondItem="4PZ-74-lN0" secondAttribute="bottom" id="fvy-nY-wps"/>
+                            <constraint firstItem="Cf4-8k-9XE" firstAttribute="top" secondItem="bxn-rn-od0" secondAttribute="bottom" id="h7w-T8-eeG"/>
                             <constraint firstItem="fHx-hB-gdD" firstAttribute="top" secondItem="bxn-rn-od0" secondAttribute="bottom" id="nLH-Hp-Lr1"/>
                             <constraint firstItem="4PZ-74-lN0" firstAttribute="leading" secondItem="Mb9-mo-pWB" secondAttribute="leading" id="pp6-bn-xvl"/>
                             <constraint firstAttribute="trailing" secondItem="4PZ-74-lN0" secondAttribute="trailing" id="wQX-az-12o"/>
@@ -48,6 +69,8 @@
                         <outlet property="insideView" destination="4PZ-74-lN0" id="c3C-Es-IRR"/>
                         <outlet property="loadingIndicator" destination="fHx-hB-gdD" id="PWW-1G-bcN"/>
                         <outlet property="menuButton" destination="vlo-xh-0oy" id="dZX-cJ-Jey"/>
+                        <outlet property="reloadButton" destination="Cf4-8k-9XE" id="eGy-c1-LzX"/>
+                        <outlet property="timedOutLabel" destination="MaE-N5-Hd1" id="cQ9-pQ-suj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcZ-No-j9n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -372,7 +395,7 @@
                             <constraint firstItem="P2f-VI-6Fd" firstAttribute="top" secondItem="cur-LX-BA3" secondAttribute="bottom" id="AnX-rn-J2j"/>
                             <constraint firstItem="bwy-qu-RwJ" firstAttribute="leading" secondItem="aCW-q8-nkY" secondAttribute="leading" id="GBX-cj-C0r"/>
                             <constraint firstItem="P2f-VI-6Fd" firstAttribute="top" secondItem="bwy-qu-RwJ" secondAttribute="bottom" id="GIy-nM-P6Q"/>
-                            <constraint firstItem="au5-aW-rcp" firstAttribute="centerY" secondItem="aCW-q8-nkY" secondAttribute="centerY" id="Ppz-Y6-L0m"/>
+                            <constraint firstItem="au5-aW-rcp" firstAttribute="centerY" secondItem="aCW-q8-nkY" secondAttribute="centerY" constant="-20" id="Ppz-Y6-L0m"/>
                             <constraint firstItem="Dnv-x3-qVG" firstAttribute="top" secondItem="YuO-6C-dwB" secondAttribute="bottom" id="Pws-f9-EgN"/>
                             <constraint firstItem="Dnv-x3-qVG" firstAttribute="leading" secondItem="aCW-q8-nkY" secondAttribute="leading" id="TJc-kb-FHV"/>
                             <constraint firstItem="cur-LX-BA3" firstAttribute="top" secondItem="YuO-6C-dwB" secondAttribute="bottom" id="WGL-8N-dXH"/>
@@ -1412,7 +1435,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pa3-Jb-UEX" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dLw-xY-cFT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dLw-xY-cFT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.078431372550000003" green="0.42745098040000001" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1434,7 +1457,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pj6-5C-CZP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="AoF-vc-vIy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AoF-vc-vIy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.078431372550000003" green="0.42745098040000001" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
