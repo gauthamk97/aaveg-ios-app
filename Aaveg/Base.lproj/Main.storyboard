@@ -61,7 +61,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7FO-b8-iIE">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="vlo-xh-0oy">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="vlo-xh-0oy">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -247,7 +247,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8xu-3U-bcv">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="lAS-Nk-XrF">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="lAS-Nk-XrF">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -317,7 +317,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="m0C-RG-0g1">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="mgZ-Na-PnI">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="mgZ-Na-PnI">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="oZQ-2R-rv9">
@@ -408,7 +408,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pof-TF-Zuo">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="F41-z8-ruX">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="F41-z8-ruX">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -874,7 +874,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Scoreboard" id="ZWp-5F-F49">
-                                        <barButtonItem key="leftBarButtonItem" title="Menu" id="irE-XL-oUJ">
+                                        <barButtonItem key="leftBarButtonItem" image="Menu" id="irE-XL-oUJ">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </barButtonItem>
                                     </navigationItem>
@@ -943,7 +943,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hUJ-Zn-pLd" id="dqz-Ei-bK5">
-                                                    <frame key="frameInset" width="375" height="43"/>
+                                                    <frame key="frameInset" width="375" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="6H1-Ri-tJE">
@@ -1096,7 +1096,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ir9-sN-ef2" id="iJS-ZQ-U3E">
-                                                    <frame key="frameInset" width="375" height="43"/>
+                                                    <frame key="frameInset" width="375" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="1Ja-KN-M8d">
@@ -1249,7 +1249,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EdR-ir-wg1" id="05r-cc-8Ce">
-                                                    <frame key="frameInset" width="375" height="43"/>
+                                                    <frame key="frameInset" width="375" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Col 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ybI-9p-css">
@@ -1417,7 +1417,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eZc-ui-Ksa">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="1Rb-SW-dXh">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="1Rb-SW-dXh">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -1475,6 +1475,9 @@
             <point key="canvasLocation" x="-2994.4000000000001" y="2462.5187406296855"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Menu" width="22" height="22"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Eg6-kI-JL4"/>
     </inferredMetricsTieBreakers>
