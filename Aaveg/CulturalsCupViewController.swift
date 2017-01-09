@@ -292,6 +292,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
         
+        isObtainingCultCupData = false
         CultCupDataPresent = true
         numberOfRows = culturalEvents.count+2
         
@@ -299,10 +300,17 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func onrefresh(sender: UIRefreshControl) {
+        if isObtainingCultCupData {
+            if refreshControl.isRefreshing {
+                refreshControl.endRefreshing()
+            }
+            return
+        }
         obtainScoreboardData(index: 1)
     }
     
     func obtainingData() {
+        isObtainingCultCupData = true
         CultCupDataPresent = false
         scoreboardGraphView.data = nil
         scoreboardGraphView.noDataText = "Obtaining Data"
@@ -311,6 +319,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     
     func noInternet() {
         scoreboardGraphView.data = nil
+        isObtainingCultCupData = false
         scoreboardGraphView.noDataText = "No Internet"
         scoreboardGraphView.notifyDataSetChanged()
         DispatchQueue.main.async {
@@ -321,6 +330,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func serverError() {
+        isObtainingCultCupData = false
         scoreboardGraphView.noDataText = "Server Error"
         scoreboardGraphView.data = nil
         scoreboardGraphView.notifyDataSetChanged()

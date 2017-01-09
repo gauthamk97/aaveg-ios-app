@@ -49,6 +49,10 @@ var CultCupDataPresent: Bool = false
 var SportsCupDataPresent: Bool = false
 var SpectrumCupDataPresent: Bool = false
 
+var isObtainingCultCupData: Bool = false
+var isObtainingSportsCupData: Bool = false
+var isObtainingSpectrumCupData: Bool = false
+
 var currentScoreboardPage: Int = 1
 var wasInternetPresent: Bool = true
 var isInternetPresent: Bool = true

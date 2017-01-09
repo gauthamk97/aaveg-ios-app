@@ -290,6 +290,7 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
+        isObtainingSpectrumCupData = false
         SpectrumCupDataPresent = true
         numberOfRows = spectrumEvents.count+2
         
@@ -297,10 +298,17 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func onrefresh(sender: UIRefreshControl) {
+        if isObtainingSpectrumCupData {
+            if refreshControl.isRefreshing {
+                refreshControl.endRefreshing()
+            }
+            return
+        }
         obtainScoreboardData(index: 3)
     }
     
     func obtainingData() {
+        isObtainingSpectrumCupData = true
         SpectrumCupDataPresent = false
         scoreboardGraphView.data = nil
         scoreboardGraphView.noDataText = "Obtaining Data"
@@ -308,6 +316,7 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func noInternet() {
+        isObtainingSpectrumCupData = false
         scoreboardGraphView.data = nil
         scoreboardGraphView.noDataText = "No Internet"
         scoreboardGraphView.notifyDataSetChanged()
@@ -319,6 +328,7 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func serverError() {
+        isObtainingSpectrumCupData = false
         scoreboardGraphView.noDataText = "Server Error"
         scoreboardGraphView.data = nil
         scoreboardGraphView.notifyDataSetChanged()

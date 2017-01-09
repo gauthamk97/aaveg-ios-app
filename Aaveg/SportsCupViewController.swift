@@ -288,6 +288,7 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     
+        isObtainingSportsCupData = false
         SportsCupDataPresent = true
         numberOfRows = sportsEvents.count+2
         
@@ -295,10 +296,17 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func onrefresh(sender: UIRefreshControl) {
+        if isObtainingSportsCupData {
+            if refreshControl.isRefreshing {
+                refreshControl.endRefreshing()
+            }
+            return
+        }
         obtainScoreboardData(index: 2)
     }
     
     func obtainingData() {
+        isObtainingSportsCupData = true
         SportsCupDataPresent = false
         scoreboardGraphView.data = nil
         scoreboardGraphView.noDataText = "Obtaining Data"
@@ -306,6 +314,7 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func noInternet() {
+        isObtainingSportsCupData = false
         scoreboardGraphView.data = nil
         scoreboardGraphView.noDataText = "No Internet"
         scoreboardGraphView.notifyDataSetChanged()
@@ -317,6 +326,7 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func serverError() {
+        isObtainingSportsCupData = false
         scoreboardGraphView.noDataText = "Server Error"
         scoreboardGraphView.data = nil
         scoreboardGraphView.notifyDataSetChanged()

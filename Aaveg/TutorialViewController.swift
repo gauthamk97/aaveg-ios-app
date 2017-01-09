@@ -65,7 +65,33 @@ class TutorialViewController: UIViewController, SWRevealViewControllerDelegate {
     
     func rightButtonClicked() {
         if wasInternetPresent {
-            obtainScoreboardData(index: currentScoreboardPage)
+            
+            switch currentScoreboardPage {
+            case 1:
+                if isObtainingCultCupData {
+                    return
+                }
+                else {
+                    obtainScoreboardData(index: currentScoreboardPage)
+                }
+            case 2:
+                if isObtainingSportsCupData {
+                    return
+                }
+                else {
+                    obtainScoreboardData(index: currentScoreboardPage)
+                }
+            case 3:
+                if isObtainingSpectrumCupData {
+                    return
+                }
+                else {
+                    obtainScoreboardData(index: currentScoreboardPage)
+                }
+            default:
+                print("error in refresh button")
+            }
+            
         }
         
         else {
