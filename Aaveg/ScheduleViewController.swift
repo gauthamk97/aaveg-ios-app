@@ -59,10 +59,11 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate, 
                 self.scheduleImage = UIImageView(image: UIImage(data: scheduleData))
                 self.scrollView.contentSize = self.scheduleImage.bounds.size
                 self.scrollView.addSubview(self.scheduleImage)
+                self.setZoomScale()
                 self.viewHasLoaded = true
                 isSchedulePresent = true
                 self.loadingIndicator.stopAnimating()
-                self.setZoomScale()
+                
             }
         }
         
@@ -80,6 +81,7 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate, 
     }
     
     override func viewWillLayoutSubviews() {
+        
         if isSchedulePresent && viewHasLoaded {
             setZoomScale()
         }
@@ -108,9 +110,18 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate, 
 
         scrollView.maximumZoomScale = max(widthScale, heightScale)
         scrollView.minimumZoomScale = min(widthScale, heightScale)
-        scrollView.zoomScale = scrollView.maximumZoomScale
         
+        if UIApplication.shared.statusBarOrientation == .portrait {
+            scrollView.zoomScale = (3*scrollView.maximumZoomScale)/4
+        }
+            
+        else {
+            scrollView.zoomScale = scrollView.maximumZoomScale
+        }
         
+        if viewHasLoaded == false {
+            self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        }
     }
     
     func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
@@ -169,6 +180,7 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate, 
                 self.scheduleImage = UIImageView(image: UIImage(data: data))
                 self.scrollView.contentSize = self.scheduleImage.bounds.size
                 self.scrollView.addSubview(self.scheduleImage)
+                self.setZoomScale()
                 self.viewHasLoaded = true
                 
                 scheduleData = data
