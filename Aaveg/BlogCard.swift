@@ -99,7 +99,7 @@ class BlogCard: UIView {
     }
     
     func cardSelected() {
-        print("\(cardID!) card selected")
+        //print("\(cardID!) card selected")
         selectedBlogCard = self
         selectedBlogID = self.cardID
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "cardSelected"), object: nil)
@@ -136,7 +136,7 @@ class BlogCard: UIView {
         let index1 = Image64Encode.range(of: "base64,")?.upperBound
         
         if (index1 == nil) {
-            print("base64, not present in image_path")
+            //print("base64, not present in image_path")
             return
         }
         
@@ -144,7 +144,7 @@ class BlogCard: UIView {
         let imageData = NSData(base64Encoded: properEncode, options: NSData.Base64DecodingOptions.init(rawValue: 0))
         
         if (imageData == nil) {
-            print("error in base64 conversion - \(cardID)\n")
+            //print("error in base64 conversion - \(cardID)\n")
             return
         }
         
@@ -160,7 +160,7 @@ class BlogCard: UIView {
             setImage(Image64Encode: blogPosts[self.cardID]?["image_path"] as! String)
         }
         
-        print("Getting image for card \(cardID)")
+        //print("Getting image for card \(cardID)")
         let ID: Int = cardID
         let urlToHit = URL(string: "https://aaveg.net/blog/getBlogById")
         var request = URLRequest(url: urlToHit!)
@@ -174,17 +174,17 @@ class BlogCard: UIView {
             
             if error != nil {
                 if httpStatus?.statusCode == nil {
-                    print("no internet")
+                    //print("no internet")
                 }
                     
                 else {
-                    print("Error : \(error)")
+                    //print("Error : \(error)")
                 }
                 return
             }
                 
             else if httpStatus?.statusCode != 200 {
-                print("Status code not 200. It is \(httpStatus?.statusCode)")
+                //print("Status code not 200. It is \(httpStatus?.statusCode)")
                 return
             }
                 
@@ -194,7 +194,7 @@ class BlogCard: UIView {
                 if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
                     
                     if (json["status_code"] as! Int) != 200 {
-                        print("Status code : \(json["status_code"])")
+                        //print("Status code : \(json["status_code"])")
                         return
                     }
                     

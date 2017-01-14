@@ -27,7 +27,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Cult Cup View Loaded")
+        //print("Cult Cup View Loaded")
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.dataObtained), name: NSNotification.Name(rawValue: "1stcupdataobtained"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.obtainingData), name: NSNotification.Name(rawValue: "obtaining1stcupdata"), object: nil)
@@ -82,7 +82,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("resetting")
+        //print("resetting")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetIsRevealViewOpen"), object: nil)
     }
     
@@ -296,7 +296,7 @@ class CulturalsCupViewController: UIViewController, UITableViewDelegate, UITable
         CultCupDataPresent = true
         numberOfRows = culturalEvents.count+2
         
-        print("Cult cup data obtained")
+        //print("Cult cup data obtained")
     }
     
     func onrefresh(sender: UIRefreshControl) {

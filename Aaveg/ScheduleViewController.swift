@@ -53,7 +53,7 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate, 
         insideView.addSubview(scrollView)
         
         if isSchedulePresent {
-            print("Schedule already present")
+            //print("Schedule already present")
             DispatchQueue.main.async() { () -> Void in
                 
                 self.scheduleImage = UIImageView(image: UIImage(data: scheduleData))
@@ -165,16 +165,16 @@ class ScheduleViewController: UIViewController, SWRevealViewControllerDelegate, 
     }
     
     func downloadImage(url: URL) {
-        print("Download Started")
+        //print("Download Started")
         self.loadingIndicator.startAnimating()
         isSchedulePresent = false
         getDataFromUrl(url: url) { (data, response, error)  in
             guard let data = data, error == nil else {
-                print("error")
+                //print("error")
                 self.nointernet()
                 return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
+            //print(response?.suggestedFilename ?? url.lastPathComponent)
+            //print("Download Finished")
             DispatchQueue.main.async() { () -> Void in
                 
                 self.scheduleImage = UIImageView(image: UIImage(data: data))

@@ -27,7 +27,7 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Spectrum Cup View Loaded")
+        //print("Spectrum Cup View Loaded")
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.dataObtained), name: NSNotification.Name(rawValue: "3stcupdataobtained"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.obtainingData), name: NSNotification.Name(rawValue: "obtaining3stcupdata"), object: nil)
@@ -294,7 +294,7 @@ class SpectrumCupViewController: UIViewController, UITableViewDelegate, UITableV
         SpectrumCupDataPresent = true
         numberOfRows = spectrumEvents.count+2
         
-        print("Spectrum cup data obtained")
+        //print("Spectrum cup data obtained")
     }
     
     func onrefresh(sender: UIRefreshControl) {

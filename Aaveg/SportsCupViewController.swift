@@ -27,7 +27,7 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Sports Cup View Loaded")
+        //print("Sports Cup View Loaded")
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.dataObtained), name: NSNotification.Name(rawValue: "2stcupdataobtained"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.obtainingData), name: NSNotification.Name(rawValue: "obtaining2stcupdata"), object: nil)
@@ -292,7 +292,7 @@ class SportsCupViewController: UIViewController, UITableViewDelegate, UITableVie
         SportsCupDataPresent = true
         numberOfRows = sportsEvents.count+2
         
-        print("Sports cup data obtained")
+        //print("Sports cup data obtained")
     }
     
     func onrefresh(sender: UIRefreshControl) {

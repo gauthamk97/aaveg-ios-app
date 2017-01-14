@@ -12,7 +12,7 @@ class BackViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.revealViewController().rearViewRevealWidth)
+        //print(self.revealViewController().rearViewRevealWidth)
         // Do any additional setup after loading the view.
     }
 

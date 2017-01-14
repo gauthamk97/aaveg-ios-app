@@ -98,7 +98,7 @@ class BlogPostViewController: UIViewController {
         let index1 = Image64Encode.range(of: "base64,")?.upperBound
         
         if (index1 == nil) {
-            print("base64, not present in image_path")
+            //print("base64, not present in image_path")
             return nil
         }
         
@@ -106,7 +106,7 @@ class BlogPostViewController: UIViewController {
         let imageData = NSData(base64Encoded: properEncode, options: NSData.Base64DecodingOptions.init(rawValue: 0))
         
         if (imageData == nil) {
-            print("error in base64 conversion - \(selectedBlogID)\n")
+            //print("error in base64 conversion - \(selectedBlogID)\n")
             return nil
         }
         
@@ -150,12 +150,12 @@ class BlogPostViewController: UIViewController {
                 }
                     
                 else {
-                    print("Error : \(error)")
+                    //print("Error : \(error)")
                 }
             }
                 
             else if httpStatus?.statusCode != 200 {
-                print("Status code not 200. It is \(httpStatus?.statusCode)")
+                //print("Status code not 200. It is \(httpStatus?.statusCode)")
             }
                 
             else {
@@ -164,7 +164,7 @@ class BlogPostViewController: UIViewController {
                 if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
                     
                     if (json["status_code"] as! Int) != 200 {
-                        print("Status code : \(json["status_code"])")
+                        //print("Status code : \(json["status_code"])")
                         self.isObtainingBlogPostContent = false
                         return
                     }
@@ -229,12 +229,12 @@ class BlogPostViewController: UIViewController {
                 }
                     
                 else {
-                    print("Error : \(error)")
+                    //print("Error : \(error)")
                 }
             }
                 
             else if httpStatus?.statusCode != 200 {
-                print("Status code not 200. It is \(httpStatus?.statusCode)")
+                //print("Status code not 200. It is \(httpStatus?.statusCode)")
             }
                 
             else {
@@ -243,7 +243,7 @@ class BlogPostViewController: UIViewController {
                 if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
                     
                     if (json["status_code"] as! Int) != 200 {
-                        print("Status code : \(json["status_code"])")
+                        //print("Status code : \(json["status_code"])")
                         return
                     }
                     
@@ -252,7 +252,7 @@ class BlogPostViewController: UIViewController {
                     let index1 = image_path.range(of: "base64,")?.upperBound
                     
                     if (index1 == nil) {
-                        print("base64, not present in image_path")
+                        //print("base64, not present in image_path")
                         return
                     }
                     
@@ -260,7 +260,7 @@ class BlogPostViewController: UIViewController {
                     let imageData = NSData(base64Encoded: properEncode, options: NSData.Base64DecodingOptions.init(rawValue: 0))
                     
                     if (imageData == nil) {
-                        print("error in base64 conversion")
+                        //print("error in base64 conversion")
                         return
                     }
                     
@@ -316,8 +316,8 @@ class BlogPostViewController: UIViewController {
     }
 
     @IBAction func onClickRefresh(_ sender: AnyObject) {
-        print(isObtainingBlogPostContent)
-        print(isObtainingBlogPostImage)
+        //print(isObtainingBlogPostContent)
+        //print(isObtainingBlogPostImage)
         if isObtainingBlogPostImage || isObtainingBlogPostContent {
             return
         }

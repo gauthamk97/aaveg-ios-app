@@ -60,7 +60,7 @@ class TutorialViewController: UIViewController, SWRevealViewControllerDelegate {
     }
     
     func leftButtonClicked() {
-        print("Clicked the left button")
+        //print("Clicked the left button")
     }
     
     func rightButtonClicked() {
@@ -88,8 +88,8 @@ class TutorialViewController: UIViewController, SWRevealViewControllerDelegate {
                 else {
                     obtainScoreboardData(index: currentScoreboardPage)
                 }
-            default:
-                print("error in refresh button")
+            default: break
+                //print("error in refresh button")
             }
             
         }

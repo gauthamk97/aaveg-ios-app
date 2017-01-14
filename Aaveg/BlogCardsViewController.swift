@@ -64,7 +64,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
         self.scrollView.addSubview(refreshControl)
         
         if self.revealViewController() != nil {
-            print("setting reveal view controller")
+            //print("setting reveal view controller")
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
@@ -204,14 +204,14 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
                 }
                     
                 else {
-                    print("Error : \(error)")
+                    //print("Error : \(error)")
                     self.isRefreshingCards = false
                 }
                 return
             }
                 
             else if httpStatus?.statusCode != 200 {
-                print("Status code is not 200. It is \(httpStatus?.statusCode)")
+                //print("Status code is not 200. It is \(httpStatus?.statusCode)")
                 return
             }
                 
@@ -235,11 +235,11 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
     }
     
     func blogIDsRecieved() {
-        print(self.blogIDs)
+        //print(self.blogIDs)
         totalNumberOfPosts = blogIDs.count
         let idbegin:Int = Int(blogIDs[0])!
         let idend:Int = Int(blogIDs[2])!
-        print("Ids - \(idbegin) \(idend)")
+        //print("Ids - \(idbegin) \(idend)")
         getCardDetails(idBegin: idbegin, idEnd: idend)
     }
     
@@ -260,7 +260,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
             
             if error != nil {
                 if httpStatus?.statusCode == nil {
-                    print("noo internet")
+                    //print("noo internet")
                     DispatchQueue.main.async {
                         self.noInternetLabel.isHidden = false
                         self.isRefreshingCards = false
@@ -268,13 +268,13 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
                 }
                 
                 else {
-                    print("Error : \(error)")
+                    //print("Error : \(error)")
                 }
                 return
             }
             
             else if httpStatus?.statusCode != 200 {
-                print("Status code not 200. It is \(httpStatus?.statusCode)")
+                //print("Status code not 200. It is \(httpStatus?.statusCode)")
                 return
             }
             
@@ -283,7 +283,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
                 let jsonData = responseString?.data(using: .utf8)
                 if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any]{
                     let cardDetails = json["message"] as! [[String: Any]]
-                    print("Card details - \(cardDetails)")
+                    //print("Card details - \(cardDetails)")
                     
                     for card in cardDetails {
                         let blogID = Int.init(card["blog_id"] as! String)
@@ -309,7 +309,7 @@ class BlogCardsViewController: UIViewController, UIScrollViewDelegate, SWRevealV
     }
     
     @IBAction func onClickRefresh(_ sender: AnyObject) {
-        print(isRefreshingCards)
+        //print(isRefreshingCards)
         if refreshControl.isRefreshing {
             refreshControl.endRefreshing()
         }

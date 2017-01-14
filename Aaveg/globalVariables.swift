@@ -88,18 +88,18 @@ func obtainScoreboardData(index: Int) {
         if (error != nil) {
             if (httpStatus?.statusCode == nil) {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nointernet"), object: nil)
-                print("NO INTERNET")
+                //print("NO INTERNET")
                 isInternetPresent = false
                 wasInternetPresent = false
             }
             else {
-                print("Error occured : \(error)")
+                //print("Error occured : \(error)")
             }
             return;
         }
             
         else if httpStatus?.statusCode != 200 {
-            print("Error : HTTPStatusCode is \(httpStatus?.statusCode)")
+            //print("Error : HTTPStatusCode is \(httpStatus?.statusCode)")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "servererror"), object: nil)
             return
         }
@@ -109,7 +109,7 @@ func obtainScoreboardData(index: Int) {
             let jsonData = responseString?.data(using: .utf8)
             if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
                 if (json["status_code"] as! Int) != 200 {
-                    print("ERROR. STATUS CODE = \(json["status_code"] as! Int)")
+                    //print("ERROR. STATUS CODE = \(json["status_code"] as! Int)")
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "servererror"), object: nil)
                     return
                 }
@@ -224,18 +224,18 @@ func getClusterAndEvents() {
         
         if (error != nil) {
             if (httpStatus?.statusCode == nil) {
-                print("NO INTERNET")
+                //print("NO INTERNET")
                 noInternetForClusters = true
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nointernetforclusters"), object: nil)
             }
             else {
-                print("Error occured : \(error)")
+                //print("Error occured : \(error)")
             }
             return;
         }
             
         else if httpStatus?.statusCode != 200 {
-            print("Error : HTTPStatusCode is \(httpStatus?.statusCode)")
+            //print("Error : HTTPStatusCode is \(httpStatus?.statusCode)")
 //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "servererror"), object: nil)
             return
         }
@@ -245,7 +245,7 @@ func getClusterAndEvents() {
             let jsonData = responseString?.data(using: .utf8)
             if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
                 if (json["status_code"] as! Int) != 200 {
-                    print("ERROR. STATUS CODE = \(json["status_code"] as! Int)")
+                    //print("ERROR. STATUS CODE = \(json["status_code"] as! Int)")
 //                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "servererror"), object: nil)
                     return
                 }

@@ -89,7 +89,7 @@ class ClustersViewController: UIViewController, SWRevealViewControllerDelegate {
     }
 
     func userDidTap() {
-        print("Calling fucniton")
+        //print("Calling fucniton")
     }
     
     func nointernet() {

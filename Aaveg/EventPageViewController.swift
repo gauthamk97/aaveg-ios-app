@@ -66,7 +66,7 @@ class EventPageViewController: UIViewController {
         let urlToHit = URL(string: "https://aaveg.net/events/geteventbyname")
         var request = URLRequest(url: urlToHit!)
         request.httpMethod = "POST"
-        print(selectedEvent)
+        //print(selectedEvent)
         let paramsString = "event_name=\(selectedEvent)"
         request.httpBody = paramsString.data(using: String.Encoding.utf8)
         
@@ -80,13 +80,13 @@ class EventPageViewController: UIViewController {
                 }
                 
                 else {
-                    print("Error : \(error)")
+                    //print("Error : \(error)")
                 }
                 return
             }
             
             else if httpStatus?.statusCode != 200 {
-                print("Status code not 200. It is \(httpStatus?.statusCode)")
+                //print("Status code not 200. It is \(httpStatus?.statusCode)")
                 return
             }
             
@@ -154,7 +154,7 @@ class EventPageViewController: UIViewController {
             if ending == "\n\n" {
                 realcontent = realcontent.substring(to: realcontent.index(realcontent.endIndex, offsetBy: -2))
             }
-            print(realcontent)
+            //print(realcontent)
             self.rulebookTextView.text = realcontent
         }
         
